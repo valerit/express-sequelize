@@ -1,29 +1,23 @@
 const development = {
-  database: 'databasename',
-  username: 'username',
+  database: 'testdb',
+  username: 'testuser',
   password: 'password',
   host: 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'mysql' // 'sqlite' || 'mysql' || 'postgres',
 };
 
 const testing = {
   database: 'databasename',
-  username: 'username',
+  username: 'testuser',
   password: 'password',
   host: 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'mysql'
 };
 
-const production = {
+module.exports = {
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   host: process.env.DB_HOST || 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
-};
-
-module.exports = {
-  development,
-  testing,
-  production,
+  dialect: 'mysql'
 };
