@@ -1,6 +1,6 @@
 
 module.exports.development = {
-  database: 'testdb',
+  database: 'mydb',
   username: 'testuser',
   password: 'password',
   host: 'localhost',
@@ -8,7 +8,7 @@ module.exports.development = {
 };
 
 module.exports.testing = {
-  database: 'testdb',
+  database: 'mydb',
   username: 'testuser',
   password: 'password',
   host: 'localhost',
