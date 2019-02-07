@@ -1,5 +1,5 @@
 const privateRoutes = {
-  'GET /users': 'UserController.getAll',
+  'GET /user': 'UserController.getAll',
 };
 
 module.exports = privateRoutes;

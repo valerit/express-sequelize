@@ -76,7 +76,7 @@ test('User | get all (auth)', async () => {
   expect(res.body.token).toBeTruthy();
 
   const res2 = await request(api)
-    .get('/api/users')
+    .get('/api/user')
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.token}`)
     .set('Content-Type', 'application/json')
@@ -87,7 +87,7 @@ test('User | get all (auth)', async () => {
 
   // Try to get users without invalid auth
   await request(api)
-    .get('/api/users')
+    .get('/api/user')
     .set('Accept', /json/)
     .set('Authorization', 'Bearer')
     .set('Content-Type', 'application/json')
@@ -95,7 +95,7 @@ test('User | get all (auth)', async () => {
 
   // Try to get users without invalid auth
   await request(api)
-    .get('/api/users')
+    .get('/api/user')
     .set('Accept', /json/)
     .set('Content-Type', 'application/json')
     .expect(401);
