@@ -14,10 +14,13 @@ const beforeAction = async () => {
   testapp.use(bodyParser.urlencoded({ extended: false }));
   testapp.use(bodyParser.json());
 
-  testapp.use('/public', mappedOpenRoutes);
-  testapp.use('/private', mappedAuthRoutes);
+  // fill routes for express application
+  testapp.use('/api', mappedOpenRoutes);
 
-  testapp.all('/private/*', (req, res, next) => auth(req, res, next));
+  // secure your private routes with jwt authentication middleware
+  testapp.all('/api/*', (req, res, next) => auth(req, res, next));
+
+  testapp.use('/api', mappedAuthRoutes);
 
   await database.authenticate();
   await database.drop();

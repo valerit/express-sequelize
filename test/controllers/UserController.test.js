@@ -17,7 +17,7 @@ afterAll(() => {
 
 test('User | create', async () => {
   const res = await request(api)
-    .post('/public/user')
+    .post('/api/user')
     .set('Accept', /json/)
     .send({
       email: 'martin@mail.com',
@@ -43,7 +43,7 @@ test('User | login', async () => {
   });
 
   const res = await request(api)
-    .post('/public/login')
+    .post('/api/login')
     .set('Accept', /json/)
     .send({
       email: 'martin@mail.com',
@@ -65,7 +65,7 @@ test('User | get all (auth)', async () => {
   }).save();
 
   const res = await request(api)
-    .post('/public/login')
+    .post('/api/login')
     .set('Accept', /json/)
     .send({
       email: 'martin@mail.com',
@@ -76,7 +76,7 @@ test('User | get all (auth)', async () => {
   expect(res.body.token).toBeTruthy();
 
   const res2 = await request(api)
-    .get('/private/users')
+    .get('/api/users')
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.token}`)
     .set('Content-Type', 'application/json')
@@ -84,6 +84,21 @@ test('User | get all (auth)', async () => {
 
   expect(res2.body.users).toBeTruthy();
   expect(res2.body.users.length).toBe(1);
+
+  // Try to get users without invalid auth
+  await request(api)
+    .get('/api/users')
+    .set('Accept', /json/)
+    .set('Authorization', 'Bearer')
+    .set('Content-Type', 'application/json')
+    .expect(401);
+
+  // Try to get users without invalid auth
+  await request(api)
+    .get('/api/users')
+    .set('Accept', /json/)
+    .set('Content-Type', 'application/json')
+    .expect(401);
 
   await user.destroy();
 });
