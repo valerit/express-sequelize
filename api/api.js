@@ -9,7 +9,7 @@ const http = require('http');
 const mapRoutes = require('express-routes-mapper');
 const cors = require('cors');
 
-require('dotenv').config()
+require('dotenv').config();
 
 /**
  * server configuration

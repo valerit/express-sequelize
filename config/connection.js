@@ -4,7 +4,7 @@ module.exports.development = {
   username: 'testuser',
   password: 'password',
   host: 'localhost',
-  dialect: 'mysql' // 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'mysql', // 'sqlite' || 'mysql' || 'postgres',
 };
 
 module.exports.testing = {
@@ -12,7 +12,7 @@ module.exports.testing = {
   username: 'testuser',
   password: 'password',
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
 };
 
 module.exports.production = {
@@ -20,5 +20,5 @@ module.exports.production = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   host: process.env.DB_HOST || 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
 };
