@@ -1,6 +1,7 @@
 const User = require('../models').loginuser;
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
+const { onError } = require('./error');
 
 const UserController = () => {
   const register = async (req, res) => {
@@ -17,8 +18,7 @@ const UserController = () => {
           data: { user, token },
         });
       } catch (err) {
-        console.log(err);
-        return res.status(500).json({ msg: 'Internal server error' });
+        onError(req, res, err);
       }
     }
 
@@ -49,8 +49,7 @@ const UserController = () => {
 
         return res.status(401).json({ status: false, error: 'Unauthorized' });
       } catch (err) {
-        console.log(err);
-        return res.status(500).json({ status: false, error: 'Internal server error' });
+        onError(req, res, err);
       }
     }
 
@@ -72,20 +71,15 @@ const UserController = () => {
   const getAll = async (req, res) => {
     try {
       const users = await User.findAll();
-
       return res.status(200).json({ status: true, data: users });
     } catch (err) {
-      console.error(err);
-      return res.status(500).json({
-        status: false,
-        error: 'Internal server error',
-      });
+      return onError(req, res, err);
     }
   };
 
-  // const bulkUpdate = async (req, res) => {
-
-  // };
+  const bulkUpdate = async (req, res) => res.send({
+    status: true,
+  });
 
   const deleteAll = async (req, res) => {
     try {
@@ -98,11 +92,7 @@ const UserController = () => {
         status: true,
       });
     } catch (err) {
-      console.error(err);
-      return res.status(500).json({
-        status: false,
-        error: 'Internal server error',
-      });
+      return onError(req, res, err);
     }
   };
 
@@ -112,6 +102,7 @@ const UserController = () => {
     validate,
     getAll,
     deleteAll,
+    bulkUpdate,
   };
 };
 
