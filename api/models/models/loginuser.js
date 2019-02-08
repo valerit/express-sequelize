@@ -1,4 +1,9 @@
 /* jshint indent: 2 */
+const hooks = {
+  beforeCreate(user) {
+    user.password = bcryptService().password(user); // eslint-disable-line no-param-reassign
+  },
+};
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('loginuser', {
@@ -41,6 +46,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'loginuser'
+    tableName: 'loginuser',
+    hooks
   });
 };
