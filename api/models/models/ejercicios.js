@@ -1,89 +1,89 @@
 /* jshint indent: 2 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('ejercicios', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     Ejercicio: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Grupo_muscular: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     Area_muscular: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     Intensidad: {
       type: DataTypes.STRING(10),
-      allowNull: true
+      allowNull: true,
     },
     Compuesto: {
       type: DataTypes.INTEGER(1),
-      allowNull: true
+      allowNull: true,
     },
     Tipo_ejercicio: {
       type: DataTypes.STRING(15),
-      allowNull: true
+      allowNull: true,
     },
     Nivel_usuario: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     Util: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     Movimiento_funcional: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     Imagen: {
       type: DataTypes.STRING(30),
-      allowNull: true
+      allowNull: true,
     },
     Video: {
       type: DataTypes.STRING(30),
-      allowNull: true
+      allowNull: true,
     },
     Coeficiente_actividad: {
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: true,
     },
     Fecha_alta: {
       type: DataTypes.STRING(10),
-      allowNull: true
+      allowNull: true,
     },
     Grupo_muscular_secundario: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     Link: {
       type: DataTypes.STRING(80),
-      allowNull: true
+      allowNull: true,
     },
     Nombre_ejercicio_ingles: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Observaciones_ejercicios: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: true,
     },
     Top: {
       type: DataTypes.INTEGER(1),
-      allowNull: true
+      allowNull: true,
     },
     Usuario_alta: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'ejercicios'
+    tableName: 'ejercicios',
   });
 };

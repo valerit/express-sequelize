@@ -1,25 +1,25 @@
 /* jshint indent: 2 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('comidas_alimentos', {
     comidas_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     alimentos_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     cantidad: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
     },
     unidades: {
       type: DataTypes.STRING(45),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
-    tableName: 'comidas_alimentos'
+    tableName: 'comidas_alimentos',
   });
 };

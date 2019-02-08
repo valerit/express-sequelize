@@ -1,52 +1,61 @@
 /* jshint indent: 2 */
+const bcryptService = require('../../services/bcrypt.service');
+
 const hooks = {
   beforeCreate(user) {
     user.password = bcryptService().password(user); // eslint-disable-line no-param-reassign
   },
 };
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('loginuser', {
+module.exports = function (sequelize, DataTypes) {
+  const loginuser = sequelize.define('loginuser', {
     id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     username: {
       type: DataTypes.STRING(30),
       allowNull: true,
-      unique: true
+      unique: true,
     },
     password: {
-      type: DataTypes.STRING(30),
-      allowNull: true
+      type: DataTypes.STRING(100),
+      allowNull: true,
     },
     rol: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     ttl: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     scopes: {
       type: DataTypes.STRING(250),
-      allowNull: true
+      allowNull: true,
     },
     created: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     userId: {
       type: DataTypes.STRING(250),
-      allowNull: true
+      allowNull: true,
     },
     user_type_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
     tableName: 'loginuser',
-    hooks
+    hooks,
   });
+
+  loginuser.prototype.toJSON = function () {
+    const values = Object.assign({}, this.get());
+    delete values.password;
+    return values;
+  };
+  return loginuser;
 };

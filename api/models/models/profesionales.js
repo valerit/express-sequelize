@@ -1,103 +1,103 @@
 /* jshint indent: 2 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('profesionales', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     id_creador: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     fecha_creacion: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
     },
     nombre: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     apellidos: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     direccion: {
       type: DataTypes.STRING(65),
-      allowNull: true
+      allowNull: true,
     },
     numero_direccion: {
       type: DataTypes.STRING(10),
-      allowNull: false
+      allowNull: false,
     },
     puerta_direccion: {
       type: DataTypes.STRING(10),
-      allowNull: false
+      allowNull: false,
     },
     codigo_postal: {
       type: DataTypes.STRING(15),
-      allowNull: true
+      allowNull: true,
     },
     localidad: {
       type: DataTypes.STRING(65),
-      allowNull: true
+      allowNull: true,
     },
     provincia: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     pais: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     telefono: {
       type: DataTypes.STRING(15),
-      allowNull: true
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     password: {
       type: DataTypes.STRING(25),
-      allowNull: true
+      allowNull: true,
     },
     restore_password: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
-      defaultValue: '1'
+      defaultValue: '1',
     },
     cuenta_banco: {
       type: DataTypes.STRING(22),
-      allowNull: true
+      allowNull: true,
     },
     compartir_informacion: {
       type: DataTypes.INTEGER(1),
-      allowNull: true
+      allowNull: true,
     },
     razon_social: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     cif: {
       type: DataTypes.STRING(15),
-      allowNull: true
+      allowNull: true,
     },
     perfil_profesional: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
     },
     direccion_virtual: {
       type: DataTypes.STRING(150),
-      allowNull: true
+      allowNull: true,
     },
     loginuser_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
-      primaryKey: true
-    }
+      primaryKey: true,
+    },
   }, {
-    tableName: 'profesionales'
+    tableName: 'profesionales',
   });
 };

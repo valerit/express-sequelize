@@ -3,7 +3,7 @@ const {
   beforeAction,
   afterAction,
 } = require('../setup/_setup');
-const User = require('../../api/models/User');
+const User = require('../../api/models/index').loginuser;
 
 let api;
 
@@ -20,7 +20,7 @@ test('User | create', async () => {
     .post('/api/user')
     .set('Accept', /json/)
     .send({
-      email: 'martin@mail.com',
+      username: 'martin@mail.com',
       password: 'securepassword',
       password2: 'securepassword',
     })
@@ -31,14 +31,14 @@ test('User | create', async () => {
   const user = await User.findById(res.body.user.id);
 
   expect(user.id).toBe(res.body.user.id);
-  expect(user.email).toBe(res.body.user.email);
+  expect(user.username).toBe(res.body.user.username);
 
   await user.destroy();
 });
 
 test('User | login', async () => {
   const user = await User.create({
-    email: 'martin@mail.com',
+    username: 'martin@mail.com',
     password: 'securepassword',
   });
 
@@ -46,7 +46,7 @@ test('User | login', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      email: 'martin@mail.com',
+      username: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -60,7 +60,7 @@ test('User | login', async () => {
 
 test('User | get all (auth)', async () => {
   const user = await User.build({
-    email: 'martin@mail.com',
+    username: 'martin@mail.com',
     password: 'securepassword',
   }).save();
 
@@ -68,7 +68,7 @@ test('User | get all (auth)', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      email: 'martin@mail.com',
+      username: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);

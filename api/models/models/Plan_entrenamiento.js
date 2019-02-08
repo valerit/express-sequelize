@@ -1,44 +1,44 @@
 /* jshint indent: 2 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('Plan_entrenamiento', {
-    Id: {
+    id: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      primaryKey: true,
     },
     Nombre_plan: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Fecha_plan: {
       type: DataTypes.STRING(10),
-      allowNull: true
+      allowNull: true,
     },
     Cliente_plan: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Nivel_usuario: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Tipo_de_rutina: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Duracion_entrenamiento: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Intensidad_entrenamiento: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     Nombre_creador: {
       type: DataTypes.STRING(50),
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'Plan_entrenamiento'
+    tableName: 'Plan_entrenamiento',
   });
 };
