@@ -1,14 +1,10 @@
 const Food = require('../models').alimentos;
-const authService = require('../services/auth.service');
-const bcryptService = require('../services/bcrypt.service');
 const { onError } = require('./error');
 
 const FoodController = () => {
-  
-
   const getAll = async (req, res) => {
     try {
-      const users = await User.findAll();
+      const users = await Food.findAll();
       return res.status(200).json({ status: true, data: users });
     } catch (err) {
       return onError(req, res, err);
@@ -17,11 +13,11 @@ const FoodController = () => {
 
   const bulkUpdate = async (req, res) => {
     try {
-      await Promise.all(req.body.map((user) => User.update(user, {
+      await Promise.all(req.body.map((user) => Food.update(user, {
         where: { id: user.id },
       })));
 
-      const users = await User.findAll({
+      const users = await Food.findAll({
         where: {
           id: {
             $in: req.body.map((user) => user.id),
@@ -40,7 +36,7 @@ const FoodController = () => {
 
   const update = async (req, res) => {
     try {
-      const result = await User.update(req.body, {
+      const result = await Food.update(req.body, {
         where: {
           id: req.params.id,
         },
@@ -48,11 +44,11 @@ const FoodController = () => {
       if (result[0] === 0) { // Affected element count
         return res.status(404).send({
           status: false,
-          error: 'user_not_found',
+          error: 'food_not_found',
         });
       }
 
-      const user = await User.find({
+      const user = await Food.find({
         where: {
           id: req.params.id,
         },
@@ -69,14 +65,14 @@ const FoodController = () => {
 
   const deleteSingle = async (req, res) => {
     try {
-      const user = await User.find({
+      const user = await Food.find({
         id: req.params.id,
       });
 
       if (!user) {
         return res.status(404).send({
           status: false,
-          error: 'user_not_found',
+          error: 'food_not_found',
         });
       }
       await user.destroy();
@@ -90,7 +86,7 @@ const FoodController = () => {
 
   const deleteAll = async (req, res) => {
     try {
-      await User.destroy({
+      await Food.destroy({
         where: {},
         truncate: true,
       });
@@ -105,7 +101,7 @@ const FoodController = () => {
 
   const get = async (req, res) => {
     try {
-      const user = await User.find({
+      const user = await Food.find({
         id: req.params.id,
       });
 
@@ -117,7 +113,7 @@ const FoodController = () => {
       }
       return res.status(404).send({
         status: false,
-        error: 'user_not_found',
+        error: 'food_not_found',
       });
     } catch (err) {
       return onError(req, res, err);
@@ -134,4 +130,4 @@ const FoodController = () => {
   };
 };
 
-module.exports = UserController;
+module.exports = FoodController;

@@ -5,6 +5,11 @@ const privateRoutes = {
   'GET /user/:id': 'UserController.get',
   'PUT /user/:id': 'UserController.update',
   'DELETE /user/:id': 'UserController.deleteSingle',
+
+
+  'GET /alimentos': 'FoodController.getAll',
+  'GET /alimentos/:id': 'FoodController.getAll',
+
 };
 
 module.exports = privateRoutes;
