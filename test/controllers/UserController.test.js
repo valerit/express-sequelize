@@ -190,7 +190,7 @@ test('User | single update', async () => {
 });
 
 test('User | bulk update', async () => {
-  await User.build({
+  const user1 = await User.build({
     username: 'user1',
     password: 'password',
   }).save();
@@ -228,5 +228,39 @@ test('User | bulk update', async () => {
   expect(Array.isArray(updateRes.body.data)).toBeTruthy();
   expect(updateRes.body.data[0].username).toBe('user2E');
   expect(updateRes.body.data[1].username).toBe('user3E');
+
+  await user1.destroy();
+  await user2.destroy();
+  await user3.destroy();
+});
+
+test('User | delete single', async () => {
+  await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const user2 = await User.build({
+    username: 'user2',
+    password: 'password',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  const updateRes = await request(api)
+    .delete(`/api/user/${user2.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(updateRes.body.status).toBe(true);
 });
 

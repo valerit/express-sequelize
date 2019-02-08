@@ -131,20 +131,20 @@ const UserController = () => {
 
   const deleteSingle = async (req, res) => {
     try {
-      const count = await User.destroy({
-        where: { id: req.params.id },
+      const user = await User.find({
+        id: req.params.id,
       });
 
-      if (count > 0) {
-        return res.send({
-          status: true,
-        });
-      } else {
+      if (!user) {
         return res.status(404).send({
           status: false,
-          error: 'user_not_found'
+          error: 'user_not_found',
         });
       }
+      await user.destroy();
+      return res.send({
+        status: true,
+      });
     } catch (err) {
       return onError(req, res, err);
     }
@@ -195,6 +195,7 @@ const UserController = () => {
     deleteAll,
     bulkUpdate,
     update,
+    deleteSingle,
   };
 };
 
