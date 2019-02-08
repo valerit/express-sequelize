@@ -129,6 +129,27 @@ const UserController = () => {
     }
   };
 
+  const deleteSingle = async (req, res) => {
+    try {
+      const count = await User.destroy({
+        where: { id: req.params.id },
+      });
+
+      if (count > 0) {
+        return res.send({
+          status: true,
+        });
+      } else {
+        return res.status(404).send({
+          status: false,
+          error: 'user_not_found'
+        });
+      }
+    } catch (err) {
+      return onError(req, res, err);
+    }
+  };
+
   const deleteAll = async (req, res) => {
     try {
       await User.destroy({
