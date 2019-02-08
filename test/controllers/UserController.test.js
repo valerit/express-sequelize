@@ -160,6 +160,35 @@ test('User | delete all (auth)', async () => {
     .expect(200);
 });
 
+
+test('User | single update', async () => {
+  const user = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  const updateRes = await request(api)
+    .put(`/api/user/${user.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({ username: 'user1E' })
+    .expect(200);
+
+  expect(updateRes.body.status).toBeTruthy();
+  expect(updateRes.body.data.id).toBe(user.id);
+});
+
 test('User | bulk update', async () => {
   await User.build({
     username: 'user1',
@@ -200,3 +229,4 @@ test('User | bulk update', async () => {
   expect(updateRes.body.data[0].username).toBe('user2E');
   expect(updateRes.body.data[1].username).toBe('user3E');
 });
+

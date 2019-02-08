@@ -100,6 +100,35 @@ const UserController = () => {
     }
   };
 
+  const update = async (req, res) => {
+    try {
+      const result = await User.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (result[0] === 0) { // Affected element count
+        return res.status(404).send({
+          status: false,
+          error: 'user_not_found',
+        });
+      }
+
+      const user = await User.find({
+        where: {
+          id: req.params.id,
+        },
+      });
+
+      return res.send({
+        status: true,
+        data: user.toJSON(),
+      });
+    } catch (e) {
+      return onError(req, res, e);
+    }
+  };
+
   const deleteAll = async (req, res) => {
     try {
       await User.destroy({
@@ -144,6 +173,7 @@ const UserController = () => {
     getAll,
     deleteAll,
     bulkUpdate,
+    update,
   };
 };
 
