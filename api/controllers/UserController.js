@@ -115,7 +115,29 @@ const UserController = () => {
     }
   };
 
+  const get = async (req, res) => {
+    try {
+      const user = await User.find({
+        id: req.params.id,
+      });
+
+      if (user) {
+        return res.send({
+          status: false,
+          data: user.toJSON(),
+        });
+      }
+      return res.status(404).send({
+        status: false,
+        error: 'user_not_found',
+      });
+    } catch (err) {
+      return onError(req, res, err);
+    }
+  };
+
   return {
+    get,
     register,
     login,
     validate,

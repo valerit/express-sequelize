@@ -36,6 +36,37 @@ test('User | create', async () => {
   await user.destroy();
 });
 
+test('User | get single', async () => {
+  const res = await request(api)
+    .post('/api/user')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+      password2: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.status).toBeTruthy();
+
+  const user = await User.findById(res.body.data.user.id);
+
+  expect(user.id).toBe(res.body.data.user.id);
+  expect(user.username).toBe(res.body.data.user.username);
+
+  const res2 = await request(api)
+    .get(`/api/user/${res.body.data.user.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(res.body.data.user.id);
+
+  await user.destroy();
+});
+
+
 test('User | login', async () => {
   const user = await User.create({
     username: 'martin@mail.com',
