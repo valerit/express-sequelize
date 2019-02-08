@@ -128,3 +128,44 @@ test('User | delete all (auth)', async () => {
     .set('Content-Type', 'application/json')
     .expect(200);
 });
+
+test('User | bulk update', async () => {
+  await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const user2 = await User.build({
+    username: 'user2',
+    password: 'password',
+  }).save();
+
+  const user3 = await User.build({
+    username: 'user3',
+    password: 'password',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  const updateRes = await request(api)
+    .put('/api/user')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send([
+      { id: user2.id, username: 'user2E' },
+      { id: user3.id, username: 'user3E' },
+    ])
+    .expect(200);
+
+  expect(Array.isArray(updateRes.body.data)).toBeTruthy();
+  expect(updateRes.body.data[0].username).toBe('user2E');
+  expect(updateRes.body.data[1].username).toBe('user3E');
+});

@@ -77,9 +77,28 @@ const UserController = () => {
     }
   };
 
-  const bulkUpdate = async (req, res) => res.send({
-    status: true,
-  });
+  const bulkUpdate = async (req, res) => {
+    try {
+      await Promise.all(req.body.map((user) => User.update(user, {
+        where: { id: user.id },
+      })));
+
+      const users = await User.findAll({
+        where: {
+          id: {
+            $in: req.body.map((user) => user.id),
+          },
+        },
+      });
+
+      return res.send({
+        status: true,
+        data: users.map((user) => user.toJSON()),
+      });
+    } catch (e) {
+      return onError(req, res, e);
+    }
+  };
 
   const deleteAll = async (req, res) => {
     try {
