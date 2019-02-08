@@ -75,7 +75,7 @@ const UserController = () => {
 
       return res.status(200).json({ status: true, data: users });
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(500).json({
         status: false,
         error: 'Internal server error',
@@ -87,29 +87,31 @@ const UserController = () => {
 
   // };
 
-  // const deleteAll = async (req, res) => {
-  //   try {
-  //     await User.destroy({
-  //       where: {},
-  //       truncate: true,
-  //     });
+  const deleteAll = async (req, res) => {
+    try {
+      await User.destroy({
+        where: {},
+        truncate: true,
+      });
 
-  //     res.send({
-  //       status: true,
-  //     });
-  //   } catch (err) {
-  //     return res.status(500).json({
-  //       status: false,
-  //       error: 'Internal server error',
-  //     });
-  //   }
-  // };
+      return res.send({
+        status: true,
+      });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        status: false,
+        error: 'Internal server error',
+      });
+    }
+  };
 
   return {
     register,
     login,
     validate,
     getAll,
+    deleteAll,
   };
 };
 
