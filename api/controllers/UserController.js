@@ -12,7 +12,10 @@ const UserController = () => {
         const user = await User.create(body);
         const token = authService().issue({ id: user.id });
 
-        return res.status(200).json({ token, user });
+        return res.status(200).json({
+          status: true,
+          data: { user, token },
+        });
       } catch (err) {
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
@@ -35,23 +38,23 @@ const UserController = () => {
           });
 
         if (!user) {
-          return res.status(400).json({ msg: 'Bad Request: User not found' });
+          return res.status(400).json({ status: false, error: 'Bad Request: User not found' });
         }
 
         if (bcryptService().comparePassword(password, user.password)) {
           const token = authService().issue({ id: user.id });
 
-          return res.status(200).json({ token, user });
+          return res.status(200).json({ status: true, data: { token, user } });
         }
 
-        return res.status(401).json({ msg: 'Unauthorized' });
+        return res.status(401).json({ status: false, error: 'Unauthorized' });
       } catch (err) {
         console.log(err);
-        return res.status(500).json({ msg: 'Internal server error' });
+        return res.status(500).json({ status: false, error: 'Internal server error' });
       }
     }
 
-    return res.status(400).json({ msg: 'Bad Request: username or password is wrong' });
+    return res.status(400).json({ status: false, error: 'Bad Request: username or password is wrong' });
   };
 
   const validate = (req, res) => {
@@ -59,10 +62,10 @@ const UserController = () => {
 
     authService().verify(token, (err) => {
       if (err) {
-        return res.status(401).json({ isvalid: false, err: 'Invalid Token!' });
+        return res.status(401).json({ status: false, error: 'Invalid Token!' });
       }
 
-      return res.status(200).json({ isvalid: true });
+      return res.status(200).json({ status: true });
     });
   };
 
@@ -70,13 +73,37 @@ const UserController = () => {
     try {
       const users = await User.findAll();
 
-      return res.status(200).json({ users });
+      return res.status(200).json({ status: true, data: users });
     } catch (err) {
       console.log(err);
-      return res.status(500).json({ msg: 'Internal server error' });
+      return res.status(500).json({
+        status: false,
+        error: 'Internal server error',
+      });
     }
   };
 
+  // const bulkUpdate = async (req, res) => {
+
+  // };
+
+  // const deleteAll = async (req, res) => {
+  //   try {
+  //     await User.destroy({
+  //       where: {},
+  //       truncate: true,
+  //     });
+
+  //     res.send({
+  //       status: true,
+  //     });
+  //   } catch (err) {
+  //     return res.status(500).json({
+  //       status: false,
+  //       error: 'Internal server error',
+  //     });
+  //   }
+  // };
 
   return {
     register,

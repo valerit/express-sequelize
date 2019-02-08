@@ -26,12 +26,12 @@ test('User | create', async () => {
     })
     .expect(200);
 
-  expect(res.body.user).toBeTruthy();
+  expect(res.body.status).toBeTruthy();
 
-  const user = await User.findById(res.body.user.id);
+  const user = await User.findById(res.body.data.user.id);
 
-  expect(user.id).toBe(res.body.user.id);
-  expect(user.username).toBe(res.body.user.username);
+  expect(user.id).toBe(res.body.data.user.id);
+  expect(user.username).toBe(res.body.data.user.username);
 
   await user.destroy();
 });
@@ -51,7 +51,8 @@ test('User | login', async () => {
     })
     .expect(200);
 
-  expect(res.body.token).toBeTruthy();
+  expect(res.body.status).toBeTruthy();
+  expect(res.body.data.token).toBeTruthy();
 
   expect(user).toBeTruthy();
 
@@ -73,17 +74,17 @@ test('User | get all (auth)', async () => {
     })
     .expect(200);
 
-  expect(res.body.token).toBeTruthy();
+  expect(res.body.data.token).toBeTruthy();
 
   const res2 = await request(api)
     .get('/api/user')
     .set('Accept', /json/)
-    .set('Authorization', `Bearer ${res.body.token}`)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(res2.body.users).toBeTruthy();
-  expect(res2.body.users.length).toBe(1);
+  expect(Array.isArray(res2.body.data)).toBeTruthy();
+  expect(res2.body.data.length).toBe(1);
 
   // Try to get users without invalid auth
   await request(api)
