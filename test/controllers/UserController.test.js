@@ -4,6 +4,8 @@ const {
   afterAction,
 } = require('../setup/_setup');
 const User = require('../../api/models/index').loginuser;
+const Food = require('../../api/models/index').alimentos;
+
 
 let api;
 
@@ -265,10 +267,18 @@ test('User | delete single', async () => {
 });
 
 
-test('User | get all (auth)', async () => {
+test('Food | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+  }).save();
+
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
+  const food2 = await Food.build({
+    nombre_alimento: 'test2',
   }).save();
 
   const res = await request(api)
@@ -290,6 +300,43 @@ test('User | get all (auth)', async () => {
     .expect(200);
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
+  expect(res2.body.data.length).toBe(2);
 
   await user.destroy();
+  await food1.destroy();
+  await food2.destroy();
+});
+
+test('Food | get single food', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const food = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .get(`/api/alimentos/${food.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(food.id);
+
+  await user.destroy();
+  await food.destroy();
 });
