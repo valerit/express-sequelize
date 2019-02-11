@@ -4,8 +4,8 @@ const { onError } = require('./error');
 const FoodController = () => {
   const getAll = async (req, res) => {
     try {
-      const users = await Food.findAll();
-      return res.status(200).json({ status: true, data: users });
+      const models = await Food.findAll();
+      return res.status(200).json({ status: true, data: models });
     } catch (err) {
       return onError(req, res, err);
     }
@@ -13,21 +13,21 @@ const FoodController = () => {
 
   const bulkUpdate = async (req, res) => {
     try {
-      await Promise.all(req.body.map((user) => Food.update(user, {
-        where: { id: user.id },
+      await Promise.all(req.body.map((model) => Food.update(model, {
+        where: { id: model.id },
       })));
 
-      const users = await Food.findAll({
+      const models = await Food.findAll({
         where: {
           id: {
-            $in: req.body.map((user) => user.id),
+            $in: req.body.map((model) => model.id),
           },
         },
       });
 
       return res.send({
         status: true,
-        data: users.map((user) => user.toJSON()),
+        data: models.map((model) => model.toJSON()),
       });
     } catch (e) {
       return onError(req, res, e);
@@ -48,7 +48,7 @@ const FoodController = () => {
         });
       }
 
-      const user = await Food.find({
+      const data = await Food.find({
         where: {
           id: req.params.id,
         },
@@ -56,7 +56,7 @@ const FoodController = () => {
 
       return res.send({
         status: true,
-        data: user.toJSON(),
+        data: data.toJSON(),
       });
     } catch (e) {
       return onError(req, res, e);
@@ -65,17 +65,17 @@ const FoodController = () => {
 
   const deleteSingle = async (req, res) => {
     try {
-      const user = await Food.find({
+      const model = await Food.find({
         id: req.params.id,
       });
 
-      if (!user) {
+      if (!model) {
         return res.status(404).send({
           status: false,
           error: 'food_not_found',
         });
       }
-      await user.destroy();
+      await model.destroy();
       return res.send({
         status: true,
       });
@@ -101,14 +101,14 @@ const FoodController = () => {
 
   const get = async (req, res) => {
     try {
-      const user = await Food.find({
+      const model = await Food.find({
         id: req.params.id,
       });
 
-      if (user) {
+      if (model) {
         return res.send({
           status: false,
-          data: user.toJSON(),
+          data: model.toJSON(),
         });
       }
       return res.status(404).send({
