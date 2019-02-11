@@ -8,8 +8,7 @@ const privateRoutes = {
 
 
   'GET /alimentos': 'FoodController.getAll',
-  'GET /alimentos/:id': 'FoodController.getAll',
-
+  'GET /alimentos/:id': 'FoodController.get',
 };
 
 module.exports = privateRoutes;
