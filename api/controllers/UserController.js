@@ -132,7 +132,9 @@ const UserController = () => {
   const deleteSingle = async (req, res) => {
     try {
       const user = await User.find({
-        id: req.params.id,
+        where: {
+          id: req.params.id,
+        },
       });
 
       if (!user) {
@@ -168,7 +170,7 @@ const UserController = () => {
   const get = async (req, res) => {
     try {
       const user = await User.find({
-        id: req.params.id,
+        where: { id: req.params.id },
       });
 
       if (user) {

@@ -66,7 +66,7 @@ const RecipeController = () => {
   const deleteSingle = async (req, res) => {
     try {
       const model = await Recipe.find({
-        id: req.params.id,
+        where: { id: req.params.id },
       });
 
       if (!model) {
@@ -102,7 +102,7 @@ const RecipeController = () => {
   const get = async (req, res) => {
     try {
       const model = await Recipe.find({
-        id: req.params.id,
+        where: { id: req.params.id },
       });
 
       if (model) {

@@ -66,7 +66,9 @@ const FoodController = () => {
   const deleteSingle = async (req, res) => {
     try {
       const model = await Food.find({
-        id: req.params.id,
+        where: {
+          id: req.params.id,
+        },
       });
 
       if (!model) {
@@ -102,7 +104,7 @@ const FoodController = () => {
   const get = async (req, res) => {
     try {
       const model = await Food.find({
-        id: req.params.id,
+        where: { id: req.params.id },
       });
 
       if (model) {

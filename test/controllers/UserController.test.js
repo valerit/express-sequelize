@@ -454,3 +454,39 @@ test('Recipe | create single', async () => {
     },
   });
 });
+
+test('Recipe | delete single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const recipe = await Recipe.build({
+    id_creador: user.id,
+  }).save();
+
+  console.log('Recipe:', recipe);
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  await request(api)
+    .delete(`/api/recetas/${recipe.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json');
+
+  const recipe2 = await Recipe.find({
+    where: { id: recipe.id },
+  });
+
+  expect(!recipe2).toBeTruthy();
+});
