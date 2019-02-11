@@ -5,7 +5,7 @@ const {
 } = require('../setup/_setup');
 const User = require('../../api/models/index').loginuser;
 const Food = require('../../api/models/index').alimentos;
-
+const Recipe = require('../../api/models/index').recetas;
 
 let api;
 
@@ -266,6 +266,7 @@ test('User | delete single', async () => {
   expect(updateRes.body.status).toBe(true);
 });
 
+// Food ============================================================
 
 test('Food | get all (auth)', async () => {
   const user = await User.build({
@@ -340,3 +341,81 @@ test('Food | get single food', async () => {
   await user.destroy();
   await food.destroy();
 });
+
+// Recipes ======================================================
+
+
+test('Recipe | get all (auth)', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const recipe1 = await Recipe.build({
+    id_creador: user.id,
+  }).save();
+
+  const recipe2 = await Recipe.build({
+    id_creador: user.id,
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .get('/api/recetas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(Array.isArray(res2.body.data)).toBeTruthy();
+  expect(res2.body.data.length).toBe(2);
+
+  await user.destroy();
+  await recipe1.destroy();
+  await recipe2.destroy();
+});
+
+test('Recipe | get single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const recipe = await Recipe.build({
+    id_creador: user.id,
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .get(`/api/recetas/${recipe.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(recipe.id);
+
+  await user.destroy();
+  await recipe.destroy();
+});
+
