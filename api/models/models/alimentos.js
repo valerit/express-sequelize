@@ -4,7 +4,7 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define('alimentos', {
     id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     nombre_alimento: {
