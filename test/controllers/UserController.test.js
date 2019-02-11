@@ -189,6 +189,7 @@ test('User | single update', async () => {
 
   expect(updateRes.body.status).toBeTruthy();
   expect(updateRes.body.data.id).toBe(user.id);
+  await user.destroy();
 });
 
 test('User | bulk update', async () => {
@@ -237,7 +238,7 @@ test('User | bulk update', async () => {
 });
 
 test('User | delete single', async () => {
-  await User.build({
+  const user1 = await User.build({
     username: 'user1',
     password: 'password',
   }).save();
@@ -264,6 +265,7 @@ test('User | delete single', async () => {
     .expect(200);
 
   expect(updateRes.body.status).toBe(true);
+  await user1.destroy();
 });
 
 // Food ============================================================
@@ -489,4 +491,89 @@ test('Recipe | delete single', async () => {
   });
 
   expect(!recipe2).toBeTruthy();
+  await user.destroy();
+});
+
+test('Recipe | bulk update', async () => {
+  const user1 = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const recipe1 = await Recipe.build({
+    id_creador: user1.id,
+  }).save();
+
+  const recipe2 = await Recipe.build({
+    id_creador: user1.id,
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  const updateRes = await request(api)
+    .put('/api/recetas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send([
+      { id: recipe1.id, nombre_receta: 'test1' },
+      { id: recipe2.id, nombre_receta: 'test2' },
+    ])
+    .expect(200);
+
+  expect(Array.isArray(updateRes.body.data)).toBeTruthy();
+  expect(updateRes.body.data[0].nombre_receta).toBe('test1');
+  expect(updateRes.body.data[1].nombre_receta).toBe('test2');
+
+  await user1.destroy();
+  await recipe1.destroy();
+  await recipe2.destroy();
+});
+
+test('Recipe | delete all', async () => {
+  const user1 = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const recipe1 = await Recipe.build({
+    id_creador: user1.id,
+  }).save();
+
+  const recipe2 = await Recipe.build({
+    id_creador: user1.id,
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  await request(api)
+    .delete('/api/recetas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(await Recipe.find({
+    where: { id: recipe1.id },
+  })).toBe(null);
+
+  expect(await Recipe.find({
+    where: { id: recipe2.id },
+  })).toBe(null);
+
+  await user1.destroy();
 });
