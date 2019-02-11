@@ -107,7 +107,7 @@ const RecipeController = () => {
 
       if (model) {
         return res.send({
-          status: false,
+          status: true,
           data: model.toJSON(),
         });
       }
@@ -120,7 +120,20 @@ const RecipeController = () => {
     }
   };
 
+  const create = async (req, res) => {
+    try {
+      const model = await Recipe.build(req.body);
+      return res.send({
+        status: true,
+        data: model.toJSON(),
+      });
+    } catch (err) {
+      return onError(req, res, err);
+    }
+  };
+
   return {
+    create,
     get,
     getAll,
     deleteAll,

@@ -173,7 +173,7 @@ const UserController = () => {
 
       if (user) {
         return res.send({
-          status: false,
+          status: true,
           data: user.toJSON(),
         });
       }

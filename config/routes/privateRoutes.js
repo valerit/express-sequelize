@@ -9,7 +9,7 @@ const privateRoutes = {
   'GET /alimentos': 'FoodController.getAll',
   'GET /alimentos/:id': 'FoodController.get',
 
-
+  'POST /recetas': 'RecipeController.create',
   'GET /recetas': 'RecipeController.getAll',
   'DELETE /recetas': 'RecipeController.deleteAll',
   'PUT /recetas': 'RecipeController.bulkUpdate',

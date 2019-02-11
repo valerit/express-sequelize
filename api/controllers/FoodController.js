@@ -107,7 +107,7 @@ const FoodController = () => {
 
       if (model) {
         return res.send({
-          status: false,
+          status: true,
           data: model.toJSON(),
         });
       }

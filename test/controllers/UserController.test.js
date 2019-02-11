@@ -344,7 +344,6 @@ test('Food | get single food', async () => {
 
 // Recipes ======================================================
 
-
 test('Recipe | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
@@ -419,3 +418,39 @@ test('Recipe | get single', async () => {
   await recipe.destroy();
 });
 
+test('Recipe | create single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .post('/api/recetas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      id_creador: user.id,
+    })
+    .expect(200);
+
+  expect(res2.body.data.id_creador).toBe(user.id);
+
+  await user.destroy();
+  await Recipe.destroy({
+    where: {
+      id: res2.body.data.id,
+    },
+  });
+});
