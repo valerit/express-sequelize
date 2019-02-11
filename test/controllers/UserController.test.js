@@ -457,6 +457,43 @@ test('Recipe | create single', async () => {
   });
 });
 
+test('Recipe | update single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const recipe = await Recipe.build({
+    id_creador: user.id,
+  }).save();
+
+  const res2 = await request(api)
+    .put(`/api/recetas/${recipe.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .send({
+      nombre_receta: 'test1',
+    })
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(recipe.id);
+
+  await user.destroy();
+  await recipe.destroy();
+});
+
 test('Recipe | delete single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
