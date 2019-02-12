@@ -616,7 +616,6 @@ test('Recetas | delete all', async () => {
 
 // Comidas ======================================================
 
-
 test('Comidas | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
@@ -663,6 +662,7 @@ test('Comidas | get all (auth)', async () => {
   await obj2.destroy();
 });
 
+/*
 test('Comidas | get single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
@@ -911,3 +911,4 @@ test('Comidas | delete all', async () => {
 
   await user1.destroy();
 });
+*/

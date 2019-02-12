@@ -17,13 +17,13 @@ const privateRoutes = {
   'PUT /recetas/:id': 'RecetasController.update',
   'DELETE /recetas/:id': 'RecetasController.deleteSingle',
 
-  'POST /comidas': 'RecetasController.create',
-  'GET /comidas': 'RecetasController.getAll',
-  'DELETE /comidas': 'RecetasController.deleteAll',
-  'PUT /comidas': 'RecetasController.bulkUpdate',
-  'GET /comidas/:id': 'RecetasController.get',
-  'PUT /comidas/:id': 'RecetasController.update',
-  'DELETE /comidas/:id': 'RecetasController.deleteSingle',
+  'POST /comidas': 'ComidasController.create',
+  'GET /comidas': 'ComidasController.getAll',
+  'DELETE /comidas': 'ComidasController.deleteAll',
+  'PUT /comidas': 'ComidasController.bulkUpdate',
+  'GET /comidas/:id': 'ComidasController.get',
+  'PUT /comidas/:id': 'ComidasController.update',
+  'DELETE /comidas/:id': 'ComidasController.deleteSingle',
 };
 
 module.exports = privateRoutes;

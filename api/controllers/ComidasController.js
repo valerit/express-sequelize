@@ -66,9 +66,7 @@ const ComidasController = () => {
   const deleteSingle = async (req, res) => {
     try {
       const model = await Comidas.find({
-        where: {
-          id: req.params.id,
-        },
+        where: { id: req.params.id },
       });
 
       if (!model) {
@@ -122,7 +120,20 @@ const ComidasController = () => {
     }
   };
 
+  const create = async (req, res) => {
+    try {
+      const model = await Comidas.build(req.body);
+      return res.send({
+        status: true,
+        data: model.toJSON(),
+      });
+    } catch (err) {
+      return onError(req, res, err);
+    }
+  };
+
   return {
+    create,
     get,
     getAll,
     deleteAll,
