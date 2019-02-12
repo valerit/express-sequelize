@@ -26,7 +26,7 @@
     "test": "npm run create-sqlite-db; cross-env NODE_ENV=testing jest --coverage; npm run drop-sqlite-db",
     "test-ci": "jest --coverage --forceExit",
     "connect-stage": "ssh -i stage.pem ubuntu@ec2-35-180-97-190.eu-west-3.compute.amazonaws.com",
-    "deploy": "pm2 deploy ecosystem.config.json staging --force",
+    "deploy": "pm2 deploy ecosystem.config.json staging --force"
   },
   "jest": {
     "globals": {
