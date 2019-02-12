@@ -6,6 +6,7 @@ const {
 const User = require('../../api/models/index').loginuser;
 const Food = require('../../api/models/index').alimentos;
 const Recetas = require('../../api/models/index').recetas;
+const Comidas = require('../../api/models/index').comidas;
 
 let api;
 
@@ -607,6 +608,304 @@ test('Recetas | delete all', async () => {
   })).toBe(null);
 
   expect(await Recetas.find({
+    where: { id: obj2.id },
+  })).toBe(null);
+
+  await user1.destroy();
+});
+
+// Comidas ======================================================
+
+
+test('Comidas | get all (auth)', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const obj1 = await Comidas.build({
+    id_creador: user.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const obj2 = await Comidas.build({
+    id_creador: user.id,
+    tipo_comida: 'type2',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .get('/api/comidas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(Array.isArray(res2.body.data)).toBeTruthy();
+  expect(res2.body.data.length).toBe(2);
+
+  await user.destroy();
+  await obj1.destroy();
+  await obj2.destroy();
+});
+
+test('Comidas | get single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const obj = await Comidas.build({
+    id_creador: user.id,
+    typo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .get(`/api/comidas/${obj.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(obj.id);
+
+  await user.destroy();
+  await obj.destroy();
+});
+
+test('Comidas | create single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .post('/api/comidas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      id_creador: user.id,
+      typo_comida: 'type1',
+    })
+    .expect(200);
+
+  expect(res2.body.data.id_creador).toBe(user.id);
+
+  await user.destroy();
+  await Comidas.destroy({
+    where: {
+      id: res2.body.data.id,
+    },
+  });
+});
+
+test('Comidas | update single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const obj = await Comidas.build({
+    id_creador: user.id,
+    typo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const res2 = await request(api)
+    .put(`/api/comidas/${obj.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .send({
+      nombre_receta: 'test1',
+    })
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(obj.id);
+
+  await user.destroy();
+  await obj.destroy();
+});
+
+test('Comidas | delete single', async () => {
+  const user = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const obj = await Comidas.build({
+    id_creador: user.id,
+    typo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  await request(api)
+    .delete(`/api/comidas/${obj.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json');
+
+  const obj2 = await Comidas.find({
+    where: { id: obj.id },
+  });
+
+  expect(!obj2).toBeTruthy();
+  await user.destroy();
+});
+
+test('Comidas | bulk update', async () => {
+  const user1 = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const obj1 = await Comidas.build({
+    id_creador: user1.id,
+    typo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const obj2 = await Comidas.build({
+    id_creador: user1.id,
+    typo_comida: 'type2',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  const updateRes = await request(api)
+    .put('/api/comidas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send([
+      { id: obj1.id, nombre_receta: 'test1' },
+      { id: obj2.id, nombre_receta: 'test2' },
+    ])
+    .expect(200);
+
+  expect(Array.isArray(updateRes.body.data)).toBeTruthy();
+  expect(updateRes.body.data[0].nombre_receta).toBe('test1');
+  expect(updateRes.body.data[1].nombre_receta).toBe('test2');
+
+  await user1.destroy();
+  await obj1.destroy();
+  await obj2.destroy();
+});
+
+test('Comidas | delete all', async () => {
+  const user1 = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const obj1 = await Comidas.build({
+    id_creador: user1.id,
+    typo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const obj2 = await Comidas.build({
+    id_creador: user1.id,
+    typo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  await request(api)
+    .delete('/api/comidas')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(await Comidas.find({
+    where: { id: obj1.id },
+  })).toBe(null);
+
+  expect(await Comidas.find({
     where: { id: obj2.id },
   })).toBe(null);
 
