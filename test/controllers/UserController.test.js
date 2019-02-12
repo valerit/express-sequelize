@@ -662,7 +662,7 @@ test('Comidas | get all (auth)', async () => {
   await obj2.destroy();
 });
 
-/*
+
 test('Comidas | get single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
@@ -671,7 +671,7 @@ test('Comidas | get single', async () => {
 
   const obj = await Comidas.build({
     id_creador: user.id,
-    typo_comida: 'type1',
+    tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
@@ -724,7 +724,7 @@ test('Comidas | create single', async () => {
     .set('Content-Type', 'application/json')
     .send({
       id_creador: user.id,
-      typo_comida: 'type1',
+      tipo_comida: 'type1',
     })
     .expect(200);
 
@@ -757,7 +757,7 @@ test('Comidas | update single', async () => {
 
   const obj = await Comidas.build({
     id_creador: user.id,
-    typo_comida: 'type1',
+    tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
@@ -767,7 +767,7 @@ test('Comidas | update single', async () => {
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .send({
-      nombre_receta: 'test1',
+      tipo_comida: 'test1',
     })
     .set('Content-Type', 'application/json')
     .expect(200);
@@ -786,7 +786,7 @@ test('Comidas | delete single', async () => {
 
   const obj = await Comidas.build({
     id_creador: user.id,
-    typo_comida: 'type1',
+    tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
@@ -824,14 +824,14 @@ test('Comidas | bulk update', async () => {
 
   const obj1 = await Comidas.build({
     id_creador: user1.id,
-    typo_comida: 'type1',
+    tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
 
   const obj2 = await Comidas.build({
     id_creador: user1.id,
-    typo_comida: 'type2',
+    tipo_comida: 'type2',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
@@ -851,14 +851,14 @@ test('Comidas | bulk update', async () => {
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .send([
-      { id: obj1.id, nombre_receta: 'test1' },
-      { id: obj2.id, nombre_receta: 'test2' },
+      { id: obj1.id, tipo_comida: 'test1' },
+      { id: obj2.id, tipo_comida: 'test2' },
     ])
     .expect(200);
 
   expect(Array.isArray(updateRes.body.data)).toBeTruthy();
-  expect(updateRes.body.data[0].nombre_receta).toBe('test1');
-  expect(updateRes.body.data[1].nombre_receta).toBe('test2');
+  expect(updateRes.body.data[0].tipo_comida).toBe('test1');
+  expect(updateRes.body.data[1].tipo_comida).toBe('test2');
 
   await user1.destroy();
   await obj1.destroy();
@@ -873,14 +873,14 @@ test('Comidas | delete all', async () => {
 
   const obj1 = await Comidas.build({
     id_creador: user1.id,
-    typo_comida: 'type1',
+    tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
 
   const obj2 = await Comidas.build({
     id_creador: user1.id,
-    typo_comida: 'type1',
+    tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
@@ -911,4 +911,4 @@ test('Comidas | delete all', async () => {
 
   await user1.destroy();
 });
-*/
+
