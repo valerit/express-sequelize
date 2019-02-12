@@ -4,7 +4,7 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define('comidas', {
     id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     id_creador: {
