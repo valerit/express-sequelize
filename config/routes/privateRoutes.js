@@ -23,7 +23,7 @@ const privateRoutes = {
   'PUT /comidas': 'RecetasController.bulkUpdate',
   'GET /comidas/:id': 'RecetasController.get',
   'PUT /comidas/:id': 'RecetasController.update',
-  'DELETE /comidas/:id': 'RecetasController.deleteSingle',  
+  'DELETE /comidas/:id': 'RecetasController.deleteSingle',
 };
 
 module.exports = privateRoutes;

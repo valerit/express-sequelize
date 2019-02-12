@@ -5,7 +5,7 @@ const {
 } = require('../setup/_setup');
 const User = require('../../api/models/index').loginuser;
 const Food = require('../../api/models/index').alimentos;
-const Recipe = require('../../api/models/index').recetas;
+const Recetas = require('../../api/models/index').recetas;
 
 let api;
 
@@ -344,19 +344,19 @@ test('Food | get single food', async () => {
   await food.destroy();
 });
 
-// Recipes ======================================================
+// Recetass ======================================================
 
-test('Recipe | get all (auth)', async () => {
+test('Recetas | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
   }).save();
 
-  const recipe1 = await Recipe.build({
+  const obj1 = await Recetas.build({
     id_creador: user.id,
   }).save();
 
-  const recipe2 = await Recipe.build({
+  const obj2 = await Recetas.build({
     id_creador: user.id,
   }).save();
 
@@ -382,17 +382,17 @@ test('Recipe | get all (auth)', async () => {
   expect(res2.body.data.length).toBe(2);
 
   await user.destroy();
-  await recipe1.destroy();
-  await recipe2.destroy();
+  await obj1.destroy();
+  await obj2.destroy();
 });
 
-test('Recipe | get single', async () => {
+test('Recetas | get single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
   }).save();
 
-  const recipe = await Recipe.build({
+  const obj = await Recetas.build({
     id_creador: user.id,
   }).save();
 
@@ -408,19 +408,19 @@ test('Recipe | get single', async () => {
   expect(res.body.data.token).toBeTruthy();
 
   const res2 = await request(api)
-    .get(`/api/recetas/${recipe.id}`)
+    .get(`/api/recetas/${obj.id}`)
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(res2.body.data.id).toBe(recipe.id);
+  expect(res2.body.data.id).toBe(obj.id);
 
   await user.destroy();
-  await recipe.destroy();
+  await obj.destroy();
 });
 
-test('Recipe | create single', async () => {
+test('Recetas | create single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
@@ -450,14 +450,14 @@ test('Recipe | create single', async () => {
   expect(res2.body.data.id_creador).toBe(user.id);
 
   await user.destroy();
-  await Recipe.destroy({
+  await Recetas.destroy({
     where: {
       id: res2.body.data.id,
     },
   });
 });
 
-test('Recipe | update single', async () => {
+test('Recetas | update single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
@@ -474,12 +474,12 @@ test('Recipe | update single', async () => {
 
   expect(res.body.data.token).toBeTruthy();
 
-  const recipe = await Recipe.build({
+  const obj = await Recetas.build({
     id_creador: user.id,
   }).save();
 
   const res2 = await request(api)
-    .put(`/api/recetas/${recipe.id}`)
+    .put(`/api/recetas/${obj.id}`)
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .send({
@@ -488,23 +488,21 @@ test('Recipe | update single', async () => {
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(res2.body.data.id).toBe(recipe.id);
+  expect(res2.body.data.id).toBe(obj.id);
 
   await user.destroy();
-  await recipe.destroy();
+  await obj.destroy();
 });
 
-test('Recipe | delete single', async () => {
+test('Recetas | delete single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
   }).save();
 
-  const recipe = await Recipe.build({
+  const obj = await Recetas.build({
     id_creador: user.id,
   }).save();
-
-  console.log('Recipe:', recipe);
 
   const res = await request(api)
     .post('/api/login')
@@ -518,30 +516,30 @@ test('Recipe | delete single', async () => {
   expect(res.body.data.token).toBeTruthy();
 
   await request(api)
-    .delete(`/api/recetas/${recipe.id}`)
+    .delete(`/api/recetas/${obj.id}`)
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json');
 
-  const recipe2 = await Recipe.find({
-    where: { id: recipe.id },
+  const obj2 = await Recetas.find({
+    where: { id: obj.id },
   });
 
-  expect(!recipe2).toBeTruthy();
+  expect(!obj2).toBeTruthy();
   await user.destroy();
 });
 
-test('Recipe | bulk update', async () => {
+test('Recetas | bulk update', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
   }).save();
 
-  const recipe1 = await Recipe.build({
+  const obj1 = await Recetas.build({
     id_creador: user1.id,
   }).save();
 
-  const recipe2 = await Recipe.build({
+  const obj2 = await Recetas.build({
     id_creador: user1.id,
   }).save();
 
@@ -560,8 +558,8 @@ test('Recipe | bulk update', async () => {
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .send([
-      { id: recipe1.id, nombre_receta: 'test1' },
-      { id: recipe2.id, nombre_receta: 'test2' },
+      { id: obj1.id, nombre_receta: 'test1' },
+      { id: obj2.id, nombre_receta: 'test2' },
     ])
     .expect(200);
 
@@ -570,21 +568,21 @@ test('Recipe | bulk update', async () => {
   expect(updateRes.body.data[1].nombre_receta).toBe('test2');
 
   await user1.destroy();
-  await recipe1.destroy();
-  await recipe2.destroy();
+  await obj1.destroy();
+  await obj2.destroy();
 });
 
-test('Recipe | delete all', async () => {
+test('Recetas | delete all', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
   }).save();
 
-  const recipe1 = await Recipe.build({
+  const obj1 = await Recetas.build({
     id_creador: user1.id,
   }).save();
 
-  const recipe2 = await Recipe.build({
+  const obj2 = await Recetas.build({
     id_creador: user1.id,
   }).save();
 
@@ -604,12 +602,12 @@ test('Recipe | delete all', async () => {
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(await Recipe.find({
-    where: { id: recipe1.id },
+  expect(await Recetas.find({
+    where: { id: obj1.id },
   })).toBe(null);
 
-  expect(await Recipe.find({
-    where: { id: recipe2.id },
+  expect(await Recetas.find({
+    where: { id: obj2.id },
   })).toBe(null);
 
   await user1.destroy();
