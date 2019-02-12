@@ -1,10 +1,10 @@
-const Recipe = require('../models').recetas;
+const Recetas = require('../models').recetas;
 const { onError } = require('./error');
 
-const RecipeController = () => {
+const RecetasController = () => {
   const getAll = async (req, res) => {
     try {
-      const models = await Recipe.findAll();
+      const models = await Recetas.findAll();
       return res.status(200).json({ status: true, data: models });
     } catch (err) {
       return onError(req, res, err);
@@ -13,11 +13,11 @@ const RecipeController = () => {
 
   const bulkUpdate = async (req, res) => {
     try {
-      await Promise.all(req.body.map((model) => Recipe.update(model, {
+      await Promise.all(req.body.map((model) => Recetas.update(model, {
         where: { id: model.id },
       })));
 
-      const models = await Recipe.findAll({
+      const models = await Recetas.findAll({
         where: {
           id: {
             $in: req.body.map((model) => model.id),
@@ -36,7 +36,7 @@ const RecipeController = () => {
 
   const update = async (req, res) => {
     try {
-      const result = await Recipe.update(req.body, {
+      const result = await Recetas.update(req.body, {
         where: {
           id: req.params.id,
         },
@@ -44,11 +44,11 @@ const RecipeController = () => {
       if (result[0] === 0) { // Affected element count
         return res.status(404).send({
           status: false,
-          error: 'recipe_not_found',
+          error: 'Recetas_not_found',
         });
       }
 
-      const data = await Recipe.find({
+      const data = await Recetas.find({
         where: {
           id: req.params.id,
         },
@@ -65,14 +65,14 @@ const RecipeController = () => {
 
   const deleteSingle = async (req, res) => {
     try {
-      const model = await Recipe.find({
+      const model = await Recetas.find({
         where: { id: req.params.id },
       });
 
       if (!model) {
         return res.status(404).send({
           status: false,
-          error: 'recipe_not_found',
+          error: 'Recetas_not_found',
         });
       }
       await model.destroy();
@@ -86,7 +86,7 @@ const RecipeController = () => {
 
   const deleteAll = async (req, res) => {
     try {
-      await Recipe.destroy({
+      await Recetas.destroy({
         where: {},
         truncate: true,
       });
@@ -101,7 +101,7 @@ const RecipeController = () => {
 
   const get = async (req, res) => {
     try {
-      const model = await Recipe.find({
+      const model = await Recetas.find({
         where: { id: req.params.id },
       });
 
@@ -113,7 +113,7 @@ const RecipeController = () => {
       }
       return res.status(404).send({
         status: false,
-        error: 'recipe_not_found',
+        error: 'Recetas_not_found',
       });
     } catch (err) {
       return onError(req, res, err);
@@ -122,7 +122,7 @@ const RecipeController = () => {
 
   const create = async (req, res) => {
     try {
-      const model = await Recipe.build(req.body);
+      const model = await Recetas.build(req.body);
       return res.send({
         status: true,
         data: model.toJSON(),
@@ -143,4 +143,4 @@ const RecipeController = () => {
   };
 };
 
-module.exports = RecipeController;
+module.exports = RecetasController;

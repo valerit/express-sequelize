@@ -6,16 +6,16 @@ const privateRoutes = {
   'PUT /user/:id': 'UserController.update',
   'DELETE /user/:id': 'UserController.deleteSingle',
 
-  'GET /alimentos': 'FoodController.getAll',
-  'GET /alimentos/:id': 'FoodController.get',
+  'GET /alimentos': 'AlimentosController.getAll',
+  'GET /alimentos/:id': 'AlimentosController.get',
 
-  'POST /recetas': 'RecipeController.create',
-  'GET /recetas': 'RecipeController.getAll',
-  'DELETE /recetas': 'RecipeController.deleteAll',
-  'PUT /recetas': 'RecipeController.bulkUpdate',
-  'GET /recetas/:id': 'RecipeController.get',
-  'PUT /recetas/:id': 'RecipeController.update',
-  'DELETE /recetas/:id': 'RecipeController.deleteSingle',
+  'POST /recetas': 'RecetasController.create',
+  'GET /recetas': 'RecetasController.getAll',
+  'DELETE /recetas': 'RecetasController.deleteAll',
+  'PUT /recetas': 'RecetasController.bulkUpdate',
+  'GET /recetas/:id': 'RecetasController.get',
+  'PUT /recetas/:id': 'RecetasController.update',
+  'DELETE /recetas/:id': 'RecetasController.deleteSingle',
 };
 
 module.exports = privateRoutes;
