@@ -33,13 +33,13 @@ const privateRoutes = {
   'PUT /menu_dia/:id': 'MenuDiaController.update',
   'DELETE /menu_dia/:id': 'MenuDiaController.deleteSingle',
 
-  'POST /plan_semanal': 'MenuDiaController.create',
-  'GET /plan_semanal': 'MenuDiaController.getAll',
-  'DELETE /plan_semanal': 'MenuDiaController.deleteAll',
-  'PUT /plan_semanal': 'MenuDiaController.bulkUpdate',
-  'GET /plan_semanal/:id': 'MenuDiaController.get',
-  'PUT /plan_semanal/:id': 'MenuDiaController.update',
-  'DELETE /plan_semanal/:id': 'MenuDiaController.deleteSingle',  
+  'POST /plan_semanal': 'PlanSemanalController.create',
+  'GET /plan_semanal': 'PlanSemanalController.getAll',
+  'DELETE /plan_semanal': 'PlanSemanalController.deleteAll',
+  'PUT /plan_semanal': 'PlanSemanalController.bulkUpdate',
+  'GET /plan_semanal/:id': 'PlanSemanalController.get',
+  'PUT /plan_semanal/:id': 'PlanSemanalController.update',
+  'DELETE /plan_semanal/:id': 'PlanSemanalController.deleteSingle',
 };
 
 module.exports = privateRoutes;
