@@ -4,8 +4,8 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define('clientes', {
     id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     id_creador: {
       type: DataTypes.INTEGER(11),
