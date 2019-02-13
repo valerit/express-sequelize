@@ -156,7 +156,6 @@ const UserController = () => {
     try {
       await User.destroy({
         where: {},
-        truncate: true,
       });
 
       return res.send({

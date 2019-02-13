@@ -167,6 +167,8 @@ test('User | delete all (auth)', async () => {
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .expect(200);
+
+  expect(await User.count({ where: {} })).toBe(0);
 });
 
 
@@ -917,4 +919,3 @@ test('Comidas | delete all', async () => {
 
   await user1.destroy();
 });
-

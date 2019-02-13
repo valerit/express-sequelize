@@ -88,7 +88,6 @@ const MenuDiaController = () => {
     try {
       await MenuDia.destroy({
         where: {},
-        truncate: true,
       });
 
       return res.send({

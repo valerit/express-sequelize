@@ -88,7 +88,6 @@ const RecetasController = () => {
     try {
       await Recetas.destroy({
         where: {},
-        truncate: true,
       });
 
       return res.send({

@@ -88,7 +88,6 @@ const PlanSemanalController = () => {
     try {
       await PlanSemanal.destroy({
         where: {},
-        truncate: true,
       });
 
       return res.send({

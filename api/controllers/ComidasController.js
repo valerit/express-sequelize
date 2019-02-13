@@ -88,7 +88,6 @@ const ComidasController = () => {
     try {
       await Comidas.destroy({
         where: {},
-        truncate: true,
       });
 
       return res.send({

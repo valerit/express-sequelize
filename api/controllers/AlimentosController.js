@@ -90,7 +90,6 @@ const AlimentosController = () => {
     try {
       await Alimentos.destroy({
         where: {},
-        truncate: true,
       });
 
       return res.send({
