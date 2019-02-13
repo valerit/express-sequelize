@@ -27,3 +27,5 @@ PORT
 - `CREATE USER 'dev'@'localhost' IDENTIFIED BY 'password';`
 - `GRANT ALL PRIVILEGES ON beingenergy . * TO 'dev'@'localhost';`
 
+## Health Check
+curl http://35.180.97.190:8080/api/status
