@@ -8,6 +8,10 @@ const Food = require('../../api/models/index').alimentos;
 const Recetas = require('../../api/models/index').recetas;
 const Comidas = require('../../api/models/index').comidas;
 
+const { USER_TYPES } = require('../../config/constants');
+
+const { PROFESSIONAL, CLIENT } = USER_TYPES;
+
 let api;
 
 beforeAll(async () => {
@@ -32,6 +36,7 @@ test('User | create', async () => {
       username: 'martin@mail.com',
       password: 'securepassword',
       password2: 'securepassword',
+      // user_type_id: PROFESSIONAL,
     })
     .expect(200);
 

@@ -1,7 +1,14 @@
-const User = require('../models').loginuser;
+const Models = require('../models');
+
+const User = Models.loginuser;
+
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
 const { onError } = require('./error');
+const { USER_TYPES } = require('../../config/constants');
+
+const { PROFESSIONAL, CLIENT } = USER_TYPES;
+const { clientes, profesionales } = Models;
 
 const UserController = () => {
   const register = async (req, res) => {
@@ -10,12 +17,35 @@ const UserController = () => {
     if (body.password === body.password2) {
       delete body.password2;
       try {
-        const user = await User.create(body);
+        const userData = { ...body };
+
+        // to create professionales and clients
+        // // Remove professional
+        // delete userData.profesionale;
+        // delete userData.cliente;
+
+        const user = await User.create(userData);
+
+        // let exUser;
+        // if (userData.user_type_id === PROFESSIONAL) {
+        //   exUser = await profesionales.create(body.profesionale);
+        // } else if (userData.user_type_id === CLIENT) {
+        //   exUser = await clientes.create(body.cliente);
+        // }
+
         const token = authService().issue({ id: user.id });
+
+        const resp = user.toJSON();
+
+        // if (userData.user_type_id === PROFESSIONAL) {
+        //   resp.profesionale = exUser.toJSON();
+        // } else if (userData.user_type_id === CLIENT) {
+        //   resp.cliente = exUser.toJSON();
+        // }
 
         return res.status(200).json({
           status: true,
-          data: { user, token },
+          data: { user: resp, token },
         });
       } catch (err) {
         onError(req, res, err);
