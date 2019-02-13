@@ -35,14 +35,24 @@ curl http://35.180.97.190:8080/api/status
 ## Endpoints
 
 - All endpoints must have `Content-Type: application/json` header.
+- All private endpoints must have `Authorization: Bearer ...jwt..token` header. (jwt is returned by register/login api)
+- Only register, login, status APIs are public and others are private.  
 - All endpoints will return the following response body
-
 ```
 	{
 	  status: true/false, // success or fail
 	  data: ,
 	  error: // only returned when status: false
 	}
+```
+
+### Status Check
+`GET /api/status`
+
+Response Body: 
+
+```
+{"status":true,"data":{"date":"2019-02-13T18:54:52.432Z"}}
 ```
 
 ### Register
