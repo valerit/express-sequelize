@@ -31,7 +31,7 @@
 curl http://35.180.97.190:8080/api/status
 
 
-## Schemas
+## Types
 
 ### User
 
