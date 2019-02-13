@@ -1,8 +1,21 @@
 # express-rest-api-boilerplate
 
+## Environment Variables
+
+DB_NAME
+DB_USER
+DB_PASS
+DB_HOST
+PORT
+
+## Deployment
+
+ `npm run deploy`
+
 ## Extract DB Schema to Sequelize
 
-sequelize-auto -h localhost -d mydb -u testuser -x password -p 3306  --dialect mysql -o  /Users/valeri/Documents/models 
+ sequelize-auto -h localhost -d mydb -u testuser -x password -p 3306  --dialect mysql -o  ~/Documents/models 
+
 
 ## Resources
 
@@ -13,3 +26,4 @@ sequelize-auto -h localhost -d mydb -u testuser -x password -p 3306  --dialect m
 - `CREATE SCHEMA `beingenergy` DEFAULT CHARACTER SET DEFAULT ;`
 - `CREATE USER 'dev'@'localhost' IDENTIFIED BY 'password';`
 - `GRANT ALL PRIVILEGES ON beingenergy . * TO 'dev'@'localhost';`
+
