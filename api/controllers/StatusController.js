@@ -1,15 +1,13 @@
 const StatusController = () => {
-  const get = (req, res) => {
-    return res.send({
-    	status: true,
-    	data: {
-    		date: new Date()
-    	}
-    })
-  };
+  const get = (req, res) => res.send({
+    status: true,
+    data: {
+      date: new Date(),
+    },
+  });
 
   return {
-    get
+    get,
   };
 };
 

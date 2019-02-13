@@ -18,6 +18,12 @@ afterAll(() => {
   afterAction();
 });
 
+test('Status | get', async () => {
+  await request(api)
+    .get('/api/status')
+    .expect(200);
+});
+
 test('User | create', async () => {
   const res = await request(api)
     .post('/api/user')
