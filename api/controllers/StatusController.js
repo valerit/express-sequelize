@@ -1,5 +1,5 @@
 const StatusController = () => {
-  const getStatus = (req, res) => {
+  const get = (req, res) => {
     return res.send({
     	status: true,
     	data: {
@@ -9,7 +9,7 @@ const StatusController = () => {
   };
 
   return {
-    getStatus
+    get
   };
 };
 
