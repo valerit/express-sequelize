@@ -1111,29 +1111,45 @@ Response:
 }
 ```
 
-### CRUD 
+### API 
 
 Available types are `user`, `alimentos`, `recetas`, `comidas`, `menu_dia`, `plan_semanal`
 
 #### POST /api/{type}
+
+Create a single object
+
 Request Body: Type
 Response Body: { status: true, data: Type }
 
 #### GET /api/{type}
+
+Get a single {type} object
+
 Response Body: { status: true, data: Type }
 
 #### PUT /api/{type}/:id
+
+Edit a single {type} object
+
 Request Body: Type
 Resonse Body: { status: true, data: Type }
 
 #### DELETE /api/type/:id
+
+Delete a single {type} object
+
 Resonse Body: { status: true }
 
 #### PUT /api/type/
+
+Bulk edit {type} objects
 
 Request Body: [{ id:, ...other fields}, ...]
 Resonse Body: { status: true, data: [Type] }
 
 #### Delete /api/type/
+
+Delete all {type} object
 
 Resonse Body: { status: true }
