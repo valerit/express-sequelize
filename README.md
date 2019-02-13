@@ -79,7 +79,7 @@ curl http://35.180.97.190:8080/api/status
 ### alimentos
 
 ```
-id: {
+		id: {
       type: DataTypes.INTEGER(11),
       autoIncrement: true,
       primaryKey: true,
@@ -1051,3 +1051,89 @@ id: {
       allowNull: false,
     },
 ```
+
+## Endpoints
+
+- All endpoints must have `Content-Type: application/json` header.
+- All endpoints will return the following response body
+
+```
+	{
+	  status: true/false, // success or fail
+	  data: ,
+	  error: // only returned when status: false
+	}
+```
+
+### Register
+
+`POST /api/user`
+
+Body:
+
+```
+{
+	username: 'martin@mail.com',
+  password: 'securepassword',
+  password2: 'securepassword' // should be the same as above
+  // Other user fields
+}  
+```
+
+Response:
+
+```
+{
+  status: true,
+  data: { user: User, token: JWT_Token },
+}
+```
+
+### Login
+
+`POST /api/login`
+
+Body:
+
+```
+{
+	username: 'martin@mail.com',
+  password: 'securepassword',
+}  
+```
+
+Response:
+
+```
+{
+  status: true,
+  data: { user: User, token: JWT_Token },
+}
+```
+
+### CRUD 
+
+Available types are `user`, `alimentos`, `recetas`, `comidas`, `menu_dia`, `plan_semanal`
+
+#### POST /api/{type}
+Request Body: Type
+Response Body: { status: true, data: Type }
+
+#### GET /api/{type}
+Response Body: { status: true, data: Type }
+
+#### PUT /api/{type}/:id
+Request Body: Type
+Resonse Body: { status: true, data: Type }
+
+#### DELETE /api/type/:id
+Resonse Body: { status: true }
+
+#### PUT /api/type/
+
+Request Body: [{ id:, ...other fields}, ...]
+Resonse Body: { status: true, data: [Type] }
+
+#### Delete /api/type/
+
+Resonse Body: { status: true }
