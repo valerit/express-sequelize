@@ -19,7 +19,7 @@
       "user" : "ubuntu",
       "key"  : "./stage.pem",
       // Multi host is possible, just by passing IPs/hostname as an array
-      "host" : "35.180.97.190",
+      "host" : "35.180.2.29",
       // Branch
       "ref"  : "origin/master",
       // Git repository to clone
