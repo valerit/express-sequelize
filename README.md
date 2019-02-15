@@ -7,7 +7,7 @@
 - DB_PASS 
 - DB_HOST 
 - PORT 
-
+- JWT_SECRET
 ## Deployment
 
  `npm run deploy`
