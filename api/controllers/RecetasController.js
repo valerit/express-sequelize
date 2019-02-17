@@ -1,4 +1,7 @@
 const Recetas = require('../models').recetas;
+const Alimentos = require('../models').alimentos;
+const RecetasAlimentos = require('../models').recetas_alimentos;
+
 const { onError } = require('./error');
 
 const RecetasController = () => {
@@ -121,10 +124,29 @@ const RecetasController = () => {
 
   const create = async (req, res) => {
     try {
-      const model = await Recetas.build(req.body);
+      const data = req.body;
+      const { recetas_alimentos } = data;
+      delete data.recetas_alimentos;
+
+      const model = await Recetas.build(data);
+
+      // Create alimentos
+      let aryRA = []
+      if(Array.isArray(recetas_alimentos)) {
+        RecetasAlimentos.bulkCreate(recetas_alimentos.map((r) => {
+          return {...r, recetas_id: model.id}
+        }));
+
+        const aryRA = RecetasAlimentos.findAll({
+          where: {
+            recetas_id: model.id
+          }
+        });
+      }
+      
       return res.send({
         status: true,
-        data: model.toJSON(),
+        data: { ...model.toJSON(), recetas_alimentos: aryRA },
       });
     } catch (err) {
       return onError(req, res, err);
