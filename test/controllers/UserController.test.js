@@ -750,6 +750,8 @@ test('Comidas | create single', async () => {
     .send({
       id_creador: user.id,
       tipo_comida: 'type1',
+      explicacion: 'test',
+      fecha_creacion: 'test',
     })
     .expect(200);
 
