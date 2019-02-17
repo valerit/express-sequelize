@@ -440,6 +440,10 @@ test('Recetas | create single', async () => {
     password: 'securepassword',
   }).save();
 
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
   const res = await request(api)
     .post('/api/login')
     .set('Accept', /json/)
@@ -458,10 +462,17 @@ test('Recetas | create single', async () => {
     .set('Content-Type', 'application/json')
     .send({
       id_creador: user.id,
+      recetas_alimentos: [{
+        alimentos_id: food1.id,
+        cantidad: 'test',
+        unidades: 'test',
+      }],
     })
     .expect(200);
 
   expect(res2.body.data.id_creador).toBe(user.id);
+  expect(Array.isArray(res2.body.data.recetas_alimentos)).toBe(true);
+  expect(res2.body.data.recetas_alimentos.length).toBe(1);
 
   await user.destroy();
   await Recetas.destroy({
@@ -469,6 +480,7 @@ test('Recetas | create single', async () => {
       id: res2.body.data.id,
     },
   });
+  await food1.destroy();
 });
 
 test('Recetas | update single', async () => {

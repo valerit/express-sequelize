@@ -121,7 +121,7 @@ const MenuDiaController = () => {
 
   const create = async (req, res) => {
     try {
-      const model = await MenuDia.build(req.body);
+      const model = await MenuDia.build(req.body).save();
       return res.send({
         status: true,
         data: model.toJSON(),

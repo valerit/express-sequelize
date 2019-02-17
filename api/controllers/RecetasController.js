@@ -128,22 +128,20 @@ const RecetasController = () => {
       const { recetas_alimentos } = data;
       delete data.recetas_alimentos;
 
-      const model = await Recetas.build(data);
+      const model = await Recetas.build(data).save();
 
       // Create alimentos
-      let aryRA = []
-      if(Array.isArray(recetas_alimentos)) {
-        RecetasAlimentos.bulkCreate(recetas_alimentos.map((r) => {
-          return {...r, recetas_id: model.id}
-        }));
+      let aryRA = [];
+      if (Array.isArray(recetas_alimentos) && recetas_alimentos.length > 0) {
+        await RecetasAlimentos.bulkCreate(recetas_alimentos.map((r) => ({ ...r, recetas_id: model.id })));
 
-        const aryRA = RecetasAlimentos.findAll({
+        aryRA = await RecetasAlimentos.findAll({
           where: {
-            recetas_id: model.id
-          }
+            recetas_id: model.id,
+          },
         });
       }
-      
+
       return res.send({
         status: true,
         data: { ...model.toJSON(), recetas_alimentos: aryRA },

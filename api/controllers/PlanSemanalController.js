@@ -121,7 +121,7 @@ const PlanSemanalController = () => {
 
   const create = async (req, res) => {
     try {
-      const model = await PlanSemanal.build(req.body);
+      const model = await PlanSemanal.build(req.body).save();
       return res.send({
         status: true,
         data: model.toJSON(),

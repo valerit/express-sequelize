@@ -121,7 +121,7 @@ const ComidasController = () => {
 
   const create = async (req, res) => {
     try {
-      const model = await Comidas.build(req.body);
+      const model = await Comidas.build(req.body).save();
       return res.send({
         status: true,
         data: model.toJSON(),
