@@ -112,6 +112,12 @@ Create a single object
 Request Body: Type
 Response Body: { status: true, data: Type }
 
+
+##### POST /recetas
+
+Request Body: { ...recetas, recetas_alimentos: [recetas_alimentos] }
+
+
 #### GET /api/{type}
 
 Get a single {type} object
