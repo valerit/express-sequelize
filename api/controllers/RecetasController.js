@@ -7,7 +7,9 @@ const { onError } = require('./error');
 const RecetasController = () => {
   const getAll = async (req, res) => {
     try {
-      const models = await Recetas.findAll();
+      const models = await Recetas.findAll({
+        include: [{ model: RecetasAlimentos }]
+      });
       return res.status(200).json({ status: true, data: models });
     } catch (err) {
       return onError(req, res, err);
