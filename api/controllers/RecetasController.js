@@ -8,7 +8,7 @@ const RecetasController = () => {
   const getAll = async (req, res) => {
     try {
       const models = await Recetas.findAll({
-        include: [{ model: RecetasAlimentos }]
+        include: [{ model: RecetasAlimentos }],
       });
       return res.status(200).json({ status: true, data: models });
     } catch (err) {

@@ -375,6 +375,19 @@ test('Recetas | get all (auth)', async () => {
     id_creador: user.id,
   }).save();
 
+  // create alimentos
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
+  // Create reacetas_alimentos
+  const ra1 = await RecetasAlimentos.build({
+    recetas_id: obj1.id,
+    alimentos_id: food1.id,
+    cantidad: 'test',
+    unidades: 'test',
+  }).save();
+
   const res = await request(api)
     .post('/api/login')
     .set('Accept', /json/)
@@ -395,6 +408,9 @@ test('Recetas | get all (auth)', async () => {
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
   expect(res2.body.data.length).toBe(2);
+
+  expect(res2.body.data[0].recetas_alimentos.length).toBe(1);
+  expect(res2.body.data[0].recetas_alimentos[0].id).toBe(ra1.id);
 
   await user.destroy();
   await obj1.destroy();
