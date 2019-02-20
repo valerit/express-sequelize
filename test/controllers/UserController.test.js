@@ -7,6 +7,7 @@ const User = require('../../api/models/index').loginuser;
 const Food = require('../../api/models/index').alimentos;
 const Recetas = require('../../api/models/index').recetas;
 const Comidas = require('../../api/models/index').comidas;
+const RecetasAlimentos = require('../../api/models/index').recetas_alimentos;
 
 const { USER_TYPES } = require('../../config/constants');
 
@@ -410,6 +411,10 @@ test('Recetas | get single', async () => {
     id_creador: user.id,
   }).save();
 
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
   const res = await request(api)
     .post('/api/login')
     .set('Accept', /json/)
@@ -429,6 +434,9 @@ test('Recetas | get single', async () => {
     .expect(200);
 
   expect(res2.body.data.id).toBe(obj.id);
+
+  // Check if recetas_alimentos is returned
+  expect(Array.isArray(res2.body.data.recetas_alimentos)).toBeTruthy();
 
   await user.destroy();
   await obj.destroy();
