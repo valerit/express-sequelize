@@ -411,8 +411,16 @@ test('Recetas | get single', async () => {
     id_creador: user.id,
   }).save();
 
+  // create alimentos
   const food1 = await Food.build({
     nombre_alimento: 'test1',
+  }).save();
+
+  // Create reacetas_alimentos
+  const ra1 = await RecetasAlimentos.build({
+    alimentos_id: food1.id,
+    cantidad: 'test',
+    unidades: 'test',
   }).save();
 
   const res = await request(api)
@@ -438,8 +446,11 @@ test('Recetas | get single', async () => {
   // Check if recetas_alimentos is returned
   expect(Array.isArray(res2.body.data.recetas_alimentos)).toBeTruthy();
 
+  expect(res2.body.data.recetas_alimentos.length).toBe(1);
+
   await user.destroy();
   await obj.destroy();
+  await food1.destroy();
 });
 
 test('Recetas | create single', async () => {
