@@ -117,6 +117,10 @@ Response Body: { status: true, data: Type }
 
 Request Body: { ...recetas, recetas_alimentos: [recetas_alimentos] }
 
+##### POST /comidas
+
+Request Body: { ...comidas, comidas_alimentos: [comidas_alimentos] }
+
 
 #### GET /api/{type}
 

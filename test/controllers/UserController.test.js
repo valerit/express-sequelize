@@ -8,6 +8,7 @@ const Food = require('../../api/models/index').alimentos;
 const Recetas = require('../../api/models/index').recetas;
 const Comidas = require('../../api/models/index').comidas;
 const RecetasAlimentos = require('../../api/models/index').recetas_alimentos;
+const ComidasAlimentos = require('../../api/models/index').comidas_alimentos;
 
 const { USER_TYPES } = require('../../config/constants');
 
@@ -746,11 +747,40 @@ test('Comidas | get single', async () => {
     password: 'securepassword',
   }).save();
 
-  const obj = await Comidas.build({
+  const obj1 = await Comidas.build({
     id_creador: user.id,
     tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
+  }).save();
+
+
+  const obj2 = await Comidas.build({
+    id_creador: user.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  // create alimentos
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
+  // Create comidas_alimentos
+  const ca1 = await ComidasAlimentos.build({
+    comidas_id: obj1.id,
+    alimentos_id: food1.id,
+    cantidad: 'test',
+    unidades: 'test',
+  }).save();
+
+    // Create comidas_alimentos
+  const ca2 = await ComidasAlimentos.build({
+    comidas_id: obj2.id,
+    alimentos_id: food1.id,
+    cantidad: 'test',
+    unidades: 'test',
   }).save();
 
   const res = await request(api)
@@ -765,22 +795,32 @@ test('Comidas | get single', async () => {
   expect(res.body.data.token).toBeTruthy();
 
   const res2 = await request(api)
-    .get(`/api/comidas/${obj.id}`)
+    .get(`/api/comidas/${obj1.id}`)
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(res2.body.data.id).toBe(obj.id);
+  expect(res2.body.data.id).toBe(obj1.id);
+  expect(res2.body.data.comidas_alimentos.length).toBe(1);
+  expect(res2.body.data.comidas_alimentos[0].id).toBe(ca1.id);
 
   await user.destroy();
-  await obj.destroy();
+  await obj1.destroy();
+  await obj2.destroy();
+  await ca1.destroy();
+  await ca2.destroy();
 });
 
 test('Comidas | create single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+  }).save();
+
+  // create alimentos
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
   }).save();
 
   const res = await request(api)
@@ -804,16 +844,28 @@ test('Comidas | create single', async () => {
       tipo_comida: 'type1',
       explicacion: 'test',
       fecha_creacion: 'test',
+      comidas_alimentos: [{
+        alimentos_id: food1.id,
+        cantidad: 'test',
+        unidades: 'test',
+      }],
     })
     .expect(200);
 
   expect(res2.body.data.id_creador).toBe(user.id);
+  expect(res2.body.data.comidas_alimentos.length).toBe(1);
+  expect(res2.body.data.comidas_alimentos[0].comidas_id).toBe(res2.body.data.id);
 
   await user.destroy();
   await Comidas.destroy({
     where: {
       id: res2.body.data.id,
     },
+  });
+
+  await food1.destroy();
+  await ComidasAlimentos.destroy({
+    where: {},
   });
 });
 
