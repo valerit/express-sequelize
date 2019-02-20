@@ -418,6 +418,7 @@ test('Recetas | get single', async () => {
 
   // Create reacetas_alimentos
   const ra1 = await RecetasAlimentos.build({
+    recetas_id: obj.id,
     alimentos_id: food1.id,
     cantidad: 'test',
     unidades: 'test',

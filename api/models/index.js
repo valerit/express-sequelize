@@ -14,7 +14,6 @@ const {
   loginuser, clientes, profesionales, user_type, familias, recetas, recetas_alimentos, alimentos, comidas, comidas_alimentos,
   menu_dia, menu_dia_comidas, plan_semanal,
 } = models;
-console.info('loginuser:', loginuser.rawAttributes);
 
 clientes.belongsTo(loginuser, { foreignKey: 'loginuser_id', sourceKey: 'id' });
 profesionales.belongsTo(loginuser, { foreignKey: 'loginuser_id', sourceKey: 'id' });
