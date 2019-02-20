@@ -407,7 +407,11 @@ test('Recetas | get single', async () => {
     password: 'securepassword',
   }).save();
 
-  const obj = await Recetas.build({
+  const obj1 = await Recetas.build({
+    id_creador: user.id,
+  }).save();
+
+  const obj2 = await Recetas.build({
     id_creador: user.id,
   }).save();
 
@@ -418,7 +422,15 @@ test('Recetas | get single', async () => {
 
   // Create reacetas_alimentos
   const ra1 = await RecetasAlimentos.build({
-    recetas_id: obj.id,
+    recetas_id: obj1.id,
+    alimentos_id: food1.id,
+    cantidad: 'test',
+    unidades: 'test',
+  }).save();
+
+    // Create reacetas_alimentos
+  const ra2 = await RecetasAlimentos.build({
+    recetas_id: obj2.id,
     alimentos_id: food1.id,
     cantidad: 'test',
     unidades: 'test',
@@ -436,22 +448,26 @@ test('Recetas | get single', async () => {
   expect(res.body.data.token).toBeTruthy();
 
   const res2 = await request(api)
-    .get(`/api/recetas/${obj.id}`)
+    .get(`/api/recetas/${obj1.id}`)
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(res2.body.data.id).toBe(obj.id);
+  expect(res2.body.data.id).toBe(obj1.id);
 
   // Check if recetas_alimentos is returned
   expect(Array.isArray(res2.body.data.recetas_alimentos)).toBeTruthy();
 
   expect(res2.body.data.recetas_alimentos.length).toBe(1);
+  expect(res2.body.data.recetas_alimentos[0].id).toBe(ra1.id);
 
   await user.destroy();
-  await obj.destroy();
+  await obj1.destroy();
+  await obj2.destroy();
   await food1.destroy();
+  await ra1.destroy();
+  await ra2.destroy();
 });
 
 test('Recetas | create single', async () => {
