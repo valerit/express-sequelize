@@ -1,10 +1,16 @@
 const Comidas = require('../models').comidas;
+const ComidasAlimentos = require('../models').comidas_alimentos;
+
 const { onError } = require('./error');
 
 const ComidasController = () => {
   const getAll = async (req, res) => {
     try {
-      const models = await Comidas.findAll();
+      const models = await Comidas.findAll({
+        include: [{
+          model: ComidasAlimentos,
+        }],
+      });
       return res.status(200).json({ status: true, data: models });
     } catch (err) {
       return onError(req, res, err);
@@ -102,6 +108,9 @@ const ComidasController = () => {
     try {
       const model = await Comidas.find({
         where: { id: req.params.id },
+        include: [{
+          model: ComidasAlimentos,
+        }],
       });
 
       if (model) {
@@ -121,10 +130,27 @@ const ComidasController = () => {
 
   const create = async (req, res) => {
     try {
-      const model = await Comidas.build(req.body).save();
+      const data = req.body;
+      const { comidas_alimentos } = data;
+      delete data.comidas_alimentos;
+
+      const model = await Comidas.build(data).save();
+
+      // Create alimentos
+      let aryCA = [];
+      if (Array.isArray(comidas_alimentos) && comidas_alimentos.length > 0) {
+        await ComidasAlimentos.bulkCreate(comidas_alimentos.map((r) => ({ ...r, comidas_id: model.id })));
+
+        aryCA = await ComidasAlimentos.findAll({
+          where: {
+            comidas_id: model.id,
+          },
+        });
+      }
+
       return res.send({
         status: true,
-        data: model.toJSON(),
+        data: { ...model.toJSON(), comidas_alimentos: aryCA },
       });
     } catch (err) {
       return onError(req, res, err);
