@@ -105,6 +105,9 @@ const RecetasController = () => {
     try {
       const model = await Recetas.find({
         where: { id: req.params.id },
+        include: [{
+          model: RecetasAlimentos,
+        }],
       });
 
       if (model) {
