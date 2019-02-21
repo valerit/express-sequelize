@@ -300,6 +300,14 @@ test('Food | get all (auth)', async () => {
     nombre_alimento: 'test2',
   }).save();
 
+  const food3 = await Food.build({
+    nombre_alimento: 'test3',
+  }).save();
+
+  const food4 = await Food.build({
+    nombre_alimento: 'test4',
+  }).save();
+
   const res = await request(api)
     .post('/api/login')
     .set('Accept', /json/)
@@ -319,11 +327,36 @@ test('Food | get all (auth)', async () => {
     .expect(200);
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
-  expect(res2.body.data.length).toBe(2);
+  expect(res2.body.data.length).toBe(4);
+
+  // Query
+  const res3 = await request(api)
+    .get('/api/alimentos?order=createdAt&direction=DESC&nombre_alimento=test1')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(Array.isArray(res3.body.data)).toBeTruthy();
+  expect(res3.body.data.length).toBe(1);
+  expect(res3.body.data[0].nombre_alimento).toBe('test1');
+
+  // Pagination
+  const res4 = await request(api)
+    .get('/api/alimentos?offset=1&limit=3')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(Array.isArray(res3.body.data)).toBeTruthy();
+  expect(res4.body.data.length).toBe(3);
 
   await user.destroy();
   await food1.destroy();
   await food2.destroy();
+  await food3.destroy();
+  await food4.destroy();
 });
 
 test('Food | get single food', async () => {
