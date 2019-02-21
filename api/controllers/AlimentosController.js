@@ -1,10 +1,30 @@
+// const { Op } = require('sequelize');
 const Alimentos = require('../models').alimentos;
 const { onError } = require('./error');
 
 const AlimentosController = () => {
+  // Query
   const getAll = async (req, res) => {
+    const query = { ...req.query };
+
+    const limit = parseInt(query.limit, 10) || 5;
+    const offset = parseInt(query.offset, 10) || 0;
+    const order = query.order || 'createdAt';
+    const direction = query.direction || 'DESC';
+
+    delete query.limit;
+    delete query.offset;
+    delete query.order;
+    delete query.direction;
+
+
     try {
-      const models = await Alimentos.findAll();
+      const models = await Alimentos.findAll({
+        where: query,
+        limit,
+        offset,
+        order: [[order, direction]],
+      });
       return res.status(200).json({ status: true, data: models });
     } catch (err) {
       return onError(req, res, err);
