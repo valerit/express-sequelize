@@ -122,7 +122,7 @@ Request Body: { ...recetas, recetas_alimentos: [recetas_alimentos] }
 Request Body: { ...comidas, comidas_alimentos: [comidas_alimentos] }
 
 
-#### GET /api/{type}
+#### GET /api/{type}/:id
 
 Get a single {type} object
 
@@ -135,11 +135,21 @@ Edit a single {type} object
 Request Body: Type
 Resonse Body: { status: true, data: Type }
 
-#### DELETE /api/type/:id
+#### DELETE /api/{type}/:id
 
 Delete a single {type} object
 
 Resonse Body: { status: true }
+
+#### GET /api/{type}?offset={Number}&limit={Number}&order={Field Name}&direction={DESC or ASC}&{name:value} ...
+
+Query {type} objects
+
+Resonse Body: { status: true, data: [Type] }
+
+ex: /api/alimentos?order=createdAt&direction=DESC&nombre_alimento=test1&offset=10&limit=5
+- Query alimentos which `nombre_alimento` is `test1`, sorted by `creaedAt`, direction: descending, skipping first 10, returned count is 5.
+
 
 #### PUT /api/type/
 
