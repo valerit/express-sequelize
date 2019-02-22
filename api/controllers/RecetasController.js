@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const Recetas = require('../models').recetas;
 const Alimentos = require('../models').alimentos;
 const RecetasAlimentos = require('../models').recetas_alimentos;
@@ -7,7 +9,23 @@ const { onError } = require('./error');
 const RecetasController = () => {
   const getAll = async (req, res) => {
     try {
+      const query = {};
+      const rawQuery = req.query;
+      const keys = Object.keys(rawQuery);
+      let key;
+      for (let i = 0; i < keys.length; i += 1) {
+        if (Array.isArray(rawQuery[key])) {
+          key = keys[i];
+          query[key] = {
+            [Op.$in]: rawQuery[key],
+          };
+        } else {
+          query[key] = rawQuery[key];
+        }
+      }
+
       const models = await Recetas.findAll({
+        query,
         include: [{ model: RecetasAlimentos }],
       });
       return res.status(200).json({ status: true, data: models });
