@@ -150,6 +150,11 @@ Resonse Body: { status: true, data: [Type] }
 ex: /api/alimentos?order=createdAt&direction=DESC&nombre_alimento=test1&offset=10&limit=5
 - Query alimentos which `nombre_alimento` is `test1`, sorted by `creaedAt`, direction: descending, skipping first 10, returned count is 5.
 
+ex: /api/recetas?id_creador=1&id_creador=2  
+- Query all `recetas` with id_creador: 1 or 2
+
+ex: /api/comidas?id_creador=1&id_creador=2  
+- Query all `comidas` with id_creador: 1 or 2
 
 #### PUT /api/type/
 
