@@ -396,17 +396,31 @@ test('Food | get single food', async () => {
 // Recetass ======================================================
 
 test('Recetas | get all (auth)', async () => {
-  const user = await User.build({
+  const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
   }).save();
 
+  const user2 = await User.build({
+    username: 'johnn@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const user3 = await User.build({
+    username: 'jack@mail.com',
+    password: 'securepassword',
+  }).save();
+
   const obj1 = await Recetas.build({
-    id_creador: user.id,
+    id_creador: user1.id,
   }).save();
 
   const obj2 = await Recetas.build({
-    id_creador: user.id,
+    id_creador: user2.id,
+  }).save();
+
+  const obj3 = await Recetas.build({
+    id_creador: user3.id,
   }).save();
 
   // create alimentos
@@ -441,14 +455,31 @@ test('Recetas | get all (auth)', async () => {
     .expect(200);
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
-  expect(res2.body.data.length).toBe(2);
+  expect(res2.body.data.length).toBe(3);
 
   expect(res2.body.data[0].recetas_alimentos.length).toBe(1);
   expect(res2.body.data[0].recetas_alimentos[0].id).toBe(ra1.id);
 
-  await user.destroy();
+  // Query by id_creador
+  const res3 = await request(api)
+    .get(`/api/recetas?id_creador=${user1.id}&id_creador=${user2.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+
+  expect(Array.isArray(res3.body.data)).toBeTruthy();
+  expect(res3.body.data.length).toBe(2);
+
+  await food1.destroy();
+  await ra1.destroy();
+  await user1.destroy();
+  await user2.destroy();
+  await user3.destroy();
   await obj1.destroy();
   await obj2.destroy();
+  await obj3.destroy();
 });
 
 test('Recetas | get single', async () => {

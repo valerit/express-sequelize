@@ -11,21 +11,25 @@ const RecetasController = () => {
     try {
       const query = {};
       const rawQuery = req.query;
+      console.info('Query:', JSON.stringify(rawQuery));
+
       const keys = Object.keys(rawQuery);
+      console.info('keys:', keys);
+
       let key;
       for (let i = 0; i < keys.length; i += 1) {
+        key = keys[i];
         if (Array.isArray(rawQuery[key])) {
-          key = keys[i];
           query[key] = {
-            [Op.$in]: rawQuery[key],
+            [Op.in]: rawQuery[key],
           };
         } else {
           query[key] = rawQuery[key];
         }
       }
-
+      console.info('Actual_Query:', JSON.stringify(query));
       const models = await Recetas.findAll({
-        query,
+        where: query,
         include: [{ model: RecetasAlimentos }],
       });
       return res.status(200).json({ status: true, data: models });
