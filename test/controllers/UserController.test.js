@@ -759,20 +759,37 @@ test('Recetas | delete all', async () => {
 // Comidas ======================================================
 
 test('Comidas | get all (auth)', async () => {
-  const user = await User.build({
+  const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
   }).save();
 
+  const user2 = await User.build({
+    username: 'johnn@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  const user3 = await User.build({
+    username: 'jack@mail.com',
+    password: 'securepassword',
+  }).save();
+
   const obj1 = await Comidas.build({
-    id_creador: user.id,
+    id_creador: user1.id,
     tipo_comida: 'type1',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
   }).save();
 
   const obj2 = await Comidas.build({
-    id_creador: user.id,
+    id_creador: user2.id,
+    tipo_comida: 'type2',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+  }).save();
+
+  const obj3 = await Comidas.build({
+    id_creador: user3.id,
     tipo_comida: 'type2',
     explicacion: 'exp1',
     fecha_creacion: 'fecha1',
@@ -797,11 +814,24 @@ test('Comidas | get all (auth)', async () => {
     .expect(200);
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
-  expect(res2.body.data.length).toBe(2);
+  expect(res2.body.data.length).toBe(3);
 
-  await user.destroy();
+  const res3 = await request(api)
+    .get(`/api/comidas?id_creador=${user1.id}&id_creador=${user2.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .expect(200);
+
+  expect(Array.isArray(res3.body.data)).toBeTruthy();
+  expect(res3.body.data.length).toBe(2);
+
+  await user1.destroy();
+  await user2.destroy();
+  await user3.destroy();
   await obj1.destroy();
   await obj2.destroy();
+  await obj3.destroy();
 });
 
 
