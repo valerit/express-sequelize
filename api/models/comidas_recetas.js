@@ -11,6 +11,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
 
+    cantidad: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+
     // Inherit fields for recetas
     fecha_creacion: {
       type: DataTypes.STRING(15),
