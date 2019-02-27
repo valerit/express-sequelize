@@ -2,10 +2,14 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define('comidas_alimentos', {
+    id: {
+      type: DataTypes.INTEGER(11),
+      primaryKey: true,
+      autoIncrement: true,
+    },
     comidas_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
     },
     alimentos_id: {
       type: DataTypes.INTEGER(11),
