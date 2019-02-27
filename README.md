@@ -115,7 +115,7 @@ Response Body: { status: true, data: Type }
 
 ##### POST /recetas
 
-Request Body: { ...recetas, recetas_alimentos: [recetas_alimentos] }
+Request Body: { ...recetas, recetas_alimentos: [recetas_alimentos], recetas_comidas: [recetas_comidas] }
 
 ##### POST /comidas
 
