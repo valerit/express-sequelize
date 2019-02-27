@@ -2,6 +2,7 @@ const { Op } = require('sequelize');
 
 const Comidas = require('../models').comidas;
 const ComidasAlimentos = require('../models').comidas_alimentos;
+const ComidasRecetas = require('../models').comidas_recetas;
 
 const { onError } = require('./error');
 
@@ -32,6 +33,8 @@ const ComidasController = () => {
         where: query,
         include: [{
           model: ComidasAlimentos,
+        }, {
+          model: ComidasRecetas,
         }],
       });
       return res.status(200).json({ status: true, data: models });
@@ -133,6 +136,8 @@ const ComidasController = () => {
         where: { id: req.params.id },
         include: [{
           model: ComidasAlimentos,
+        }, {
+          model: ComidasRecetas,
         }],
       });
 
@@ -154,8 +159,9 @@ const ComidasController = () => {
   const create = async (req, res) => {
     try {
       const data = req.body;
-      const { comidas_alimentos } = data;
+      const { comidas_alimentos, comidas_recetas } = data;
       delete data.comidas_alimentos;
+      delete data.comidas_recetas;
 
       const model = await Comidas.build(data).save();
 
@@ -171,9 +177,19 @@ const ComidasController = () => {
         });
       }
 
+      let aryCR = [];
+      if (Array.isArray(comidas_recetas) && comidas_recetas.length > 0) {
+        await ComidasRecetas.bulkCreate(comidas_recetas.map((cr) => ({ ...cr, comidas_id: model.id })));
+        aryCR = await ComidasRecetas.findAll({
+          where: {
+            comidas_id: model.id,
+          },
+        });
+      }
+
       return res.send({
         status: true,
-        data: { ...model.toJSON(), comidas_alimentos: aryCA },
+        data: { ...model.toJSON(), comidas_alimentos: aryCA, comidas_recetas: aryCR },
       });
     } catch (err) {
       return onError(req, res, err);

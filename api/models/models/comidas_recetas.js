@@ -12,8 +12,8 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     cantidad: {
-        type: DataTypes.INTEGER,
-        allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
 
     // Inherit fields for recetas
