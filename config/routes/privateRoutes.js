@@ -7,6 +7,7 @@ const privateRoutes = {
   'DELETE /user/:id': 'UserController.deleteSingle',
 
   'GET /alimentos': 'AlimentosController.getAll',
+  'POST /alimentos/query': 'AlimentosController.getAll',
   'GET /alimentos/:id': 'AlimentosController.get',
 
   'POST /recetas': 'RecetasController.create',
