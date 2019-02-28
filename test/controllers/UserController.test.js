@@ -349,8 +349,22 @@ test('Food | get all (auth)', async () => {
     .set('Content-Type', 'application/json')
     .expect(200);
 
-  expect(Array.isArray(res3.body.data)).toBeTruthy();
-  expect(res4.body.data.length).toBe(3);
+  // Query using Post
+  const res5 = await request(api)
+    .post('/api/alimentos/query')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      order: 'createdAt',
+      direction: 'DESC',
+      nombre_alimento: 'test1',
+    })
+    .expect(200);
+
+  expect(Array.isArray(res5.body.data)).toBeTruthy();
+  expect(res5.body.data.length).toBe(1);
+  expect(res5.body.data[0].nombre_alimento).toBe('test1');
 
   await user.destroy();
   await food1.destroy();
