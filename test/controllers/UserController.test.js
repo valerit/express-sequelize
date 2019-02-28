@@ -362,13 +362,15 @@ test('Food | get all (auth)', async () => {
     .send({
       order: 'createdAt',
       direction: 'DESC',
-      nombre_alimento: 'test1',
+      Huevos: {
+        $gte: 4,
+      },
     })
     .expect(200);
 
   expect(Array.isArray(res5.body.data)).toBeTruthy();
   expect(res5.body.data.length).toBe(1);
-  expect(res5.body.data[0].nombre_alimento).toBe('test1');
+  expect(res5.body.data[0].Huevos >= 4).toBeTruthy();
 
   await user.destroy();
   await food1.destroy();

@@ -179,6 +179,26 @@ Request Body: {
   }
 }
 
+Ex: to query all `alimentos` with more than 4 `Huevos`
+
+POST /api/alimentos/query
+```
+{
+  "Huevos": {
+    "$gt": 4
+  }
+}
+```
+
+Operators: 
+
+```
+'$gt', // Greater than
+'$gte', // Greater than or equal
+'$lt', // Less than
+'$lte' // Less than or equal
+```
+
 ## Types
 
 ### User
