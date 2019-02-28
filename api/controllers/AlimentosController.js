@@ -1,6 +1,11 @@
-// const { Op } = require('sequelize');
+const { Op } = require('sequelize');
 const Alimentos = require('../models').alimentos;
 const { onError } = require('./error');
+
+// eslint-disable-next-line
+for (const key in Op) {
+  console.info('Operator:', Op[key].toString());
+}
 
 const AlimentosController = () => {
   // Query

@@ -294,18 +294,22 @@ test('Food | get all (auth)', async () => {
 
   const food1 = await Food.build({
     nombre_alimento: 'test1',
+    Huevos: 1,
   }).save();
 
   const food2 = await Food.build({
     nombre_alimento: 'test2',
+    Huevos: 2,
   }).save();
 
   const food3 = await Food.build({
     nombre_alimento: 'test3',
+    Huevos: 3,
   }).save();
 
   const food4 = await Food.build({
     nombre_alimento: 'test4',
+    Huevos: 4,
   }).save();
 
   const res = await request(api)
