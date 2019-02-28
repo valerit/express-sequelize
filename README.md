@@ -156,18 +156,28 @@ ex: /api/recetas?id_creador=1&id_creador=2
 ex: /api/comidas?id_creador=1&id_creador=2  
 - Query all `comidas` with id_creador: 1 or 2
 
-#### PUT /api/type/
+#### PUT /api/{type}/
 
 Bulk edit {type} objects
 
 Request Body: [{ id:, ...other fields}, ...]
 Resonse Body: { status: true, data: [Type] }
 
-#### Delete /api/type/
+#### DELETE /api/{type}/
 
-Delete all {type} object
+Delete all {type} objects
 
 Resonse Body: { status: true }
+
+#### POST /api/type/query  
+Deep query {type} objects
+
+Request Body: {
+  field name: value,
+  field name: {
+    operator: value
+  }
+}
 
 ## Types
 
