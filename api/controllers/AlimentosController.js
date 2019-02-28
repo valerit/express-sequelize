@@ -5,7 +5,8 @@ const { onError } = require('./error');
 const AlimentosController = () => {
   // Query
   const getAll = async (req, res) => {
-    const query = { ...req.query };
+    // merge query and body
+    const query = { ...req.query, ...req.body };
 
     const limit = parseInt(query.limit, 10) || 5;
     const offset = parseInt(query.offset, 10) || 0;
