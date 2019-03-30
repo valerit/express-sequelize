@@ -145,7 +145,7 @@ Resonse Body: { status: true }
 
 Query {type} objects
 
-Resonse Body: { status: true, data: [Type] }
+Resonse Body: { status: true, data: [Type], total_count: Number }
 
 ex: /api/alimentos?order=createdAt&direction=DESC&nombre_alimento=test1&offset=10&limit=5
 - Query alimentos which `nombre_alimento` is `test1`, sorted by `creaedAt`, direction: descending, skipping first 10, returned count is 5.

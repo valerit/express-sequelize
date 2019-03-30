@@ -34,7 +34,7 @@ const RecetasController = () => {
       });
 
       const total_count = await Recetas.count({
-        where: query,
+        where: {},
       });
 
       return res.status(200).json({ status: true, data: models, total_count });
