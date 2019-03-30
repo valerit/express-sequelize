@@ -477,6 +477,7 @@ test('Recetas | get all (auth)', async () => {
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
   expect(res2.body.data.length).toBe(3);
+  expect(res2.body.total_count).toBe(3);
 
   expect(res2.body.data[0].recetas_alimentos.length).toBe(1);
   expect(res2.body.data[0].recetas_alimentos[0].id).toBe(ra1.id);
@@ -836,6 +837,7 @@ test('Comidas | get all (auth)', async () => {
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
   expect(res2.body.data.length).toBe(3);
+  expect(res2.body.total_count).toBe(3);
 
   const res3 = await request(api)
     .get(`/api/comidas?id_creador=${user1.id}&id_creador=${user2.id}`)
