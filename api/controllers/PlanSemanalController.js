@@ -1,5 +1,6 @@
 const PlanSemanal = require('../models').plan_semanal;
 const { onError } = require('./error');
+const { getFieldValue } = require('./common');
 
 const PlanSemanalController = () => {
   const getAll = async (req, res) => {
@@ -139,6 +140,7 @@ const PlanSemanalController = () => {
     bulkUpdate,
     update,
     deleteSingle,
+    getFieldValue: getFieldValue(MenuDia),
   };
 };
 

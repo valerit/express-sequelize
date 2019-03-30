@@ -1,5 +1,6 @@
 const MenuDia = require('../models').menu_dia;
 const { onError } = require('./error');
+const { getFieldValue } = require('./common');
 
 const MenuDiaController = () => {
   const getAll = async (req, res) => {
@@ -140,6 +141,7 @@ const MenuDiaController = () => {
     bulkUpdate,
     update,
     deleteSingle,
+    getFieldValue: getFieldValue(MenuDia),
   };
 };
 

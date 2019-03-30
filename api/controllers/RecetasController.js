@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const Recetas = require('../models').recetas;
 const Alimentos = require('../models').alimentos;
 const RecetasAlimentos = require('../models').recetas_alimentos;
+const { getFieldValue } = require('./common');
 
 const { onError } = require('./error');
 
@@ -191,6 +192,7 @@ const RecetasController = () => {
     bulkUpdate,
     update,
     deleteSingle,
+    getFieldValue: getFieldValue(Recetas)
   };
 };
 

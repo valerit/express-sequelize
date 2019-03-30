@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const Alimentos = require('../models').alimentos;
 const { onError } = require('./error');
+const { getFieldValue } = require('./common');
 
 // eslint-disable-next-line
 for (const key in Op) {
@@ -157,6 +158,7 @@ const AlimentosController = () => {
     bulkUpdate,
     update,
     deleteSingle,
+    getFieldValue: getFieldValue(Alimentos),
   };
 };
 
