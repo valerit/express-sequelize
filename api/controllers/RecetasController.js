@@ -32,7 +32,12 @@ const RecetasController = () => {
         where: query,
         include: [{ model: RecetasAlimentos }],
       });
-      return res.status(200).json({ status: true, data: models });
+
+      const total_count = await Recetas.count({
+        where: query,
+      });
+
+      return res.status(200).json({ status: true, data: models, total_count });
     } catch (err) {
       return onError(req, res, err);
     }

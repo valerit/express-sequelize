@@ -31,7 +31,10 @@ const AlimentosController = () => {
         offset,
         order: [[order, direction]],
       });
-      return res.status(200).json({ status: true, data: models });
+      const total_count = await Alimentos.count({
+        where: {},
+      });
+      return res.status(200).json({ status: true, data: models, total_count });
     } catch (err) {
       return onError(req, res, err);
     }

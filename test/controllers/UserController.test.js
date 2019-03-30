@@ -332,6 +332,7 @@ test('Food | get all (auth)', async () => {
 
   expect(Array.isArray(res2.body.data)).toBeTruthy();
   expect(res2.body.data.length).toBe(4);
+  expect(res2.body.total_count).toBe(4);
 
   // Query
   const res3 = await request(api)

@@ -5,7 +5,7 @@ const PlanSemanalController = () => {
   const getAll = async (req, res) => {
     try {
       const models = await PlanSemanal.findAll();
-      return res.status(200).json({ status: true, data: models });
+      return res.status(200).json({ status: true, data: models, total_count: models.length });
     } catch (err) {
       return onError(req, res, err);
     }

@@ -37,7 +37,12 @@ const ComidasController = () => {
           model: ComidasRecetas,
         }],
       });
-      return res.status(200).json({ status: true, data: models });
+
+      const total_count = await Comidas.count({
+        where: {},
+      });
+
+      return res.status(200).json({ status: true, data: models, total_count });
     } catch (err) {
       return onError(req, res, err);
     }
