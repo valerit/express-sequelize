@@ -1205,6 +1205,10 @@ test('Comidas | get min/max', async () => {
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .expect(200);
-  await user1.destroy();
 
+  await obj1.destroy();
+  await obj2.destroy();
+  await obj3.destroy();
+
+  await user1.destroy();
 });
