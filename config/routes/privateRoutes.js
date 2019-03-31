@@ -24,7 +24,7 @@ const privateRoutes = {
   'GET /comidas': 'ComidasController.getAll',
   'DELETE /comidas': 'ComidasController.deleteAll',
   'PUT /comidas': 'ComidasController.bulkUpdate',
-  'GET /comidas/min_max': 'ComidasController.getFieldValue', // TODO: rename min_max in the future  
+  'GET /comidas/min_max': 'ComidasController.getFieldValue', // TODO: rename min_max in the future
   'GET /comidas/:id': 'ComidasController.get',
   'PUT /comidas/:id': 'ComidasController.update',
   'DELETE /comidas/:id': 'ComidasController.deleteSingle',
@@ -33,7 +33,7 @@ const privateRoutes = {
   'GET /menu_dia': 'MenuDiaController.getAll',
   'DELETE /menu_dia': 'MenuDiaController.deleteAll',
   'PUT /menu_dia': 'MenuDiaController.bulkUpdate',
-  'GET /menu_dia/min_max': 'MenuDiaController.getFieldValue', // TODO: rename min_max in the future    
+  'GET /menu_dia/min_max': 'MenuDiaController.getFieldValue', // TODO: rename min_max in the future
   'GET /menu_dia/:id': 'MenuDiaController.get',
   'PUT /menu_dia/:id': 'MenuDiaController.update',
   'DELETE /menu_dia/:id': 'MenuDiaController.deleteSingle',
@@ -42,7 +42,7 @@ const privateRoutes = {
   'GET /plan_semanal': 'PlanSemanalController.getAll',
   'DELETE /plan_semanal': 'PlanSemanalController.deleteAll',
   'PUT /plan_semanal': 'PlanSemanalController.bulkUpdate',
-  'GET /plan_semanal/min_max': 'PlanSemanalController.getFieldValue', // TODO: rename min_max in the future      
+  'GET /plan_semanal/min_max': 'PlanSemanalController.getFieldValue', // TODO: rename min_max in the future
   'GET /plan_semanal/:id': 'PlanSemanalController.get',
   'PUT /plan_semanal/:id': 'PlanSemanalController.update',
   'DELETE /plan_semanal/:id': 'PlanSemanalController.deleteSingle',

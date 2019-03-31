@@ -1200,11 +1200,14 @@ test('Comidas | get min/max', async () => {
     })
     .expect(200);
 
-  await request(api)
+  const minMaxRes = await request(api)
     .get('/api/comidas/min_max?field=num_comensales')
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .expect(200);
+
+  expect(minMaxRes.body.data.min).toBe(1);
+  expect(minMaxRes.body.data.max).toBe(3);
 
   await obj1.destroy();
   await obj2.destroy();

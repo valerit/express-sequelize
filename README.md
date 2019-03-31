@@ -199,6 +199,20 @@ Operators:
 '$lte' // Less than or equal
 ```
 
+#### GET /api/type/min_max?{field}={value}
+
+Get min, max values for a field.
+
+```
+{
+  status: true,
+  data: {
+    min,
+    max
+  }
+}
+```
+
 ## Types
 
 ### User
