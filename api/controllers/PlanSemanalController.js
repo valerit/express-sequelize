@@ -140,7 +140,7 @@ const PlanSemanalController = () => {
     bulkUpdate,
     update,
     deleteSingle,
-    getFieldValue: getFieldValue(MenuDia),
+    getFieldValue: getFieldValue(PlanSemanal),
   };
 };
 

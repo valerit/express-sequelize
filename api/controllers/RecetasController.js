@@ -192,7 +192,7 @@ const RecetasController = () => {
     bulkUpdate,
     update,
     deleteSingle,
-    getFieldValue: getFieldValue(Recetas)
+    getFieldValue: getFieldValue(Recetas),
   };
 };
 
