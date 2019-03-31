@@ -1159,3 +1159,52 @@ test('Comidas | delete all', async () => {
 
   await user1.destroy();
 });
+
+test('Comidas | get min/max', async () => {
+  const user1 = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const obj1 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+    num_comensales: 1,
+  }).save();
+
+  const obj2 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha2',
+    num_comensales: 2,
+  }).save();
+
+  const obj3 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha3',
+    num_comensales: 3,
+  }).save();
+
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  await request(api)
+    .get('/api/comidas/min_max?field=num_comensales')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .expect(200);
+  await user1.destroy();
+
+});
