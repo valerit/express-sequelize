@@ -8,36 +8,47 @@ const { getFieldValue } = require('./common');
 const { onError } = require('./error');
 
 const RecetasController = () => {
+  // Query
   const getAll = async (req, res) => {
-    try {
-      const query = {};
-      const rawQuery = req.query;
-      console.info('Query:', JSON.stringify(rawQuery));
+    // merge query and body
+    let query = { ...req.query, ...req.body };
 
-      const keys = Object.keys(rawQuery);
-      console.info('keys:', keys);
+    const limit = parseInt(query.limit, 10) || 5;
+    const offset = parseInt(query.offset, 10) || 0;
+    const order = query.order || 'createdAt';
+    const direction = query.direction || 'DESC';
 
-      let key;
-      for (let i = 0; i < keys.length; i += 1) {
-        key = keys[i];
-        if (Array.isArray(rawQuery[key])) {
-          query[key] = {
-            [Op.in]: rawQuery[key],
-          };
-        } else {
-          query[key] = rawQuery[key];
-        }
+    delete query.limit;
+    delete query.offset;
+    delete query.order;
+    delete query.direction;
+
+    const rawQuery = {...query};
+    console.info('Query:', JSON.stringify(rawQuery));
+
+    const keys = Object.keys(rawQuery);
+    console.info('keys:', keys);
+
+    let key;
+    for (let i = 0; i < keys.length; i += 1) {
+      key = keys[i];
+      if (Array.isArray(rawQuery[key])) {
+        query[key] = {
+          [Op.in]: rawQuery[key],
+        };
       }
-      console.info('Actual_Query:', JSON.stringify(query));
+    }
+
+    try {
       const models = await Recetas.findAll({
         where: query,
-        include: [{ model: RecetasAlimentos }],
+        limit,
+        offset,
+        order: [[order, direction]],
       });
-
       const total_count = await Recetas.count({
         where: {},
       });
-
       return res.status(200).json({ status: true, data: models, total_count });
     } catch (err) {
       return onError(req, res, err);
