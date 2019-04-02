@@ -42,6 +42,7 @@ const RecetasController = () => {
     try {
       const models = await Recetas.findAll({
         where: query,
+        include: [{ model: RecetasAlimentos }],
         limit,
         offset,
         order: [[order, direction]],
