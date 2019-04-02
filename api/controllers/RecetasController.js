@@ -11,7 +11,7 @@ const RecetasController = () => {
   // Query
   const getAll = async (req, res) => {
     // merge query and body
-    let query = { ...req.query, ...req.body };
+    const query = { ...req.query, ...req.body };
 
     const limit = parseInt(query.limit, 10) || 5;
     const offset = parseInt(query.offset, 10) || 0;
@@ -23,7 +23,7 @@ const RecetasController = () => {
     delete query.order;
     delete query.direction;
 
-    const rawQuery = {...query};
+    const rawQuery = { ...query };
     console.info('Query:', JSON.stringify(rawQuery));
 
     const keys = Object.keys(rawQuery);
