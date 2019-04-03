@@ -1,6 +1,6 @@
 const PlanSemanal = require('../models').plan_semanal;
 const { onError } = require('./error');
-const { getMinMax } = require('./common');
+const { getMinMax, getDistinct } = require('./common');
 
 const PlanSemanalController = () => {
   const getAll = async (req, res) => {
@@ -141,6 +141,7 @@ const PlanSemanalController = () => {
     update,
     deleteSingle,
     getMinMax: getMinMax(PlanSemanal),
+    getDistinct: getDistinct(PlanSemanal),
   };
 };
 

@@ -15,6 +15,13 @@ const getMinMax = (model) => async function (req, res) {
   }
 };
 
+const getDistinct = (model) => async function (req, res) {
+  const { field } = req.query;
+  const values = model.aggregate(field, 'DISTINCT', { plain: true });
+  return values;
+};
+
 module.exports = {
   getMinMax,
+  getDistinct,
 };

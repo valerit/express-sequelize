@@ -1,6 +1,6 @@
 const Alimentos = require('../models').alimentos;
 const { onError } = require('./error');
-const { getMinMax } = require('./common');
+const { getMinMax, getDistinct } = require('./common');
 
 const AlimentosController = () => {
   // Query
@@ -17,7 +17,6 @@ const AlimentosController = () => {
     delete query.offset;
     delete query.order;
     delete query.direction;
-
 
     try {
       const models = await Alimentos.findAll({
@@ -153,6 +152,7 @@ const AlimentosController = () => {
     update,
     deleteSingle,
     getMinMax: getMinMax(Alimentos),
+    getDistinct: getDistinct(Alimentos),
   };
 };
 

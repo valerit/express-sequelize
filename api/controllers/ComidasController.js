@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const Comidas = require('../models').comidas;
 const ComidasAlimentos = require('../models').comidas_alimentos;
 const ComidasRecetas = require('../models').comidas_recetas;
-const { getMinMax } = require('./common');
+const { getMinMax, getDistinct } = require('./common');
 
 const { onError } = require('./error');
 
@@ -211,6 +211,7 @@ const ComidasController = () => {
     update,
     deleteSingle,
     getMinMax: getMinMax(Comidas),
+    getDistinct: getDistinct(Comidas),
   };
 };
 

@@ -1,6 +1,6 @@
 const MenuDia = require('../models').menu_dia;
 const { onError } = require('./error');
-const { getMinMax } = require('./common');
+const { getMinMax, getDistinct } = require('./common');
 
 const MenuDiaController = () => {
   const getAll = async (req, res) => {
@@ -142,6 +142,7 @@ const MenuDiaController = () => {
     update,
     deleteSingle,
     getMinMax: getMinMax(MenuDia),
+    getDistinct: getDistinct(MenuDia),
   };
 };
 
