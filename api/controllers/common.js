@@ -1,6 +1,6 @@
 const { onError } = require('./error');
 
-const getFieldValue = (model) => async function (req, res) {
+const getMinMax = (model) => async function (req, res) {
   const { field } = req.query;
   try {
     const max = await model.max(field);
@@ -16,5 +16,5 @@ const getFieldValue = (model) => async function (req, res) {
 };
 
 module.exports = {
-  getFieldValue,
+  getMinMax,
 };
