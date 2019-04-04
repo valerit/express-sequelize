@@ -484,7 +484,7 @@ test('Recetas | get all (auth)', async () => {
 
   // Query by id_creador
   const res3 = await request(api)
-    .get(`/api/recetas?id_creador=${user1.id}&id_creador=${user2.id}`)
+    .get(`/api/recetas?id_creador=${user1.id}&id_creador=${user2.id}&offset=0&limit=2`)
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
