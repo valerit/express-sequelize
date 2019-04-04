@@ -1215,3 +1215,68 @@ test('Comidas | get min/max', async () => {
 
   await user1.destroy();
 });
+
+test('Comidas | get distinct', async () => {
+  const user1 = await User.build({
+    username: 'user1',
+    password: 'password',
+  }).save();
+
+  const obj1 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha1',
+    num_comensales: 1,
+  }).save();
+
+  const obj2 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha2',
+    num_comensales: 2,
+  }).save();
+
+  const obj3 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha3',
+    num_comensales: 3,
+  }).save();
+
+
+  const obj4 = await Comidas.build({
+    id_creador: user1.id,
+    tipo_comida: 'type1',
+    explicacion: 'exp1',
+    fecha_creacion: 'fecha3',
+    num_comensales: 3, // num_comensales is still 3
+  }).save();
+
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'user1',
+      password: 'password',
+    })
+    .expect(200);
+
+  const minMaxRes = await request(api)
+    .get('/api/comidas/distinct?field=num_comensales')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .expect(200);
+
+  expect(minMaxRes.body.data.length).toBe(3);
+
+  await obj1.destroy();
+  await obj2.destroy();
+  await obj3.destroy();
+  await obj4.destroy();
+
+  await user1.destroy();
+});
