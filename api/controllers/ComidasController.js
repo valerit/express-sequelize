@@ -40,7 +40,7 @@ const ComidasController = () => {
       });
 
       const total_count = await Comidas.count({
-        where: {},
+        where: query,
       });
 
       return res.status(200).json({ status: true, data: models, total_count });

@@ -26,7 +26,7 @@ const AlimentosController = () => {
         order: [[order, direction]],
       });
       const total_count = await Alimentos.count({
-        where: {},
+        where: query,
       });
       return res.status(200).json({ status: true, data: models, total_count });
     } catch (err) {

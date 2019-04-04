@@ -48,7 +48,7 @@ const RecetasController = () => {
         order: [[order, direction]],
       });
       const total_count = await Recetas.count({
-        where: {},
+        where: query,
       });
       return res.status(200).json({ status: true, data: models, total_count });
     } catch (err) {
