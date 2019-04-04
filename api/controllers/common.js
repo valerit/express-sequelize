@@ -18,11 +18,11 @@ const getMinMax = (model) => async function (req, res) {
 const getDistinct = (model) => async function (req, res) {
   const { field } = req.query;
   try {
-    const values = await model.aggregate(field, 'DISTINCT', { plain: true });
+    const values = await model.aggregate(field, 'DISTINCT', { plain: false });
     console.info('distinct values:', values);
     return res.send({
       status: true,
-      data: values,
+      data: values.map((record) => (record.DISTINCT)),
     });
   } catch (err) {
     return onError(req, res, err);
