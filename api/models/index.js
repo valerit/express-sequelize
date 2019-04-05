@@ -12,7 +12,7 @@ require('fs').readdirSync(normalizedPath).forEach((file) => {
 
 const {
   loginuser, clientes, profesionales, user_type, familias, recetas, recetas_alimentos, alimentos, comidas, comidas_alimentos,
-  menu_dia, menu_dia_comidas, plan_semanal, comidas_recetas,
+  menu_dia, menu_dia_comidas, plan_semanal, comidas_recetas, user_alimentos,
 } = models;
 
 clientes.belongsTo(loginuser, { foreignKey: 'loginuser_id', sourceKey: 'id' });
@@ -57,5 +57,11 @@ comidas_recetas.belongsTo(comidas, { foreignKey: 'comidas_id', sourceKey: 'id' }
 
 recetas.hasMany(comidas_recetas, { foreignKey: 'recetas_id', sourceKey: 'id' });
 comidas_recetas.belongsTo(recetas, { foreignKey: 'recetas_id', sourceKey: 'id' });
+
+alimentos.hasMany(user_alimentos, { foreignKey: 'alimentos_id', sourceKey: 'id' });
+user_alimentos.belongsTo(alimentos, { foreignKey: 'alimentos_id', sourceKey: 'id' });
+
+loginuser.hasMany(user_alimentos, { foreignKey: 'id_creador', sourceKey: 'id' });
+user_alimentos.belongsTo(loginuser, { foreignKey: 'id_creador', sourceKey: 'id' });
 
 module.exports = models;
