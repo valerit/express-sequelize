@@ -1316,6 +1316,9 @@ test('UserAlimentos | create', async () => {
     })
     .expect(200);
 
+  expect(res2.body.data.alimentos_id).toBe(food1.id);
+  expect(res2.body.data.id_creador).toBe(user1.id);
+
   await food1.destroy();
   await user1.destroy();
 });
