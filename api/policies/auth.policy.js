@@ -1,4 +1,7 @@
+const Models = require('../models');
 const JWTService = require('../services/auth.service');
+
+const User = Models.loginuser;
 
 // usually: "Authorization: Bearer [token]" or "token: [token]"
 module.exports = (req, res, next) => {
@@ -26,9 +29,14 @@ module.exports = (req, res, next) => {
     return res.status(401).json({ msg: 'No Authorization was found' });
   }
 
-  return JWTService().verify(tokenToVerify, (err, thisToken) => {
+  return JWTService().verify(tokenToVerify, async (err, thisToken) => {
     if (err) return res.status(401).json({ err });
-    req.token = thisToken;
+    const { id } = thisToken;
+    req.user = await User.find({
+      where: {
+        id,
+      },
+    });
     return next();
   });
 };

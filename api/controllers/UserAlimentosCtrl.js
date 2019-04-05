@@ -153,6 +153,7 @@ const UserAlimentosCtrl = () => {
       const alimentos = await Alimentos.find({
         where: { id: alimentos_id },
       });
+
       const data = { ...alimentos.toJSON(), alimentos_id, id_creador: req.user.id };
       delete data.createdAt;
       delete data.updatedAt;
