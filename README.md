@@ -1028,6 +1028,13 @@ Get min, max values for a field.
     },
 ```
 
+### user_alimentos
+
+```
+...alimentos
+id_creador: DataTypes.INTEGER(11),
+alimentos_id: DataTypes.INTEGER(11)
+```
 
 ### recetas
 
