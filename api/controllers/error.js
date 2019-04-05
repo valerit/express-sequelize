@@ -3,6 +3,6 @@ module.exports.onError = (req, res, error) => {
   res.status(500).send({
     status: false,
     error: 'Internal Server Error',
-    stack: error.toString()
+    stack: error.toString(),
   });
 };
