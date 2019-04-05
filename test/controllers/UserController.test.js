@@ -1284,7 +1284,7 @@ test('Comidas | get distinct', async () => {
 // UserAlimentos
 
 
-test('UserAlimentos | create', async () => {
+test('UserAlimentos | create, update', async () => {
   const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
@@ -1318,6 +1318,18 @@ test('UserAlimentos | create', async () => {
 
   expect(res2.body.data.alimentos_id).toBe(food1.id);
   expect(res2.body.data.id_creador).toBe(user1.id);
+  expect(res2.body.data.nombre_alimento).toBe(food1.nombre_alimento);
+
+  const res3 = await request(api)
+    .put(`/api/user_alimentos/${res2.body.data.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      nombre_alimento: 'edited_test1',
+    })
+    .expect(200);
+  expect(res3.body.data.nombre_alimento).toBe('edited_test1');
 
   await food1.destroy();
   await user1.destroy();
