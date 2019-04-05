@@ -151,13 +151,13 @@ const UserAlimentosCtrl = () => {
       const { alimentos_id } = req.body;
 
       const alimentos = await Alimentos.find({
-        where: { alimentos_id },
+        where: { id: alimentos_id },
       });
       const data = { ...alimentos.toJSON(), alimentos_id, id_creador: req.user.id };
       delete data.createdAt;
       delete data.updatedAt;
       delete data.id;
-     
+
       const model = await UserAlimentos.build(data).save();
 
       return res.send({

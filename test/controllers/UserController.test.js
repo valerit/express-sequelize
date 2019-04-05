@@ -1280,3 +1280,42 @@ test('Comidas | get distinct', async () => {
 
   await user1.destroy();
 });
+
+// UserAlimentos
+
+
+test('UserAlimentos | create', async () => {
+  const user1 = await User.build({
+    username: 'martin@mail.com',
+    password: 'securepassword',
+  }).save();
+
+  // create alimentos
+  const food1 = await Food.build({
+    nombre_alimento: 'test1',
+  }).save();
+
+  const res = await request(api)
+    .post('/api/login')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+    })
+    .expect(200);
+
+  expect(res.body.data.token).toBeTruthy();
+
+  const res2 = await request(api)
+    .post('/api/user_alimentos')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      alimentos_id: food1.id,
+    })
+    .expect(200);
+
+  await food1.destroy();
+  await user1.destroy();
+});
