@@ -146,7 +146,31 @@ const UserAlimentosCtrl = () => {
     }
   };
 
+  const create = async (req, res) => {
+    try {
+      const { alimentos_id } = req.body;
+
+      const alimentos = await Alimentos.find({
+        where: { alimentos_id },
+      });
+      const data = { ...alimentos.toJSON(), alimentos_id, id_creador: req.user.id };
+      delete data.createdAt;
+      delete data.updatedAt;
+      delete data.id;
+     
+      const model = await UserAlimentos.build(data).save();
+
+      return res.send({
+        status: true,
+        data: model.toJSON(),
+      });
+    } catch (err) {
+      return onError(req, res, err);
+    }
+  };
+
   return {
+    create,
     get,
     getAll,
     deleteAll,
