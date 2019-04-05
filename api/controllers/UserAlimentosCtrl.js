@@ -170,9 +170,39 @@ const UserAlimentosCtrl = () => {
     }
   };
 
+  const update = async (req, res) => {
+    try {
+      const result = await UserAlimentos.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (result[0] === 0) { // Affected element count
+        return res.status(404).send({
+          status: false,
+          error: 'UserAlimentos_not_found',
+        });
+      }
+
+      const data = await UserAlimentos.find({
+        where: {
+          id: req.params.id,
+        },
+      });
+
+      return res.send({
+        status: true,
+        data: data.toJSON(),
+      });
+    } catch (e) {
+      return onError(req, res, e);
+    }
+  };
+
   return {
     create,
     get,
+    update,
     getAll,
     deleteAll,
     bulkUpdate,
