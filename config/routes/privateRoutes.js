@@ -18,6 +18,7 @@ const privateRoutes = {
   'GET /user_alimentos/min_max': 'UserAlimentosCtrl.getMinMax', // TODO: rename min_max in the future
   'GET /user_alimentos/distinct': 'UserAlimentosCtrl.getDistinct',
   'GET /user_alimentos/:id': 'UserAlimentosCtrl.get',
+  'PUT /user_alimentos/:id': 'UserAlimentosCtrl.update',
 
   'POST /recetas': 'RecetasController.create',
   'GET /recetas': 'RecetasController.getAll',
