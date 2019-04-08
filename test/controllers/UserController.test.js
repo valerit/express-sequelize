@@ -294,22 +294,22 @@ test('Food | get all (auth)', async () => {
 
   const food1 = await Food.build({
     nombre_alimento: 'test1',
-    Huevos: 1,
+    huevos: 1,
   }).save();
 
   const food2 = await Food.build({
     nombre_alimento: 'test2',
-    Huevos: 2,
+    huevos: 2,
   }).save();
 
   const food3 = await Food.build({
     nombre_alimento: 'test3',
-    Huevos: 3,
+    huevos: 3,
   }).save();
 
   const food4 = await Food.build({
     nombre_alimento: 'test4',
-    Huevos: 4,
+    huevos: 4,
   }).save();
 
   const res = await request(api)
@@ -363,7 +363,7 @@ test('Food | get all (auth)', async () => {
     .send({
       order: 'createdAt',
       direction: 'DESC',
-      Huevos: {
+      huevos: {
         $gte: 4,
       },
     })
@@ -371,7 +371,7 @@ test('Food | get all (auth)', async () => {
 
   expect(Array.isArray(res5.body.data)).toBeTruthy();
   expect(res5.body.data.length).toBe(1);
-  expect(res5.body.data[0].Huevos >= 4).toBeTruthy();
+  expect(res5.body.data[0].huevos >= 4).toBeTruthy();
 
   // Query using Post $like
   const res6 = await request(api)
