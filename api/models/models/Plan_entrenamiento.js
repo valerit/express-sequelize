@@ -6,35 +6,35 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       primaryKey: true,
     },
-    Nombre_plan: {
+    nombre_plan: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Fecha_plan: {
+    fecha_plan: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Cliente_plan: {
+    cliente_plan: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Nivel_usuario: {
+    nivel_usuario: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Tipo_de_rutina: {
+    tipo_de_rutina: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Duracion_entrenamiento: {
+    duracion_entrenamiento: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Intensidad_entrenamiento: {
+    intensidad_entrenamiento: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Nombre_creador: {
+    nombre_creador: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },

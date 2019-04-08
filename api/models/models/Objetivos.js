@@ -7,67 +7,67 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       primaryKey: true,
     },
-    Fecha: {
+    fecha: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Comentarios: {
+    comentarios: {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
-    Peso_medida: {
+    peso_medida: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Porcentaje_grasa_estimado: {
+    porcentaje_grasa_estimado: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_cuello_ideal: {
+    medidas_cuello_ideal: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_pecho_ideal: {
+    medidas_pecho_ideal: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_biceps_ideal: {
+    medidas_biceps_ideal: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_cintura_ideal: {
+    medidas_cintura_ideal: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_muslos_ideal: {
+    medidas_muslos_ideal: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_gemelos_ideal: {
+    medidas_gemelos_ideal: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_cuello: {
+    medidas_cuello: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_pecho: {
+    medidas_pecho: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_biceps: {
+    medidas_biceps: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_cintura: {
+    medidas_cintura: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_muslos: {
+    medidas_muslos: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Medidas_gemelos: {
+    medidas_gemelos: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },

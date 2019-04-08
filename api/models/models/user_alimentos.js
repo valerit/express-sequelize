@@ -15,91 +15,91 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
-    Gluten: {
+    gluten: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Lactosa: {
+    lactosa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Crustaceos: {
+    crustaceos: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Pescados: {
+    pescados: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Huevos: {
+    huevos: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Soja: {
+    soja: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Cacahuete: {
+    cacahuete: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Leucina: {
+    leucina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Isoleucina: {
+    isoleucina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Valina: {
+    valina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Lisina: {
+    lisina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Metionina: {
+    metionina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fenilalanina: {
+    fenilalanina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Histidina: {
+    histidina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Treonina: {
+    treonina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Triptofano: {
+    triptofano: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Alanina: {
+    alanina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Arginina: {
+    arginina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Asparagina: {
+    asparagina: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Acido_aspartico: {
+    acido_aspartico: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Cisteina: {
+    cisteina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Glutamina: {
+    glutamina: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
@@ -107,155 +107,155 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Glicina: {
+    glicina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Prolina: {
+    prolina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Serina: {
+    serina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tirosina: {
+    tirosina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Aminoacido_limitante: {
+    aminoacido_limitante: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Proteina_completa: {
+    proteina_completa: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Valor_biologico_proteina: {
+    valor_biologico_proteina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Estres: {
+    estres: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Antinflamatorio: {
+    antinflamatorio: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Descanso: {
+    descanso: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Neurogenesis: {
+    neurogenesis: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Antienvejecimiento: {
+    antienvejecimiento: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Energia: {
+    energia: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Grasas: {
+    grasas: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Proteina: {
+    proteina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Carbohidratos: {
+    carbohidratos: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fibra: {
+    fibra: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_A: {
+    vitamina_a: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_D: {
+    vitamina_d: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_E: {
+    vitamina_e: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_B_12: {
+    vitamina_b_12: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_B_6: {
+    vitamina_b_6: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_C: {
+    vitamina_c: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Calcio: {
+    calcio: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Hierro: {
+    hierro: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Potasio: {
+    potasio: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Magnesio: {
+    magnesio: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Sodio: {
+    sodio: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fosforo: {
+    fosforo: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Ioduro: {
+    ioduro: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Selenio: {
+    selenio: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Zinc: {
+    zinc: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Cobre: {
+    cobre: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Dopamina: {
+    dopamina: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Seretonina: {
+    seretonina: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    BDNF: {
+    bdnf: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Endorfinas: {
+    endorfinas: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Ondas_Alfa: {
+    ondas_alfa: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
@@ -271,27 +271,27 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Azucar: {
+    azucar: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Omega_3: {
+    omega_3: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    IG: {
+    ig: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fuente: {
+    fuente: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Precio_unitario: {
+    precio_unitario: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Cantidad_envase_Kg: {
+    cantidad_envase_kg: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
@@ -299,11 +299,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    MARCA: {
+    marca: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    FRECUENCIA: {
+    frecuencia: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
@@ -311,99 +311,99 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    CARGA_GLUCEMICA_RAC_HAB: {
+    carga_glucemica_rac_hab: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    PROVEEDOR: {
+    proveedor: {
       type: DataTypes.STRING(40),
       allowNull: true,
     },
-    Otras_marcas: {
+    otras_marcas: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Organico_Procesado: {
+    organico_procesado: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Subfamilia: {
+    subfamilia: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Coenzima_Q_10: {
+    coenzima_q_10: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Colageno: {
+    colageno: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Creatina: {
+    creatina: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Omega_6: {
+    omega_6: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Glutation: {
+    glutation: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Dimensionable: {
+    dimensionable: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Fecha_alta: {
+    fecha_alta: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Racion_habitual_hombre: {
+    racion_habitual_hombre: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Racion_habitual_mujer: {
+    racion_habitual_mujer: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Keto_diet: {
+    keto_diet: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Vegetarianos: {
+    vegetarianos: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Veganos: {
+    veganos: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    porcentaje_Grasas: {
+    porcentaje_grasas: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    porcentaje_Proteina: {
+    porcentaje_proteina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    porcentaje_Carbohidrato: {
+    porcentaje_carbohidrato: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Macronutriente_principal: {
+    macronutriente_principal: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Circulacion: {
+    circulacion: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    TEF: {
+    tef: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Nutrigenetica: {
+    nutrigenetica: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
@@ -411,351 +411,351 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Acetilcolina_AC: {
+    acetilcolina_ac: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    acido_aminobutirico_GABA: {
+    acido_aminobutirico_gaba: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Anticancer: {
+    anticancer: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Beta_caroteno: {
+    beta_caroteno: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Codigo_EAN: {
+    codigo_ean: {
       type: DataTypes.INTEGER(13),
       allowNull: true,
     },
-    Glutamato: {
+    glutamato: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Hormonas: {
+    hormonas: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Lectinas: {
+    lectinas: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Licopeno: {
+    licopeno: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Mercurio: {
+    mercurio: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Metodo_de_coccion: {
+    metodo_de_coccion: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Nootropics: {
+    nootropics: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Noradrenalina_NE: {
+    noradrenalina_ne: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Ondas_Delta: {
+    ondas_delta: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Ondas_Gama: {
+    ondas_gama: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Ondas_Theta: {
+    ondas_theta: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Pesticidas_e_insecticidas: {
+    pesticidas_e_insecticidas: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Prebiotico: {
+    prebiotico: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Probiotico: {
+    probiotico: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Resveratrol: {
+    resveratrol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Sulforafano: {
+    sulforafano: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Unidad_de_medida: {
+    unidad_de_medida: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Energia_Kj: {
+    energia_kj: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Cenizas: {
+    cenizas: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Sucrosa: {
+    sucrosa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Dextrosa: {
+    dextrosa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Con_licopeno: {
+    con_licopeno: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Maltosa: {
+    maltosa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Galactosa: {
+    galactosa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Almidon: {
+    almidon: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Manganeso: {
+    manganeso: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fluoruro: {
+    fluoruro: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Niacina: {
+    niacina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acido_pantotenico: {
+    acido_pantotenico: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acido_folico: {
+    acido_folico: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Folate_alimento: {
+    folate_alimento: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Folate_DE: {
+    folate_de: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Colina: {
+    colina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Betaina: {
+    betaina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_B_12_anadida: {
+    vitamina_b_12_anadida: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Retinol: {
+    retinol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Alfa_caroteno: {
+    alfa_caroteno: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Beta_Cryptoxanthin: {
+    beta_cryptoxanthin: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_A_IU: {
+    vitamina_a_iu: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Luteina_zeazantina: {
+    luteina_zeazantina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_E_anadida: {
+    vitamina_E_anadida: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocopherol_beta: {
+    tocopherol_beta: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocopherol_gamma: {
+    tocopherol_gamma: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocotrienol_alpha: {
+    tocotrienol_alpha: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocopherol_delta: {
+    tocopherol_delta: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocotrienol_beta: {
+    tocotrienol_beta: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocotrienol_gamma: {
+    tocotrienol_gamma: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Tocotrienol_delta: {
+    tocotrienol_delta: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamin_D_D2_D3: {
+    vitamin_d_d2_d3: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamin_D2_ergocalciferol: {
+    vitamin_d2_ergocalciferol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamin_D3_cholecalciferol: {
+    vitamin_d3_cholecalciferol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_DIU: {
+    vitamina_diu: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Vitamina_K: {
+    vitamina_k: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Dihydrophylloquinone: {
+    dihydrophylloquinone: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Menaquinone_4: {
+    menaquinone_4: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acidos_grasos_total_saturados: {
+    acidos_grasos_total_saturados: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acidos_grasos_total_monoinsaturados: {
+    acidos_grasos_total_monoinsaturados: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acidos_grasos_total_polinsaturados: {
+    acidos_grasos_total_polinsaturados: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    EPA: {
+    epa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    DPA: {
+    dpa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    DHA: {
+    dha: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acidos_grasos_tota_trans: {
+    acidos_grasos_tota_trans: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acidos_grasos_total_trans_monoenoico: {
+    acidos_grasos_total_trans_monoenoico: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Acidos_grasos_total_trans_polienoico: {
+    acidos_grasos_total_trans_polienoico: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fitoesteroles: {
+    fitoesteroles: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Estigmasterol: {
+    estigmasterol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Campesterol: {
+    campesterol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Beta_sitosterol: {
+    beta_sitosterol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Cafeina: {
+    cafeina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Teobromina: {
+    teobromina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    English_name: {
+    english_name: {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
-    Fructosa: {
+    fructosa: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Alimento_generico: {
+    alimento_generico: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Observaciones: {
+    observaciones: {
       type: DataTypes.STRING(200),
       allowNull: true,
     },
-    Hidroxiprolina: {
+    hidroxiprolina: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Family: {
+    family: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Pais: {
+    pais: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Agua_humedad: {
+    agua_humedad: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Colesterol: {
+    colesterol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Alcohol_etanol: {
+    alcohol_etanol: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Con_lactosa: {
+    con_lactosa: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    IDbd: {
+    idbd: {
       type: DataTypes.STRING(5),
       allowNull: true,
     },
