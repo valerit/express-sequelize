@@ -373,6 +373,24 @@ test('Food | get all (auth)', async () => {
   expect(res5.body.data.length).toBe(1);
   expect(res5.body.data[0].Huevos >= 4).toBeTruthy();
 
+  // Query using Post $like
+  const res6 = await request(api)
+    .post('/api/alimentos/query')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      order: 'createdAt',
+      direction: 'DESC',
+      nombre_alimento: {
+        $like: '%test%',
+      },
+    })
+    .expect(200);
+
+  expect(Array.isArray(res6.body.data)).toBeTruthy();
+  expect(res6.body.data.length).toBe(4);
+
   await user.destroy();
   await food1.destroy();
   await food2.destroy();

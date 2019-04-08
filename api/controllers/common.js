@@ -59,9 +59,6 @@ const queryAll = (model, include = []) => async function (req, res) {
         [Op.in]: rawQuery[key],
       };
     }
-    if (key === '%like') {
-      query[key] = '%' + query[key];
-    }
   }
 
   try {
