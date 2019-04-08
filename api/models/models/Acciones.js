@@ -2,27 +2,27 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define('Acciones', {
-    Id_cliente: {
+    id_cliente: {
       type: DataTypes.STRING(8),
       allowNull: true,
     },
-    Fecha: {
+    fecha: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Fase: {
+    fase: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Accion: {
+    accion: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Detalle: {
+    detalle: {
       type: DataTypes.STRING(250),
       allowNull: true,
     },
-    Resultado: {
+    resultado: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
