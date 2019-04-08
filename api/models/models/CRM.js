@@ -2,51 +2,51 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define('CRM', {
-    Fase: {
+    fase: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Colectivo: {
+    colectivo: {
       type: DataTypes.STRING(100),
       allowNull: true,
     },
-    Asociacion: {
+    asociacion: {
       type: DataTypes.STRING(100),
       allowNull: true,
     },
-    Nombre_colectivo: {
+    nombre_colectivo: {
       type: DataTypes.STRING(100),
       allowNull: true,
     },
-    Resultado: {
+    resultado: {
       type: DataTypes.STRING(11),
       allowNull: true,
     },
-    Web: {
+    web: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Num_integrantes: {
+    num_integrantes: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Provincia: {
+    provincia: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    CCAA: {
+    ccaa: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Pais: {
+    pais: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Tipo_cliente: {
+    tipo_cliente: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Persona_contacto: {
+    persona_contacto: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
@@ -54,19 +54,19 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Telefono: {
+    telefono: {
       type: DataTypes.STRING(9),
       allowNull: true,
     },
-    Direccion: {
+    direccion: {
       type: DataTypes.STRING(100),
       allowNull: true,
     },
-    Observaciones: {
+    observaciones: {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
-    Programa_utilizado: {
+    programa_utilizado: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
