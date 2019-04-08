@@ -2,51 +2,51 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define('Citas', {
-    Usuario_profesional: {
+    usuario_profesional: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Id_cliente: {
+    id_cliente: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Fecha_cita: {
+    fecha_cita: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Hora: {
+    hora: {
       type: DataTypes.STRING(5),
       allowNull: true,
     },
-    Duracion: {
+    duracion: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Ubicacion_cita: {
+    ubicacion_cita: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Direccion_cita: {
+    direccion_cita: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Dia_semana: {
+    dia_semana: {
       type: DataTypes.STRING(15),
       allowNull: true,
     },
-    Mes: {
+    mes: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Semana: {
+    semana: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    Recomendaciones: {
+    recomendaciones: {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
-    Observaciones_citas: {
+    observaciones_citas: {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
