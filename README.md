@@ -197,6 +197,7 @@ Operators:
 '$gte', // Greater than or equal
 '$lt', // Less than
 '$lte' // Less than or equal
+'$like' // Like string
 ```
 
 #### GET /api/type/min_max?{field}={value}
