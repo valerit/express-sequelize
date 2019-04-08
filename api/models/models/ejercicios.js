@@ -7,79 +7,79 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true,
     },
-    Ejercicio: {
+    ejercicio: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Grupo_muscular: {
+    grupo_muscular: {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
-    Area_muscular: {
+    area_muscular: {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
-    Intensidad: {
+    intensidad: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Compuesto: {
+    compuesto: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Tipo_ejercicio: {
+    tipo_ejercicio: {
       type: DataTypes.STRING(15),
       allowNull: true,
     },
-    Nivel_usuario: {
+    nivel_usuario: {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
-    Util: {
+    util: {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
-    Movimiento_funcional: {
+    movimiento_funcional: {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
-    Imagen: {
+    imagen: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Video: {
+    video: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
-    Coeficiente_actividad: {
+    coeficiente_actividad: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    Fecha_alta: {
+    fecha_alta: {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
-    Grupo_muscular_secundario: {
+    grupo_muscular_secundario: {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
-    Link: {
+    link: {
       type: DataTypes.STRING(80),
       allowNull: true,
     },
-    Nombre_ejercicio_ingles: {
+    nombre_ejercicio_ingles: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
-    Observaciones_ejercicios: {
+    observaciones_ejercicios: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    Top: {
+    top: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
-    Usuario_alta: {
+    usuario_alta: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
