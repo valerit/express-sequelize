@@ -2,39 +2,10 @@ const Alimentos = require('../models').alimentos;
 const UserAlimentos = require('../models').user_alimentos;
 
 const { onError } = require('./error');
-const { getMinMax, getDistinct } = require('./common');
+const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const UserAlimentosCtrl = () => {
   // Query
-  const getAll = async (req, res) => {
-    // merge query and body
-    const query = { ...req.query, ...req.body };
-
-    const limit = parseInt(query.limit, 10) || 5;
-    const offset = parseInt(query.offset, 10) || 0;
-    const order = query.order || 'createdAt';
-    const direction = query.direction || 'DESC';
-
-    delete query.limit;
-    delete query.offset;
-    delete query.order;
-    delete query.direction;
-
-    try {
-      const models = await UserAlimentos.findAll({
-        where: query,
-        limit,
-        offset,
-        order: [[order, direction]],
-      });
-      const total_count = await UserAlimentos.count({
-        where: query,
-      });
-      return res.status(200).json({ status: true, data: models, total_count });
-    } catch (err) {
-      return onError(req, res, err);
-    }
-  };
 
   const bulkUpdate = async (req, res) => {
     try {
@@ -174,7 +145,7 @@ const UserAlimentosCtrl = () => {
     create,
     get,
     update,
-    getAll,
+    getAll: queryAll(UserAlimentos),
     deleteAll,
     bulkUpdate,
     deleteSingle,

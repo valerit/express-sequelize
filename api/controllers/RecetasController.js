@@ -3,59 +3,11 @@ const { Op } = require('sequelize');
 const Recetas = require('../models').recetas;
 const Alimentos = require('../models').alimentos;
 const RecetasAlimentos = require('../models').recetas_alimentos;
-const { getMinMax, getDistinct } = require('./common');
+const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const { onError } = require('./error');
 
 const RecetasController = () => {
-  // Query
-  const getAll = async (req, res) => {
-    // merge query and body
-    const query = { ...req.query, ...req.body };
-
-    const limit = parseInt(query.limit, 10) || 5;
-    const offset = parseInt(query.offset, 10) || 0;
-    const order = query.order || 'createdAt';
-    const direction = query.direction || 'DESC';
-
-    delete query.limit;
-    delete query.offset;
-    delete query.order;
-    delete query.direction;
-
-    const rawQuery = { ...query };
-    console.info('Query:', JSON.stringify(rawQuery));
-
-    const keys = Object.keys(rawQuery);
-    console.info('keys:', keys);
-
-    let key;
-    for (let i = 0; i < keys.length; i += 1) {
-      key = keys[i];
-      if (Array.isArray(rawQuery[key])) {
-        query[key] = {
-          [Op.in]: rawQuery[key],
-        };
-      }
-    }
-
-    try {
-      const models = await Recetas.findAll({
-        where: query,
-        include: [{ model: RecetasAlimentos }],
-        limit,
-        offset,
-        order: [[order, direction]],
-      });
-      const total_count = await Recetas.count({
-        where: query,
-      });
-      return res.status(200).json({ status: true, data: models, total_count });
-    } catch (err) {
-      return onError(req, res, err);
-    }
-  };
-
   const bulkUpdate = async (req, res) => {
     try {
       await Promise.all(req.body.map((model) => Recetas.update(model, {
@@ -199,7 +151,7 @@ const RecetasController = () => {
   return {
     create,
     get,
-    getAll,
+    getAll: queryAll(Recetas, { model: RecetasAlimentos }),
     deleteAll,
     bulkUpdate,
     update,

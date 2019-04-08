@@ -1,18 +1,8 @@
 const MenuDia = require('../models').menu_dia;
 const { onError } = require('./error');
-const { getMinMax, getDistinct } = require('./common');
+const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const MenuDiaController = () => {
-  const getAll = async (req, res) => {
-    try {
-      const models = await MenuDia.findAll();
-
-      return res.status(200).json({ status: true, data: models, total_count: models.length });
-    } catch (err) {
-      return onError(req, res, err);
-    }
-  };
-
   const bulkUpdate = async (req, res) => {
     try {
       await Promise.all(req.body.map((model) => MenuDia.update(model, {
@@ -136,7 +126,7 @@ const MenuDiaController = () => {
   return {
     create,
     get,
-    getAll,
+    getAll: queryAll(MenuDia),
     deleteAll,
     bulkUpdate,
     update,

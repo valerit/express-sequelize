@@ -1,17 +1,8 @@
 const PlanSemanal = require('../models').plan_semanal;
 const { onError } = require('./error');
-const { getMinMax, getDistinct } = require('./common');
+const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const PlanSemanalController = () => {
-  const getAll = async (req, res) => {
-    try {
-      const models = await PlanSemanal.findAll();
-      return res.status(200).json({ status: true, data: models, total_count: models.length });
-    } catch (err) {
-      return onError(req, res, err);
-    }
-  };
-
   const bulkUpdate = async (req, res) => {
     try {
       await Promise.all(req.body.map((model) => PlanSemanal.update(model, {
@@ -135,7 +126,7 @@ const PlanSemanalController = () => {
   return {
     create,
     get,
-    getAll,
+    getAll: queryAll(PlanSemanal),
     deleteAll,
     bulkUpdate,
     update,
