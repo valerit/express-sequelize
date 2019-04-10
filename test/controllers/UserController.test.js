@@ -24,7 +24,7 @@ beforeAll(async () => {
   // Create User Types
   await UserType.build({
     id: 1,
-    type: 'admin',
+    type: 'professional',
   }).save();
 
   await UserType.build({
