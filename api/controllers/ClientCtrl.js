@@ -120,8 +120,11 @@ const ClientCtrl = () => {
 
   const create = async (req, res) => {
     try {
-      const data = req.body;
+      const data = { ...req.body };
       
+      // Set loginuser_id to the current request
+      data.loginuser_id = req.user.id;
+
       const model = await Client.build(data).save();
 
       return res.send({
