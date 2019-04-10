@@ -79,6 +79,18 @@ Response:
 }
 ```
 
+### Register
+
+1. Create loginuser
+  `POST /user` { username, password, password2, user_type_id }
+
+ user_type_id - 1: Admin, 2: Client
+
+2. Create Client
+
+  `POST /clientes` { fecha_creacion: String }
+ Using the token returned by the login API will create the client linked to the `loginuser`: id_creador, loginuser_id will be its `id`
+
 ### Login
 
 `POST /api/login`
