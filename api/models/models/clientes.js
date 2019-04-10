@@ -212,7 +212,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
     loginuser_id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
     },
     familias_id: {

@@ -4,6 +4,7 @@ const {
   afterAction,
 } = require('../setup/_setup');
 const User = require('../../api/models/index').loginuser;
+const Client = require('../../api/models/index').clientes;
 const Food = require('../../api/models/index').alimentos;
 const Recetas = require('../../api/models/index').recetas;
 const Comidas = require('../../api/models/index').comidas;
@@ -1376,7 +1377,7 @@ test('Client | create', async () => {
   // Create client
 
   const res2 = await request(api)
-    .post(`/api/user/${res.body.data.user.id}`)
+    .post('/api/clientes')
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
@@ -1385,7 +1386,9 @@ test('Client | create', async () => {
     })
     .expect(200);
 
-  expect(res2.body.data.id).toBe(res.body.data.user.id);
+  expect(res2.body.data.loginuser_id).toBe(user.id);
+  const client = await User.findById(res2.body.data.id);
 
+  await client.destroy();
   await user.destroy();
 });
