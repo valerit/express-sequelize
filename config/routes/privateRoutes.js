@@ -6,6 +6,13 @@ const privateRoutes = {
   'PUT /user/:id': 'UserController.update',
   'DELETE /user/:id': 'UserController.deleteSingle',
 
+  'GET /clientes': 'ClientCtrl.getAll',
+  'DELETE /clientes': 'ClientCtrl.deleteAll',
+  'PUT /clientes': 'ClientCtrl.bulkUpdate',
+  'GET /clientes/:id': 'ClientCtrl.get',
+  'PUT /clientes/:id': 'ClientCtrl.update',
+  'DELETE /clientes/:id': 'ClientCtrl.deleteSingle',
+
   'GET /alimentos': 'AlimentosController.getAll',
   'POST /alimentos/query': 'AlimentosController.getAll',
   'GET /alimentos/min_max': 'AlimentosController.getMinMax', // TODO: rename min_max in the future
