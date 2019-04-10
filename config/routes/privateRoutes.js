@@ -6,6 +6,7 @@ const privateRoutes = {
   'PUT /user/:id': 'UserController.update',
   'DELETE /user/:id': 'UserController.deleteSingle',
 
+  'POST /clientes': 'ClientCtrl.create',
   'GET /clientes': 'ClientCtrl.getAll',
   'DELETE /clientes': 'ClientCtrl.deleteAll',
   'PUT /clientes': 'ClientCtrl.bulkUpdate',

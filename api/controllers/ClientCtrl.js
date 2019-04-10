@@ -133,6 +133,7 @@ const ClientCtrl = () => {
       }
 
       // Set loginuser_id to the current request
+      data.id_creador = req.user.id;
       data.loginuser_id = req.user.id;
 
       const model = await Client.build(data).save();

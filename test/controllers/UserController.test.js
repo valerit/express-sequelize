@@ -3,6 +3,7 @@ const {
   beforeAction,
   afterAction,
 } = require('../setup/_setup');
+const UserType = require('../../api/models/index').user_type;
 const User = require('../../api/models/index').loginuser;
 const Client = require('../../api/models/index').clientes;
 const Food = require('../../api/models/index').alimentos;
@@ -19,6 +20,17 @@ let api;
 
 beforeAll(async () => {
   api = await beforeAction();
+
+  // Create User Types
+  await UserType.build({
+    id: 1,
+    type: 'admin',
+  }).save();
+
+  await UserType.build({
+    id: 2,
+    type: 'client',
+  }).save();
 });
 
 afterAll(() => {
@@ -1363,6 +1375,7 @@ test('Client | create', async () => {
       username: 'martin@mail.com',
       password: 'securepassword',
       password2: 'securepassword',
+      user_type_id: 2, // Client
       // user_type_id: PROFESSIONAL,
     })
     .expect(200);
@@ -1387,7 +1400,7 @@ test('Client | create', async () => {
     .expect(200);
 
   expect(res2.body.data.loginuser_id).toBe(user.id);
-  const client = await User.findById(res2.body.data.id);
+  const client = await Client.findById(res2.body.data.id);
 
   await client.destroy();
   await user.destroy();
