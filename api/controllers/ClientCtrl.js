@@ -3,8 +3,11 @@ const { Op } = require('sequelize');
 const Client = require('../models').clientes;
 const User = require('../models').loginuser;
 const { getMinMax, getDistinct, queryAll } = require('./common');
+const { USER_TYPES } = require('../../config/constants');
 
 const { onError } = require('./error');
+
+const { PROFESSIONAL, CLIENT } = USER_TYPES;
 
 const ClientCtrl = () => {
   const bulkUpdate = async (req, res) => {
@@ -122,6 +125,13 @@ const ClientCtrl = () => {
     try {
       const data = { ...req.body };
       
+      if (req.user.user_type_id !== CLIENT) { // loginuser is not client
+        return res.status(400).send({
+          status: false,
+          error: 'not_loginuser_client'
+        })
+      }
+
       // Set loginuser_id to the current request
       data.loginuser_id = req.user.id;
 
