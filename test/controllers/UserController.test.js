@@ -1352,3 +1352,40 @@ test('UserAlimentos | create, update', async () => {
   await food1.destroy();
   await user1.destroy();
 });
+
+test('Client | create', async () => {
+  // Create loginuser
+  const res = await request(api)
+    .post('/api/user')
+    .set('Accept', /json/)
+    .send({
+      username: 'martin@mail.com',
+      password: 'securepassword',
+      password2: 'securepassword',
+      // user_type_id: PROFESSIONAL,
+    })
+    .expect(200);
+
+  expect(res.body.status).toBeTruthy();
+
+  const user = await User.findById(res.body.data.user.id);
+
+  expect(user.id).toBe(res.body.data.user.id);
+  expect(user.username).toBe(res.body.data.user.username);
+
+  // Create client
+
+  const res2 = await request(api)
+    .post(`/api/user/${res.body.data.user.id}`)
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      fecha_creacion: 'test',
+    })
+    .expect(200);
+
+  expect(res2.body.data.id).toBe(res.body.data.user.id);
+
+  await user.destroy();
+});

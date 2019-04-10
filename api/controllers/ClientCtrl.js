@@ -102,7 +102,7 @@ const ClientCtrl = () => {
       const model = await Client.find({
         where: { id: req.params.id },
         include: [{
-          model: ClientAlimentos,
+          model: User,
         }],
       });
 
@@ -124,12 +124,12 @@ const ClientCtrl = () => {
   const create = async (req, res) => {
     try {
       const data = { ...req.body };
-      
+
       if (req.user.user_type_id !== CLIENT) { // loginuser is not client
         return res.status(400).send({
           status: false,
-          error: 'not_loginuser_client'
-        })
+          error: 'not_loginuser_client',
+        });
       }
 
       // Set loginuser_id to the current request
@@ -159,4 +159,4 @@ const ClientCtrl = () => {
   };
 };
 
-module.exports = ClientController;
+module.exports = ClientCtrl;

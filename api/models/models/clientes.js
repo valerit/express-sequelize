@@ -4,8 +4,8 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define('clientes', {
     id: {
       type: DataTypes.INTEGER(11),
+      allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     id_creador: {
       type: DataTypes.INTEGER(11),
@@ -50,23 +50,6 @@ module.exports = function (sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING(45),
       allowNull: true,
-    },
-    password: {
-      type: DataTypes.STRING(25),
-      allowNull: true,
-    },
-    restore_password: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1',
-    },
-    cuenta_banco: {
-      type: DataTypes.STRING(22),
-      allowNull: true,
-    },
-    razon_social: {
-      type: DataTypes.STRING(150),
-      allowNull: false,
     },
     edad: {
       type: DataTypes.INTEGER(11),
@@ -148,63 +131,15 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true,
     },
-    bmr_usuario: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-    },
-    bmr_usuario_por_minuto: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    estado_cliente: {
-      type: DataTypes.STRING(150),
-      allowNull: true,
-    },
-    frecuencia_conexion: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    n_conexiones: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-    },
-    recencia_cliente: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
-    },
-    segmentacion_por_edad: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
-    },
     biotipo: {
       type: DataTypes.STRING(50),
-      allowNull: true,
-    },
-    email_mk: {
-      type: DataTypes.INTEGER(1),
       allowNull: true,
     },
     enfermedades: {
       type: DataTypes.STRING(150),
       allowNull: true,
     },
-    medias_espalda_iniciales: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    fecha_alta: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
-    },
-    fecha_fin_contrato: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
-    },
-    fecha_servicio: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
-    },
-    tipo_de_cliente: {
+    tipo_cliente: {
       type: DataTypes.STRING(30),
       allowNull: true,
     },
@@ -220,10 +155,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true,
     },
-    hora_habitual_comer: {
-      type: DataTypes.STRING(45),
-      allowNull: false,
-    },
     tipo_dieta_preferida: {
       type: DataTypes.STRING(50),
       allowNull: true,
@@ -234,10 +165,6 @@ module.exports = function (sequelize, DataTypes) {
     },
     fuma: {
       type: DataTypes.INTEGER(1),
-      allowNull: true,
-    },
-    medidas_espalda_objetivo: {
-      type: DataTypes.FLOAT,
       allowNull: true,
     },
     medidas_biceps_objetivo: {
@@ -285,13 +212,12 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
     loginuser_id: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
     },
     familias_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true,
+      allowNull: true,
     },
   }, {
     tableName: 'clientes',
