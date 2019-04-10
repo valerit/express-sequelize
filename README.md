@@ -84,7 +84,7 @@ Response:
 1. Create loginuser
   `POST /user` { username, password, password2, user_type_id }
 
- user_type_id - 1: Admin, 2: Client
+ user_type_id - 1: Professional, 2: Client
 
 2. Create Client
 
