@@ -34,6 +34,7 @@ const privateRoutes = {
   'PUT /recetas': 'RecetasController.bulkUpdate',
   'GET /recetas/min_max': 'RecetasController.getMinMax', // TODO: rename min_max in the future
   'GET /recetas/distinct': 'RecetasController.getDistinct',
+  'POST /recetas/:id/clone': 'RecetasController.clone',
   'GET /recetas/:id': 'RecetasController.get',
   'PUT /recetas/:id': 'RecetasController.update',
   'DELETE /recetas/:id': 'RecetasController.deleteSingle',
