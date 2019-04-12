@@ -39,6 +39,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    id_original: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+    }
   }, {
     tableName: 'recetas',
   });
