@@ -155,7 +155,7 @@ const RecetasController = () => {
       where: {
         id: req.params.id,
       },
-      raw: true
+      raw: true,
     });
     if (result[0] === 0) { // Affected element count
       return res.status(404).send({
@@ -172,7 +172,7 @@ const RecetasController = () => {
     const newRecetas = await Recetas.build(original).save();
     const newRecetasRA = await Recetas.findOne({
       where: {
-        id: newRecetas.id
+        id: newRecetas.id,
       },
       include: [{
         model: RecetasAlimentos,
@@ -184,10 +184,11 @@ const RecetasController = () => {
       status: true,
       data: newRecetasRA.toJSON(),
     });
-  }
+  };
 
   return {
     create,
+    clone,
     get,
     getAll: queryAll(Recetas, { model: RecetasAlimentos }),
     deleteAll,
