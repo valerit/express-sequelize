@@ -125,6 +125,8 @@ const RecetasController = () => {
       const { recetas_alimentos } = data;
       delete data.recetas_alimentos;
 
+      data.id_creador = req.user.id;
+
       const model = await Recetas.build(data).save();
 
       // Create alimentos
@@ -147,6 +149,42 @@ const RecetasController = () => {
       return onError(req, res, err);
     }
   };
+
+  const clone = async (req, res) => {
+    const result = await Recetas.findOne(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      raw: true
+    });
+    if (result[0] === 0) { // Affected element count
+      return res.status(404).send({
+        status: false,
+        error: 'Recetas_not_found',
+      });
+    }
+
+    const original = result[0];
+    original.id_original = original.id;
+    original.id_creador = req.user.id;
+    delete original.id;
+
+    const newRecetas = await Recetas.build(original).save();
+    const newRecetasRA = await Recetas.findOne({
+      where: {
+        id: newRecetas.id
+      },
+      include: [{
+        model: RecetasAlimentos,
+      }],
+    });
+
+
+    return res.send({
+      status: true,
+      data: newRecetasRA.toJSON(),
+    });
+  }
 
   return {
     create,
