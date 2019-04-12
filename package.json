@@ -23,7 +23,7 @@
     "prepush": "npm test",
     "pretest": "npm run lint",
     "production": "cross-env NODE_ENV=production node ./api/api.js",
-    "test": "npm run create-sqlite-db; cross-env NODE_ENV=testing jest --coverage; npm run drop-sqlite-db",
+    "test": "cross-env NODE_ENV=testing jest --coverage;",
     "test-ci": "jest --coverage --forceExit",
     "connect-stage": "ssh -i stage.pem ubuntu@35.180.2.29",
     "deploy": "pm2 deploy ecosystem.config.json staging --force",

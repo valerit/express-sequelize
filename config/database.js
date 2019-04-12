@@ -5,6 +5,8 @@ const connection = require('./connection');
 
 let database;
 
+console.info('NODE_ENV:', process.env.NODE_ENV);
+
 switch (process.env.NODE_ENV) {
   case 'production':
     database = new Sequelize(
