@@ -86,6 +86,7 @@ const dbService = (environment, migrate) => {
   };
 
   const start = async () => {
+    console.info('DB Environment:', environment);
     switch (environment) {
       case 'development':
         await startDev();

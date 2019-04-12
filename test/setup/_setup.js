@@ -7,6 +7,10 @@ const database = require('../../config/database');
 const auth = require('../../api/policies/auth.policy');
 
 const beforeAction = async () => {
+  await database.authenticate();
+  await database.drop();
+  await database.sync().then(() => console.log('Connection to the database has been established successfully'));
+
   const testapp = express();
   const mappedOpenRoutes = mapRoutes(config.publicRoutes, 'api/controllers/');
   const mappedAuthRoutes = mapRoutes(config.privateRoutes, 'api/controllers/');
@@ -22,9 +26,6 @@ const beforeAction = async () => {
 
   testapp.use('/api', mappedAuthRoutes);
 
-  await database.authenticate();
-  await database.drop();
-  await database.sync().then(() => console.log('Connection to the database has been established successfully'));
 
   return testapp;
 };
