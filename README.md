@@ -129,6 +129,11 @@ Response Body: { status: true, data: Type }
 
 Request Body: { ...recetas, recetas_alimentos: [recetas_alimentos], recetas_comidas: [recetas_comidas] }
 
+
+##### POST /recetas/:id/clone
+
+Clone Recetas
+
 ##### POST /comidas
 
 Request Body: { ...comidas, comidas_alimentos: [comidas_alimentos] }
