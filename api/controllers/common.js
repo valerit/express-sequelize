@@ -38,7 +38,7 @@ const queryAll = (model, include = []) => async function (req, res) {
   const limit = parseInt(query.limit, 10) || 5;
   const offset = parseInt(query.offset, 10) || 0;
   const order = query.order || 'createdAt';
-  const direction = query.direction || 'DESC';
+  const direction = query.direction || 'ASC';
 
   delete query.limit;
   delete query.offset;

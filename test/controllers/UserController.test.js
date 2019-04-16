@@ -500,7 +500,7 @@ test('Recetas | get all (auth)', async () => {
   expect(res.body.data.token).toBeTruthy();
 
   const res2 = await request(api)
-    .get('/api/recetas')
+    .get('/api/recetas?order=id_creador')
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
@@ -510,6 +510,7 @@ test('Recetas | get all (auth)', async () => {
   expect(res2.body.data.length).toBe(3);
   expect(res2.body.total_count).toBe(3);
 
+  expect(res2.body.data[0].id).toBe(obj1.id);
   expect(res2.body.data[0].recetas_alimentos.length).toBe(1);
   expect(res2.body.data[0].recetas_alimentos[0].id).toBe(ra1.id);
 
