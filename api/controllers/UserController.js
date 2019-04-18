@@ -6,6 +6,7 @@ const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
 const { onError } = require('./error');
 const { USER_TYPES } = require('../../config/constants');
+const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const { PROFESSIONAL, CLIENT } = USER_TYPES;
 const { clientes, profesionales } = Models;
@@ -96,15 +97,6 @@ const UserController = () => {
 
       return res.status(200).json({ status: true });
     });
-  };
-
-  const getAll = async (req, res) => {
-    try {
-      const users = await User.findAll();
-      return res.status(200).json({ status: true, data: users });
-    } catch (err) {
-      return onError(req, res, err);
-    }
   };
 
   const bulkUpdate = async (req, res) => {
@@ -222,7 +214,7 @@ const UserController = () => {
     register,
     login,
     validate,
-    getAll,
+    getAll: queryAll(User),
     deleteAll,
     bulkUpdate,
     update,
