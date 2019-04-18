@@ -47,6 +47,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
+    referral_link: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   }, {
     tableName: 'loginuser',
     hooks,
