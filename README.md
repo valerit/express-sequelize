@@ -274,6 +274,10 @@ Get min, max values for a field.
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
+    referral_link: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
 ```
 
 ### alimentos
