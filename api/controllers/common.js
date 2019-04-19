@@ -21,7 +21,6 @@ const getDistinct = (model) => async function (req, res) {
   const { field } = req.query;
   try {
     const values = await model.aggregate(field, 'DISTINCT', { plain: false });
-    console.info('distinct values:', values);
     return res.send({
       status: true,
       data: values.map((record) => (record.DISTINCT)),
@@ -38,7 +37,11 @@ const queryAll = (model, include = []) => async function (req, res) {
   const limit = parseInt(query.limit, 10) || 5;
   const offset = parseInt(query.offset, 10) || 0;
   const order = query.order || 'createdAt';
-  const direction = query.direction || 'ASC';
+  let direction = query.direction || 'ASC';
+
+  if (direction !== 'ASC' || direction !== 'DESC') {
+    direction = 'ASC';
+  }
 
   delete query.limit;
   delete query.offset;
@@ -46,10 +49,8 @@ const queryAll = (model, include = []) => async function (req, res) {
   delete query.direction;
 
   const rawQuery = { ...query };
-  console.info('Query:', JSON.stringify(rawQuery));
 
   const keys = Object.keys(rawQuery);
-  console.info('keys:', keys);
 
   let key;
   for (let i = 0; i < keys.length; i += 1) {
