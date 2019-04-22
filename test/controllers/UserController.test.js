@@ -349,7 +349,7 @@ test('Food | get all (auth)', async () => {
 
   // Query
   const res3 = await request(api)
-    .get('/api/alimentos?order=createdAt&direction=DESC&nombre_alimento=test1')
+    .get('/api/alimentos?nombre_alimento=test1')
     .set('Accept', /json/)
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
