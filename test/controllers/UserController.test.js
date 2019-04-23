@@ -393,7 +393,7 @@ test('Food | get all (auth)', async () => {
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .send({
-      order: 'createdAt',
+      order: 'nombre_alimento',
       direction: 'DESC',
       nombre_alimento: {
         $like: '%test%',
@@ -403,6 +403,7 @@ test('Food | get all (auth)', async () => {
 
   expect(Array.isArray(res6.body.data)).toBeTruthy();
   expect(res6.body.data.length).toBe(4);
+  expect(res6.body.data[0].nombre_alimento).toBe('test4');
 
   await user.destroy();
   await food1.destroy();

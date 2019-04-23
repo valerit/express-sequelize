@@ -39,7 +39,7 @@ const queryAll = (model, include = []) => async function (req, res) {
   const order = query.order || 'createdAt';
   let direction = query.direction || 'ASC';
 
-  if (direction !== 'ASC' || direction !== 'DESC') {
+  if (direction !== 'ASC' && direction !== 'DESC') {
     direction = 'ASC';
   }
 
