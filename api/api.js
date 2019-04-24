@@ -53,6 +53,10 @@ app.all('/api/*', (req, res, next) => auth(req, res, next));
 
 app.use('/api', mappedAuthRoutes);
 
+app.get('/', (req, res) => {
+  res.send('<h1>BeingEenergy Stage API</h1>');
+});
+
 server.listen(config.port, () => {
   if (environment !== 'production' &&
     environment !== 'development' &&
