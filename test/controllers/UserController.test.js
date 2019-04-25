@@ -417,24 +417,24 @@ test('Food | get all (auth)', async () => {
   expect(res6.body.data[0].nombre_alimento).toBe('test4');
 
   // // $or Query
-  // const res7 = await request(api)
-  //   .post('/api/alimentos/query')
-  //   .set('Accept', /json/)
-  //   .set('Authorization', `Bearer ${res.body.data.token}`)
-  //   .set('Content-Type', 'application/json')
-  //   .send({
-  //     order: 'nombre_alimento',
-  //     direction: 'ASC',
-  //     $or: [
-  //       { huevos: 1 },
-  //       { nombre_alimento: 'test2' },
-  //     ],
-  //   })
-  //   .expect(200);
+  const res7 = await request(api)
+    .post('/api/alimentos/query')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${res.body.data.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      order: 'nombre_alimento',
+      direction: 'ASC',
+      $or: [
+        { huevos: 1 },
+        { nombre_alimento: 'test2' },
+      ],
+    })
+    .expect(200);
 
-  // expect(Array.isArray(res7.body.data)).toBeTruthy();
-  // expect(res7.body.data.length).toBe(2);
-  // expect(res7.body.data[0].nombre_alimento).toBe('test1');
+  expect(Array.isArray(res7.body.data)).toBeTruthy();
+  expect(res7.body.data.length).toBe(2);
+  expect(res7.body.data[0].nombre_alimento).toBe('test1');
 
   await user.destroy();
   await food1.destroy();
