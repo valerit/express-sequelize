@@ -192,8 +192,9 @@ Deep query {type} objects
 Request Body: {
   field name: value,
   field name: {
-    operator: value
+    [operator]: value
   }
+  [operator]: value
 }
 
 Ex: to query all `alimentos` with more than 4 `Huevos`
@@ -207,6 +208,15 @@ POST /api/alimentos/query
 }
 ```
 
+to query using `or` condition?
+
+POST /api/alimentos/query
+```
+{
+  "$or": [ { "Huevos": 1 }, {"nombre_alimento": "test"} ]
+}
+```
+
 Operators: 
 
 ```
@@ -215,6 +225,7 @@ Operators:
 '$lt', // Less than
 '$lte' // Less than or equal
 '$like' // Like string
+'$or': // Or
 ```
 
 #### GET /api/type/min_max?{field}={value}
