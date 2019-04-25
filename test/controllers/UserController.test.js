@@ -37,6 +37,14 @@ afterAll(() => {
   afterAction();
 });
 
+beforeEach(async () => {
+  // Remove All users
+  await User.destroy({
+    where: {},
+    truncate: true
+  });
+});
+
 test('Status | get', async () => {
   await request(api)
     .get('/api/status')
