@@ -15,6 +15,7 @@ const privateRoutes = {
   'DELETE /clientes/:id': 'ClientCtrl.deleteSingle',
 
   'GET /alimentos': 'AlimentosController.getAll',
+  'POST /alimentos': 'AlimentosController.create',
   'POST /alimentos/query': 'AlimentosController.getAll',
   'GET /alimentos/min_max': 'AlimentosController.getMinMax', // TODO: rename min_max in the future
   'GET /alimentos/distinct': 'AlimentosController.getDistinct',

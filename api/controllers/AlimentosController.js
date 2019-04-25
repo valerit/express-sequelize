@@ -3,6 +3,22 @@ const { onError } = require('./error');
 const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const AlimentosController = () => {
+
+  const create = async (req, res) => {
+    try {
+      const data = { ...req.body };
+
+      const model = await Alimentos.build(data).save();
+
+      return res.send({
+        status: true,
+        data: { ...model.toJSON() },
+      });
+    } catch (err) {
+      return onError(req, res, err);
+    }
+  };
+
   const bulkUpdate = async (req, res) => {
     try {
       await Promise.all(req.body.map((model) => Alimentos.update(model, {
@@ -114,6 +130,7 @@ const AlimentosController = () => {
   };
 
   return {
+    create,
     get,
     getAll: queryAll(Alimentos),
     deleteAll,
