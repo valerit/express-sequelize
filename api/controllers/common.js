@@ -55,7 +55,7 @@ const queryAll = (model, include = []) => async function (req, res) {
   let key;
   for (let i = 0; i < keys.length; i += 1) {
     key = keys[i];
-    if (Array.isArray(rawQuery[key]) && key !== '$or' && key !== '$and') { // exclude $or, $and 
+    if (Array.isArray(rawQuery[key]) && key !== '$or' && key !== '$and') { // exclude $or, $and
       query[key] = {
         [Op.in]: rawQuery[key],
       };

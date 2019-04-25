@@ -3,7 +3,6 @@ const { onError } = require('./error');
 const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const AlimentosController = () => {
-
   const create = async (req, res) => {
     try {
       const data = { ...req.body };
