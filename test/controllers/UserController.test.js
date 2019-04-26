@@ -1428,7 +1428,7 @@ test('Client | create', async () => {
     .set('Authorization', `Bearer ${res.body.data.token}`)
     .set('Content-Type', 'application/json')
     .send({
-      fecha_creacion: 'test',
+      nombre: 'test',
     })
     .expect(200);
 
