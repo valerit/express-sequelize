@@ -1438,3 +1438,64 @@ test('Client | create', async () => {
   await client.destroy();
   await user.destroy();
 });
+
+
+test('Client | get', async () => {
+  const createClient = async (username, profile) => {
+    // Create loginuser
+    const res = await request(api)
+      .post('/api/user')
+      .set('Accept', /json/)
+      .send({
+        username,
+        password: 'securepassword',
+        password2: 'securepassword',
+        user_type_id: 2, // Client
+        // user_type_id: PROFESSIONAL,
+      })
+      .expect(200);
+
+    expect(res.body.status).toBeTruthy();
+
+    const user = await User.findById(res.body.data.user.id);
+
+    expect(user.id).toBe(res.body.data.user.id);
+    expect(user.username).toBe(res.body.data.user.username);
+
+    // Create client
+
+    const res2 = await request(api)
+      .post('/api/clientes')
+      .set('Accept', /json/)
+      .set('Authorization', `Bearer ${res.body.data.token}`)
+      .set('Content-Type', 'application/json')
+      .send(profile)
+      .expect(200);
+
+    expect(res2.body.data.loginuser_id).toBe(user.id);
+    const client = await Client.findById(res2.body.data.id);
+    return { user, client, token: res.body.data.token };
+  };
+  const client1 = await createClient('client1', { nombre: 'n1' });
+  const client2 = await createClient('client2', { nombre: 'n2' });
+  const client3 = await createClient('client3', { nombre: 'n3' });
+
+  const res = await request(api)
+    .post('/api/clientes/query')
+    .set('Accept', /json/)
+    .set('Authorization', `Bearer ${client1.token}`)
+    .set('Content-Type', 'application/json')
+    .send({
+      $or: [{ nombre: 'n1' }, { nombre: 'n2' }],
+    })
+    .expect(200);
+  expect(res.body.data.length).toBe(2);
+
+  await client1.client.destroy();
+  await client1.user.destroy();
+  await client2.client.destroy();
+  await client2.user.destroy();
+  await client3.client.destroy();
+  await client3.user.destroy();
+});
+
