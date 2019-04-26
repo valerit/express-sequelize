@@ -8,6 +8,7 @@ const privateRoutes = {
 
   'POST /clientes': 'ClientCtrl.create',
   'GET /clientes': 'ClientCtrl.getAll',
+  'POST /clientes/query': 'ClientCtrl.getAll',
   'DELETE /clientes': 'ClientCtrl.deleteAll',
   'PUT /clientes': 'ClientCtrl.bulkUpdate',
   'GET /clientes/:id': 'ClientCtrl.get',
