@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('Citas', {
+  return sequelize.define('citas', {
     usuario_profesional: {
       type: DataTypes.STRING(50),
       allowNull: true,
