@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('Plan_entrenamiento', {
+  return sequelize.define('plan_entrenamiento', {
     id: {
       type: DataTypes.STRING(50),
       primaryKey: true,

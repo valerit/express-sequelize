@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('CRM', {
+  return sequelize.define('crm', {
     fase: {
       type: DataTypes.STRING(50),
       allowNull: true,
