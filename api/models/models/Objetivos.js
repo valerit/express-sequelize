@@ -72,6 +72,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
   }, {
-    tableName: 'Objetivos',
+    tableName: 'objetivos',
   });
 };

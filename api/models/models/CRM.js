@@ -71,6 +71,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
   }, {
-    tableName: 'CRM',
+    tableName: 'crm',
   });
 };

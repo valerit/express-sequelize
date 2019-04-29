@@ -39,6 +39,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
   }, {
-    tableName: 'Plan_entrenamiento',
+    tableName: 'plan_entrenamiento',
   });
 };
