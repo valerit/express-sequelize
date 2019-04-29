@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('Acciones', {
+  return sequelize.define('acciones', {
     id_cliente: {
       type: DataTypes.STRING(8),
       allowNull: true,
