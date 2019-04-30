@@ -762,11 +762,7 @@ module.exports = function (sequelize, DataTypes) {
     codigo_padre: {
       type: DataTypes.STRING(5),
       allowNull: true,
-    },
-    fecha_creacion: {
-      type: DataTypes.STRING(45),
-      allowNull: true,
-    },
+    }
   }, {
     tableName: 'alimentos',
   });

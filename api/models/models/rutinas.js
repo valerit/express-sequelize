@@ -15,10 +15,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
-    fecha_creacion: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
-    },
     id_cliente: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
