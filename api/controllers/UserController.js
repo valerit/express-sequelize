@@ -1,6 +1,7 @@
 const Models = require('../models');
 
 const User = Models.loginuser;
+const PasswordReset = Models.password_reset;
 
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
@@ -8,6 +9,7 @@ const { onError } = require('./error');
 const { USER_TYPES } = require('../../config/constants');
 const { getMinMax, getDistinct, queryAll } = require('./common');
 const EmailCtrl = require('./email');
+const Utils = require('./utils');
 
 const { PROFESSIONAL, CLIENT } = USER_TYPES;
 const { clientes, profesionales } = Models;
@@ -224,8 +226,31 @@ const UserController = () => {
       });
     }
 
+    // Remove all other password reset link
+    await PasswordReset.destroy({
+      where: {
+        userId: user.id,
+      },
+    });
+
+    const reset = new PasswordReset({
+      userId: user.id,
+      hash: Utils.randomString(),
+    });
+
+    await reset.save();
+
+    const html = `
+      <p>
+        <h2>Reset Your Password</h2>
+        <p>You can reset your password by using the following code:</p>
+        <h3>${reset.hash}</h3>
+        &nbsp;
+        <h4>Being Energy Support</h4>
+      </p>
+    `;
     try {
-      await EmailCtrl.send(email, 'Forget Password', 'Test Text');
+      await EmailCtrl.send(email, 'Forget Password', html, html);
     } catch (err) {
       return onError(req, res, err);
     }
