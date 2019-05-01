@@ -210,11 +210,11 @@ const UserController = () => {
     }
   };
 
-  const forgetPassword = async (req, res) => {
+  const forgotPassword = async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({
       where: {
-        email,
+        username: email,
       },
     });
     if (!user) {
@@ -224,10 +224,11 @@ const UserController = () => {
       });
     }
 
-    await EmailCtrl.send(user.email, 'Forget Password', 'Test Text');
-    return res.send({
-      status: true,
-    });
+    try {
+      await EmailCtrl.send(email, 'Forget Password', 'Test Text');
+    } catch (err) {
+      return onError(req, res, err);
+    }
   };
 
   return {
@@ -240,6 +241,7 @@ const UserController = () => {
     bulkUpdate,
     update,
     deleteSingle,
+    forgotPassword,
   };
 };
 

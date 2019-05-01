@@ -1,4 +1,5 @@
 const publicRoutes = {
+  'POST /user/forgot_password': 'UserController.forgotPassword',
   'POST /user': 'UserController.register',
   'POST /register': 'UserController.register', // alias for POST /user
   'POST /login': 'UserController.login',
