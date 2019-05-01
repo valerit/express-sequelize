@@ -229,6 +229,9 @@ const UserController = () => {
     } catch (err) {
       return onError(req, res, err);
     }
+    res.send({
+      status: true,
+    });
   };
 
   return {
