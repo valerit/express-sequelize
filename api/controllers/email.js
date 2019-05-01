@@ -10,7 +10,16 @@ const transport = nodemailer.createTransport({
   },
 });
 
-module.exports.send = (subject, text) => {
+const fromEmail = process.env.SMTP_FROM_EMAIL;
 
-}
+module.exports.send = async (to, subject, text, html = '') => {
+	const message = {
+		from: `BeingEnergy <${to}>`,
+		to,
+		subject,
+		text,
+		html,
+	};
 
+	await transport.sendMail(message);
+};

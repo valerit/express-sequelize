@@ -7,6 +7,7 @@ const bcryptService = require('../services/bcrypt.service');
 const { onError } = require('./error');
 const { USER_TYPES } = require('../../config/constants');
 const { getMinMax, getDistinct, queryAll } = require('./common');
+const EmailCtrl = require('./email');
 
 const { PROFESSIONAL, CLIENT } = USER_TYPES;
 const { clientes, profesionales } = Models;
@@ -207,6 +208,26 @@ const UserController = () => {
     } catch (err) {
       return onError(req, res, err);
     }
+  };
+
+  const forgetPassword = async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      return res.status(404).send({
+        status: false,
+        error: 'user_not_found',
+      });
+    }
+
+    await EmailCtrl.send(user.email, 'Forget Password', 'Test Text');
+    return res.send({
+      status: true,
+    });
   };
 
   return {
