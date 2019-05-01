@@ -259,6 +259,44 @@ const UserController = () => {
     });
   };
 
+  const resetPassword = async (req, res) => {
+    const { email, code, password } = req.body;
+    const user = await User.findOne({
+      where: {
+        username: email,
+      },
+    });
+    if (!user) {
+      return res.status(404).send({
+        status: false,
+        error: 'user_not_found',
+      });
+    }
+
+    const reset = PasswordReset.findOne({
+      where: {
+        userId: user.id,
+        hash: code,
+      },
+    });
+
+    if (!reset) {
+      return res.status(400).send({
+        status: false,
+        error: 'invalid_code',
+      });
+    }
+
+    user.password = bcryptService().password({
+      password,
+    });
+    await user.save();
+
+    res.send({
+      status: true,
+    });
+  };
+
   return {
     get,
     register,
@@ -270,6 +308,7 @@ const UserController = () => {
     update,
     deleteSingle,
     forgotPassword,
+    resetPassword,
   };
 };
 
