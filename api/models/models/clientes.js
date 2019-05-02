@@ -43,10 +43,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(15),
       allowNull: true,
     },
-    email: {
-      type: DataTypes.STRING(45),
-      allowNull: true,
-    },
     edad: {
       type: DataTypes.INTEGER(11),
       allowNull: true,

@@ -51,14 +51,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(15),
       allowNull: true,
     },
-    email: {
-      type: DataTypes.STRING(45),
-      allowNull: true,
-    },
-    password: {
-      type: DataTypes.STRING(25),
-      allowNull: true,
-    },
     restore_password: {
       type: DataTypes.INTEGER(1),
       allowNull: true,

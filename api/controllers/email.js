@@ -13,15 +13,15 @@ const transport = nodemailer.createTransport({
 const fromEmail = process.env.SMTP_FROM_EMAIL;
 
 module.exports.send = async (to, subject, text, html = '') => {
-	const message = {
-		from: `BeingEnergy <${fromEmail}>`,
-		to,
-		subject,
-		text,
-		html,
-	};
+  const message = {
+    from: `BeingEnergy <${fromEmail}>`,
+    to,
+    subject,
+    text,
+    html,
+  };
 
-	console.info('Send Email:', message);
+  console.info('Send Email:', message);
 
-	await transport.sendMail(message);
+  await transport.sendMail(message);
 };
