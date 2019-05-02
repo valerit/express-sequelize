@@ -62,6 +62,7 @@ test('User | create', async () => {
       username: 'martin@mail.com',
       password: 'securepassword',
       password2: 'securepassword',
+      email: 'martin@gmail.com',
       // user_type_id: PROFESSIONAL,
     })
     .expect(200);
@@ -82,6 +83,7 @@ test('User | get single', async () => {
     .set('Accept', /json/)
     .send({
       username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
       password2: 'securepassword',
     })
@@ -108,7 +110,7 @@ test('User | get single', async () => {
 
 
 test('User | login', async () => {
-  const user = await User.build({
+  const user = await User.create({
     username: 'martin@mail.com',
     email: 'martin@mail.com',
     password: 'securepassword',
@@ -210,7 +212,7 @@ test('User | single update', async () => {
   const user = await User.build({
     username: 'user1',
     password: 'password',
-    email: 'user1@test.com'
+    email: 'user1@test.com',
   }).save();
 
 
@@ -240,19 +242,19 @@ test('User | bulk update', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
-    email: 'user1@test.com'
+    email: 'user1@test.com',
   }).save();
 
   const user2 = await User.build({
     username: 'user2',
     password: 'password',
-    email: 'user2@test.com'
+    email: 'user2@test.com',
   }).save();
 
   const user3 = await User.build({
     username: 'user3',
     password: 'password',
-    email: 'user3@test.com'
+    email: 'user3@test.com',
   }).save();
 
   const res = await request(api)
@@ -288,13 +290,13 @@ test('User | delete single', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
-    email: 'user1@test.com'
+    email: 'user1@test.com',
   }).save();
 
   const user2 = await User.build({
     username: 'user2',
     password: 'password',
-    email: 'user2@test.com'
+    email: 'user2@test.com',
   }).save();
 
   const res = await request(api)
@@ -323,7 +325,7 @@ test('Food | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
-    email: 'marting@mail.com'
+    email: 'marting@mail.com',
   }).save();
 
   const food1 = await Food.build({
@@ -457,6 +459,7 @@ test('Food | get single food', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@gmail.com',
   }).save();
 
   const food = await Food.build({
@@ -505,7 +508,7 @@ test('Recetas | get all (auth)', async () => {
   const user3 = await User.build({
     username: 'jack@mail.com',
     password: 'securepassword',
-    email: 'jack@mail.com'
+    email: 'jack@mail.com',
   }).save();
 
   const obj1 = await Recetas.build({
@@ -585,6 +588,7 @@ test('Recetas | get single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@gmail.com',
   }).save();
 
   const obj1 = await Recetas.build({
@@ -878,7 +882,7 @@ test('Comidas | get all (auth)', async () => {
   const user3 = await User.build({
     username: 'jack@mail.com',
     password: 'securepassword',
-    email: 'jack@mail.com'
+    email: 'jack@mail.com',
   }).save();
 
   const obj1 = await Comidas.build({
@@ -1077,7 +1081,7 @@ test('Comidas | update single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
-    email: 'martin@mail.com'
+    email: 'martin@mail.com',
   }).save();
 
   const res = await request(api)
@@ -1207,7 +1211,7 @@ test('Comidas | delete all', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
-    email: 'user1@test.com'
+    email: 'user1@test.com',
   }).save();
 
   const obj1 = await Comidas.build({
@@ -1381,7 +1385,7 @@ test('UserAlimentos | create, update', async () => {
   const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
-    email: 'martin@gmail.com'
+    email: 'martin@gmail.com',
   }).save();
 
   // create alimentos
@@ -1439,6 +1443,7 @@ test('Client | create', async () => {
       password: 'securepassword',
       password2: 'securepassword',
       user_type_id: 2, // Client
+      email: 'martin@mail.com',
       // user_type_id: PROFESSIONAL,
     })
     .expect(200);
@@ -1478,6 +1483,7 @@ test('Client | get', async () => {
       .set('Accept', /json/)
       .send({
         username,
+        email: `${username}@test.com`,
         password: 'securepassword',
         password2: 'securepassword',
         user_type_id: 2, // Client

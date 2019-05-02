@@ -52,7 +52,7 @@ const UserController = () => {
           data: { user: resp, token },
         });
       } catch (err) {
-        onError(req, res, err);
+        return onError(req, res, err);
       }
     }
 
