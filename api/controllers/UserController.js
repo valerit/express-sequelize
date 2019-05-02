@@ -216,7 +216,7 @@ const UserController = () => {
     const { email } = req.body;
     const user = await User.findOne({
       where: {
-        username: email,
+        email,
       },
     });
     if (!user) {
@@ -263,7 +263,7 @@ const UserController = () => {
     const { email, code, password } = req.body;
     const user = await User.findOne({
       where: {
-        username: email,
+        email,
       },
     });
     if (!user) {
