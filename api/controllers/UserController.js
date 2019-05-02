@@ -254,7 +254,7 @@ const UserController = () => {
     } catch (err) {
       return onError(req, res, err);
     }
-    res.send({
+    return res.send({
       status: true,
     });
   };
@@ -292,7 +292,7 @@ const UserController = () => {
     });
     await user.save();
 
-    res.send({
+    return res.send({
       status: true,
     });
   };

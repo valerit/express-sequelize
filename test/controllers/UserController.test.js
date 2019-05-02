@@ -108,8 +108,9 @@ test('User | get single', async () => {
 
 
 test('User | login', async () => {
-  const user = await User.create({
+  const user = await User.build({
     username: 'martin@mail.com',
+    email: 'martin@mail.com',
     password: 'securepassword',
   });
 
@@ -134,6 +135,7 @@ test('User | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const res = await request(api)
@@ -179,6 +181,7 @@ test('User | delete all (auth)', async () => {
   await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const res = await request(api)
@@ -207,6 +210,7 @@ test('User | single update', async () => {
   const user = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com'
   }).save();
 
 
@@ -236,16 +240,19 @@ test('User | bulk update', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com'
   }).save();
 
   const user2 = await User.build({
     username: 'user2',
     password: 'password',
+    email: 'user2@test.com'
   }).save();
 
   const user3 = await User.build({
     username: 'user3',
     password: 'password',
+    email: 'user3@test.com'
   }).save();
 
   const res = await request(api)
@@ -281,11 +288,13 @@ test('User | delete single', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com'
   }).save();
 
   const user2 = await User.build({
     username: 'user2',
     password: 'password',
+    email: 'user2@test.com'
   }).save();
 
   const res = await request(api)
@@ -314,6 +323,7 @@ test('Food | get all (auth)', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'marting@mail.com'
   }).save();
 
   const food1 = await Food.build({
@@ -483,16 +493,19 @@ test('Recetas | get all (auth)', async () => {
   const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'margin@gmail.com',
   }).save();
 
   const user2 = await User.build({
     username: 'johnn@mail.com',
     password: 'securepassword',
+    email: 'johnn@mail.com',
   }).save();
 
   const user3 = await User.build({
     username: 'jack@mail.com',
     password: 'securepassword',
+    email: 'jack@mail.com'
   }).save();
 
   const obj1 = await Recetas.build({
@@ -641,6 +654,7 @@ test('Recetas | create single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const food1 = await Food.build({
@@ -690,6 +704,7 @@ test('Recetas | update single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const res = await request(api)
@@ -727,6 +742,7 @@ test('Recetas | delete single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const obj = await Recetas.build({
@@ -762,6 +778,7 @@ test('Recetas | bulk update', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com',
   }).save();
 
   const obj1 = await Recetas.build({
@@ -805,6 +822,7 @@ test('Recetas | delete all', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com',
   }).save();
 
   const obj1 = await Recetas.build({
@@ -848,16 +866,19 @@ test('Comidas | get all (auth)', async () => {
   const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const user2 = await User.build({
     username: 'johnn@mail.com',
     password: 'securepassword',
+    email: 'johnn@mail.com',
   }).save();
 
   const user3 = await User.build({
     username: 'jack@mail.com',
     password: 'securepassword',
+    email: 'jack@mail.com'
   }).save();
 
   const obj1 = await Comidas.build({
@@ -926,6 +947,7 @@ test('Comidas | get single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const obj1 = await Comidas.build({
@@ -997,6 +1019,7 @@ test('Comidas | create single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@gmail.com',
   }).save();
 
   // create alimentos
@@ -1054,6 +1077,7 @@ test('Comidas | update single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com'
   }).save();
 
   const res = await request(api)
@@ -1094,6 +1118,7 @@ test('Comidas | delete single', async () => {
   const user = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@mail.com',
   }).save();
 
   const obj = await Comidas.build({
@@ -1132,6 +1157,7 @@ test('Comidas | bulk update', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com',
   }).save();
 
   const obj1 = await Comidas.build({
@@ -1181,6 +1207,7 @@ test('Comidas | delete all', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com'
   }).save();
 
   const obj1 = await Comidas.build({
@@ -1228,6 +1255,7 @@ test('Comidas | get min/max', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com',
   }).save();
 
   const obj1 = await Comidas.build({
@@ -1284,6 +1312,7 @@ test('Comidas | get distinct', async () => {
   const user1 = await User.build({
     username: 'user1',
     password: 'password',
+    email: 'user1@test.com',
   }).save();
 
   const obj1 = await Comidas.build({
@@ -1352,6 +1381,7 @@ test('UserAlimentos | create, update', async () => {
   const user1 = await User.build({
     username: 'martin@mail.com',
     password: 'securepassword',
+    email: 'martin@gmail.com'
   }).save();
 
   // create alimentos
