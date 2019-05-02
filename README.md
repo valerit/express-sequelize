@@ -242,6 +242,28 @@ Get min, max values for a field.
 }
 ```
 
+### Reset Password
+
+#### POST /api/user/forgot_password
+
+```
+{
+  "email": "email@email.com"
+}
+```
+
+It will send a code to the email if the user found.
+
+#### POST /api/user/reset_password
+
+```
+{
+  "email": "email@email.com",
+  "password": "new_password",
+  "code": "code in password reset email"
+}
+```
+
 ## Types
 
 ### User
