@@ -101,6 +101,8 @@ const RecetasController = () => {
         where: { id: req.params.id },
         include: [{
           model: RecetasAlimentos,
+        }, {
+          model: ComidasRecetas,
         }],
       });
 
