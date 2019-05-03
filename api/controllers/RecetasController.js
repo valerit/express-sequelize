@@ -105,9 +105,6 @@ const RecetasController = () => {
           model: RecetasAlimentos,
         }, {
           model: ComidasRecetas,
-          where: {
-            recetas_id: req.params.id
-          }
         }],
       });
 
