@@ -3,6 +3,8 @@ const { Op } = require('sequelize');
 const Recetas = require('../models').recetas;
 const Alimentos = require('../models').alimentos;
 const RecetasAlimentos = require('../models').recetas_alimentos;
+const ComidasRecetas = require('../models').comidas_recetas;
+
 const { getMinMax, getDistinct, queryAll } = require('./common');
 
 const { onError } = require('./error');
