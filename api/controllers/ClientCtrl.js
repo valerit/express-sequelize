@@ -8,6 +8,7 @@ const { USER_TYPES } = require('../../config/constants');
 const { onError } = require('./error');
 
 const { PROFESSIONAL, CLIENT } = USER_TYPES;
+const userFields = ['id', 'username', 'email', 'password', 'rol', 'ttl', 'scopes', 'user_type_id', 'referral_link'];
 
 const ClientCtrl = () => {
   const bulkUpdate = async (req, res) => {
@@ -103,6 +104,7 @@ const ClientCtrl = () => {
         where: { id: req.params.id },
         include: [{
           model: User,
+          fields: userFields
         }],
       });
 

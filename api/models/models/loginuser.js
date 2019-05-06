@@ -39,10 +39,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(250),
       allowNull: true,
     },
-    created: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
     user_type_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
