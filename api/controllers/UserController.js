@@ -60,14 +60,14 @@ const UserController = () => {
   };
 
   const login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    if (username && password) {
+    if (email && password) {
       try {
         const user = await User
           .findOne({
             where: {
-              username,
+              email,
             },
           });
 
@@ -87,7 +87,7 @@ const UserController = () => {
       }
     }
 
-    return res.status(400).json({ status: false, error: 'Bad Request: username or password is wrong' });
+    return res.status(400).json({ status: false, error: 'Bad Request: email or password is wrong' });
   };
 
   const validate = (req, res) => {
