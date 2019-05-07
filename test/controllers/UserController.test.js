@@ -120,7 +120,7 @@ test('User | login', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -144,7 +144,7 @@ test('User | get all (auth)', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -190,7 +190,7 @@ test('User | delete all (auth)', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -220,7 +220,7 @@ test('User | single update', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -261,7 +261,7 @@ test('User | bulk update', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -303,7 +303,7 @@ test('User | delete single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -352,7 +352,7 @@ test('Food | get all (auth)', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -470,7 +470,7 @@ test('Food | get single food', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -540,7 +540,7 @@ test('Recetas | get all (auth)', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -624,7 +624,7 @@ test('Recetas | get single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -669,7 +669,7 @@ test('Recetas | create single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -715,7 +715,7 @@ test('Recetas | update single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -757,7 +757,7 @@ test('Recetas | delete single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -797,7 +797,7 @@ test('Recetas | bulk update', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -841,7 +841,7 @@ test('Recetas | delete all', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -910,7 +910,7 @@ test('Comidas | get all (auth)', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -994,7 +994,7 @@ test('Comidas | get single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -1035,7 +1035,7 @@ test('Comidas | create single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -1088,7 +1088,7 @@ test('Comidas | update single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -1136,7 +1136,7 @@ test('Comidas | delete single', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
@@ -1182,7 +1182,7 @@ test('Comidas | bulk update', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -1232,7 +1232,7 @@ test('Comidas | delete all', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -1291,7 +1291,7 @@ test('Comidas | get min/max', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -1357,7 +1357,7 @@ test('Comidas | get distinct', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'user1',
+      email: 'user1@test.com',
       password: 'password',
     })
     .expect(200);
@@ -1397,7 +1397,7 @@ test('UserAlimentos | create, update', async () => {
     .post('/api/login')
     .set('Accept', /json/)
     .send({
-      username: 'martin@mail.com',
+      email: 'martin@mail.com',
       password: 'securepassword',
     })
     .expect(200);
