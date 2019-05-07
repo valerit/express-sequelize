@@ -104,7 +104,7 @@ const ClientCtrl = () => {
         where: { id: req.params.id },
         include: [{
           model: User,
-          fields: userFields
+          fields: userFields,
         }],
       });
 
