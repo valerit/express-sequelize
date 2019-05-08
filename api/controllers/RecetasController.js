@@ -4,6 +4,7 @@ const Recetas = require('../models').recetas;
 const Alimentos = require('../models').alimentos;
 const RecetasAlimentos = require('../models').recetas_alimentos;
 const ComidasRecetas = require('../models').comidas_recetas;
+const UserAlimentos = require('../models').user_alimentos;
 
 const { getMinMax, getDistinct, queryAll } = require('./common');
 
@@ -105,6 +106,8 @@ const RecetasController = () => {
           model: RecetasAlimentos,
         }, {
           model: ComidasRecetas,
+        }, {
+          model: UserAlimentos,
         }],
       });
 
@@ -194,7 +197,13 @@ const RecetasController = () => {
     create,
     clone,
     get,
-    getAll: queryAll(Recetas, { model: RecetasAlimentos }),
+    getAll: queryAll(Recetas, [{
+      model: RecetasAlimentos,
+    }, {
+      model: ComidasRecetas,
+    }, {
+      model: UserAlimentos,
+    }]),
     deleteAll,
     bulkUpdate,
     update,
