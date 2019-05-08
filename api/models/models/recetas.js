@@ -39,6 +39,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
+    user_alimentos_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+    },
   }, {
     tableName: 'recetas',
   });
