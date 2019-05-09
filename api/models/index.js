@@ -69,4 +69,7 @@ user_alimentos.belongsTo(loginuser, { foreignKey: 'id_creador', sourceKey: 'id' 
 user_alimentos.hasMany(recetas, { foreignKey: 'user_alimentos_id', sourceKey: 'id' });
 recetas.belongsTo(user_alimentos, { foreignKey: 'user_alimentos_id', sourceKey: 'id' });
 
+user_alimentos.hasMany(comidas_alimentos, { foreignKey: 'user_alimentos_id', sourceKey: 'id' });
+comidas_alimentos.belongsTo(user_alimentos, { foreignKey: 'user_alimentos_id', sourceKey: 'id' });
+
 module.exports = models;
