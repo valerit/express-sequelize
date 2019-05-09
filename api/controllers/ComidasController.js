@@ -164,7 +164,7 @@ const ComidasController = () => {
   return {
     create,
     get,
-    getAll: queryAll(Comidas, { model: ComidasAlimentos }, { model: ComidasRecetas }),
+    getAll: queryAll(Comidas, [{ model: ComidasAlimentos }, { model: ComidasRecetas }]),
     deleteAll,
     bulkUpdate,
     update,
