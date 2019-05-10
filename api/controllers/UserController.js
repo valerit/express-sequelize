@@ -279,6 +279,7 @@ const UserController = () => {
         hash: code,
       },
     });
+    console.info('Reset Loaded:', reset)
 
     if (!reset) {
       return res.status(400).send({
